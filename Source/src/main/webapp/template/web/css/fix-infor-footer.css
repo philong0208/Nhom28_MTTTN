@@ -1,0 +1,35 @@
+.footer {
+    width: 100%;
+    /*width: calc(100% - 300px);*/
+    position: fixed;
+    bottom: 0;
+    background-color: #f5c248;
+    z-index: 3;
+}
+
+@media (min-width: 768px) {
+    .footer {
+        width: 100%;
+        /*width: calc(100% - 300px);*/
+    }
+}
+
+.footer__text {
+    border-right: 1px dotted #000;
+    color: #000;
+    font-size: 18px;
+    height: 50px
+}
+
+.footer__text:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.col-12:last-child .footer__text {
+    border-right: none;
+}
+
+.text__large-text {
+    font-size: 2em
+}

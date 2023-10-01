@@ -1,0 +1,113 @@
+@media (min-width: 992px) {
+    nav.fixed-top:not(.sticky-top):not(.show-menu) .bg-wrap {
+        opacity: 0 !important;
+    }
+}#action-img-text-btn-4 .bg {
+    background-position: right center;
+    background-repeat: No-repeat;
+    background-size: cover;
+    background-image: url(../images/887/bgslimemailhero04.jpg);
+}
+#media-text-img-2 .bg {}#sep-bottom-3 .bg-wrap {
+    background-color: rgba(255, 255, 255, 0);
+}     #action-text-btn-5 .bg-wrap {
+    background: linear-gradient(135deg, #0089ad, rgba(0, 188, 172, 0.98));
+}
+#action-text-btn-5 .btn.btn-primary{
+    background: linear-gradient(135deg, rgb(228, 74, 0), rgb(242, 119, 60)); 
+    border-color: rgba(0, 0, 0, 0);
+}#desc-img-text-9 .bg-wrap {
+    background-color: #f4f5f6;
+}#sep-bottom-3--0 .bg-wrap {
+    background-color: rgba(255, 255, 255, 0);
+}     .price-3col-3 .content-box.price{
+    background: linear-gradient(rgb(228, 122, 44), rgb(223, 55, 81));
+}
+.content-box.price h2{
+    font-weight: 400;
+    color: white;
+}
+@media(min-width: 992px){
+    .content-box.price h2{
+       font-size: 80px;
+    }
+}
+.content-box.price span{
+    font-size: 35%;
+}#desc-img-text-9--0 .bg-wrap {
+    background-color: #f4f5f6;
+}#benefits-3col-15 .bg-wrap {
+    background-color: #f4f5f6;
+}#tool-back-to-top{
+    position: fixed;
+    right: 130px;
+    bottom: 50px;
+    z-index: 1001190 !important;
+}
+#tool-social-right {
+	position: fixed;
+	right: 130px;
+	bottom: 100px;
+	z-index: 1001190 !important;
+}
+
+.hidden {
+	display: none !important;
+}
+
+#tool-social-right .rounded-circle {
+	overflow: visible !important;
+}
+
+#tool-social-right .morestats,
+#tool-social-right .btbg {
+	-moz-transition: 0.1s 0.15s;
+	-o-transition: 0.1s 0.15s;
+	-webkit-transition: 0.15s;
+	-webkit-transition-delay: 0.15s;
+	-webkit-transition: 0.1s 0.15s;
+	transition: 0.1s 0.15s;
+}
+
+#tool-social-right .salesdesk-widget-button-text::after {
+	content: "";
+	top: 9px;
+	right: -7px;
+	position: absolute;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-left: 7px solid rgba(0, 0, 0, .5);
+}#tool-social-right--0 {
+	position: fixed;
+	right: 130px;
+	bottom: 100px;
+	z-index: 1001190 !important;
+}
+
+.hidden {
+	display: none !important;
+}
+
+#tool-social-right--0 .rounded-circle {
+	overflow: visible !important;
+}
+
+#tool-social-right--0 .morestats,
+#tool-social-right--0 .btbg {
+	-moz-transition: 0.1s 0.15s;
+	-o-transition: 0.1s 0.15s;
+	-webkit-transition: 0.15s;
+	-webkit-transition-delay: 0.15s;
+	-webkit-transition: 0.1s 0.15s;
+	transition: 0.1s 0.15s;
+}
+
+#tool-social-right--0 .salesdesk-widget-button-text::after {
+	content: "";
+	top: 9px;
+	right: -7px;
+	position: absolute;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-left: 7px solid rgba(0, 0, 0, .5);
+}
