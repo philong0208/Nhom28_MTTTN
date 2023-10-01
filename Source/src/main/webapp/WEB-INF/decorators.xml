@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+
+    <excludes>
+        <pattern>/404-page.html</pattern>
+        <pattern>/api*</pattern>
+        <pattern>/access-denied</pattern>
+        <pattern>/ckfinder*</pattern>
+        <pattern>/logout</pattern>
+        <pattern>/loginAdmin*</pattern>
+        <pattern>/dang-ky-email*</pattern>
+        <pattern>/nganluong_97e250c25e4103dbbb7a939116fd136c.html</pattern>
+        <pattern>/khoa-hoc-java-phong-van-di-lam-78*</pattern>
+        <pattern>/khoa-hoc-java-web-co-ban-den-nang-cao*</pattern>
+        <pattern>/khoa-hoc-deploy-java-web-len-hosting-84*</pattern>
+    </excludes>
+
+    <!-- apply Sitemesh default template -->
+    <decorator name="web" page="web.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+    <!-- apply Sitemesh default template -->
+    <decorator name="admin" page="admin.jsp">
+        <pattern>/admin*</pattern>
+    </decorator>
+
+    <!--&lt;!&ndash; apply Sitemesh default template &ndash;&gt;
+    <decorator name="java-core" page="course.jsp">
+        <pattern>/khoa-hoc-java-phong-van-di-lam-78</pattern>
+    </decorator>
+
+    &lt;!&ndash; apply Sitemesh default template &ndash;&gt;
+    <decorator name="java-web" page="course.jsp">
+        <pattern>/khoa-hoc-java-web-co-ban-den-nang-cao</pattern>
+    </decorator>
+
+    &lt;!&ndash; apply Sitemesh default template &ndash;&gt;
+    <decorator name="java-hosting" page="course.jsp">
+        <pattern>/khoa-hoc-deploy-java-web-len-hosting-84</pattern>
+    </decorator>-->
+</decorators>
