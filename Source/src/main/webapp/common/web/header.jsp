@@ -34,7 +34,7 @@
 
                             <div class="navbar-header navbar-header-custom">
                                 <!-- Start Logo -->
-                                <a href="<c:url value="/trang-chu"/> " class="navbar-brand"><img id="logo" src="<c:url value="/template/web/image/logo/logo-java-web.png"/>" alt="logo"></a>
+                                <a href="<c:url value="/trang-chu"/> " class="navbar-brand"><img id="logo" src="<c:url value="/template/web/image/logo/logo-light-novel.png"/>" alt="logo"></a>
                                 <!-- End Logo -->
                             </div>
 
