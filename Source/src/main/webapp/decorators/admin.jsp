@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><dec:title default="Admin Page" /></title>
     <!-- favicon -->
-    <link rel="shortcut icon" href="/template/web/image/logo/favicon-java-web.png" />
+    <link rel="shortcut icon" href="/template/web/image/logo/favicon-light-novel.png" />
     <!-- jquery -->
     <script type='text/javascript' src='<c:url value="/template/admin/js/2.1.4/jquery.min.js" />'></script>
 

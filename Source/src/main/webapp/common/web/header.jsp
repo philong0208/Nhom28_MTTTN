@@ -16,7 +16,7 @@
                     <div class="top-bar-info">
                         <ul>
                             <li><i class="fas fa-phone"></i>0354.502.773 / 0819.423.713 / 0909.804.713</li>
-                            <li><i class="fas fa-envelope"></i>cskh@laptrinhjavaweb.com</li>
+                            <li><i class="fas fa-envelope"></i>cskh@lightnovel.com</li>
                             <%--<li class="sm-display-none"><i class="far fa-clock"></i>8h - 21h (thứ 2 - Thứ 6, nghỉ thứ 7, chủ nhật)</li>--%>
                         </ul>
                     </div>
@@ -34,7 +34,7 @@
 
                             <div class="navbar-header navbar-header-custom">
                                 <!-- Start Logo -->
-                                <a href="<c:url value="/trang-chu"/> " class="navbar-brand"><img id="logo" src="<c:url value="/template/web/image/logo/logo-java-web.png"/>" alt="logo"></a>
+                                <a href="<c:url value="/trang-chu"/> " class="navbar-brand"><img id="logo" src="<c:url value="/template/web/image/logo/logo-light-novel.png"/>" alt="logo"></a>
                                 <!-- End Logo -->
                             </div>
 

@@ -18,7 +18,7 @@
     <meta property="og:image" content="https://laptrinhjavaweb.com/repository${model.ogImage}" />
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="<c:url value='/template/web/image/logo/favicon-java-web.png' />" />
+    <link rel="shortcut icon" href="<c:url value='/template/web/image/logo/favicon-light-novel.png' />" />
 
     <!-- plugins -->
     <link rel="stylesheet" href="<c:url value='/template/web/css/plugins.css' />" />
@@ -182,7 +182,7 @@
         </div>
     </div>
 
-    <a href="https://zalo.me/4588194011921423842" class="zalo-icon" data-toggle="tooltip" data-placement="left" title="Chat với Laptrinhjavaweb trên zalo" target="_blank">
+    <a href="https://zalo.me/4588194011921423842" class="zalo-icon" data-toggle="tooltip" data-placement="left" title="Chat với Light Novel trên zalo" target="_blank">
         <img src="<c:url value='/template/web/image/abc/icons8-zalo.svg' />" alt="zalo">
     </a>
 

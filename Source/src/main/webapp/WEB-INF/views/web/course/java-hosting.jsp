@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- favicon -->
-    <link rel="shortcut icon" href="<c:url value='/template/web/image/logo/favicon-java-web.png' />" />
+    <link rel="shortcut icon" href="<c:url value='/template/web/image/logo/favicon-light-novel.png' />" />
 
     <title>${model.title}</title>
 
