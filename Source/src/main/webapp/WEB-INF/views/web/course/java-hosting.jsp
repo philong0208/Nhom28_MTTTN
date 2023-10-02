@@ -71,10 +71,10 @@
     <!--end-->
 
     <!-- Script Popup -->
-    <script src="https://salekit.io/embed/js/0b44020a" async="async"></script>
+<%--    <script src="https://salekit.io/embed/js/0b44020a" async="async"></script>--%>
 
     <%--Script Form--%>
-    <script src="https://salekit.io/assets/js/embed/sk.js"></script>
+<%--    <script src="https://salekit.io/assets/js/embed/sk.js"></script>--%>
 
 </head>
 <body nid='' uid='' class="light-page">

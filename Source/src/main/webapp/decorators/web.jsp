@@ -85,10 +85,10 @@
     </script>
 
     <!-- Script Popup -->
-    <script src="https://salekit.io/embed/js/0b750217" async="async"></script>
+<%--    <script src="https://salekit.io/embed/js/0b750217" async="async"></script>--%>
 
     <%--Script Form--%>
-    <script src="https://salekit.io/assets/js/embed/sk.js"></script>
+<%--    <script src="https://salekit.io/assets/js/embed/sk.js"></script>--%>
 
     <decorator:getProperty property="page.local_header"></decorator:getProperty>
     <decorator:getProperty property="page.local_css"></decorator:getProperty>

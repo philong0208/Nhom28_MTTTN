@@ -28,7 +28,7 @@
     <script type="text/javascript" src="<c:url value="/ckfinder/ckfinder.js"/>"></script>
 
     <%--Script Form--%>
-    <script src="https://salekit.io/assets/js/embed/sk.js"></script>
+<%--    <script src="https://salekit.io/assets/js/embed/sk.js"></script>--%>
 </head>
 <body class="no-skin">
 
