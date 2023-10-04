@@ -17,7 +17,7 @@
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="#">Trang chủ</a>
                 </li>
-                <li class="active">Chỉnh sửa bài viết</li>
+                <li class="active">Chỉnh sửa tiểu thuyết</li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">
@@ -44,7 +44,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Tiêu đề bài viết</label>
+                            <label class="col-sm-3 control-label no-padding-right">Tiêu đề tiểu thuyết</label>
                             <div class="col-sm-9">
                                 <form:input path="title" id="title" cssClass="form-control"/>
                             </div>
@@ -84,7 +84,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Thumbnail bài viết:</label>
+                            <label class="col-sm-3 control-label no-padding-right">Thumbnail tiểu thuyết:</label>
                             <div class="col-sm-4">
                                 <input type="file" id="uploadImage"/>
                             </div>
@@ -121,7 +121,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Nội dung bài viết</label>
+                            <label class="col-sm-3 control-label no-padding-right">Nội dung tiểu thuyết</label>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12" style="margin-bottom: 10px">
@@ -301,11 +301,11 @@
                             <div class="col-sm-12">
                                 <c:if test="${not empty model.id}">
                                     <input type="button" class="btn btn-white btn-warning btn-bold"
-                                           value="Cập nhật bài viết" id="btnAddOrUpdatePost"/>
+                                           value="Cập nhật tiểu thuyết" id="btnAddOrUpdatePost"/>
                                 </c:if>
                                 <c:if test="${empty model.id}">
                                     <input type="button" class="btn btn-white btn-warning btn-bold"
-                                           value="Thêm mới bài viết" id="btnAddOrUpdatePost"/>
+                                           value="Thêm mới tiểu thuyết" id="btnAddOrUpdatePost"/>
                                 </c:if>
                                 <a href="<c:url value="/format-editor-help-147"/>"
                                    class="btn btn-white btn-warning btn-bold" role="button">Format khi soạn thảo</a>
