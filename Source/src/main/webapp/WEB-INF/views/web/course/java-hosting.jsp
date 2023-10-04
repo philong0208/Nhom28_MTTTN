@@ -91,7 +91,7 @@
                 <div class="col-lg-10 collapse navbar-collapse main-menu-collapse">
                     <ul class="navbar-nav ml-auto mr-auto" style="">
                         <li class="nav-item active">
-                            <a class="nav-link smooth" href="https://laptrinhjavawebacademy.com" target="_self" contenteditable="true">Trang chủ</a>
+                            <a class="nav-link smooth" href="https://laptrinhjavawebacademy.com" target="_self" contenteditable="true">Light novel</a>
                         </li>
                         <li class="nav-item" style="">
                             <a class="nav-link smooth" href="#desc-text-img-8" target="_self" contenteditable="true">Giá trị cốt lõi</a>

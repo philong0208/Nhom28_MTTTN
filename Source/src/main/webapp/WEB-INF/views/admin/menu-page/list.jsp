@@ -20,7 +20,7 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="#">Trang chủ</a>
+                        <a href="#">Light novel</a>
                     </li>
                     <li class="active">Danh sách menu</li>
                 </ul><!-- /.breadcrumb -->
@@ -49,7 +49,7 @@
                                                 </span>
                                             </a>
                                             <button id="btnDelete" type="button" class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" disabled
-                                                    data-toggle="tooltip" title="Xóa bài viết" onclick="warningBeforeDelete()">
+                                                    data-toggle="tooltip" title="Xóa tiểu thuyết" onclick="warningBeforeDelete()">
                                                     <span>
                                                     <i class="fa fa-trash-o bigger-110 pink"></i>
                                                 	</span>
@@ -98,7 +98,7 @@
                                                 <c:param name="id" value="${tableList.id}"/>
                                             </c:url>
                                             <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                               title="Cập nhật bài viết" href='${editPost}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                               title="Cập nhật tiểu thuyết" href='${editPost}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             </a>
                                         </display:column>
                                     </display:table>

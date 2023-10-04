@@ -18,7 +18,7 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Trang chủ</a>
+                    <a href="#">Light novel</a>
                 </li>
                 <li class="active">Đổi mật khẩu</li>
             </ul><!-- /.breadcrumb -->

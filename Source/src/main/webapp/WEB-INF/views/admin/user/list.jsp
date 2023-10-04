@@ -28,7 +28,7 @@
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="<c:url value="/admin/home"/>">
-                        Trang chủ
+                        Light novel
                     </a>
                 </li>
                 <li class="active">
@@ -108,7 +108,7 @@
                                             <button id="btnDelete" type="button" disabled
                                                     class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
                                                     data-toggle="tooltip"
-                                                    title="Xóa bài viết" onclick="warningBeforeDelete()">
+                                                    title="Xóa tiểu thuyết" onclick="warningBeforeDelete()">
 															<span>
 																<i class="fa fa-trash-o bigger-110 pink"></i>
 															</span>

@@ -42,7 +42,7 @@
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-newspaper-o"></i>
-                <span class="menu-text">QL bài đăng</span>
+                <span class="menu-text">Quản lý tiểu thuyết</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -50,7 +50,7 @@
                 <li class="">
                     <a href='<c:url value="/admin/post/list"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS bài đăng
+                        DS tiểu thuyết
                     </a>
                     <b class="arrow"></b>
                 </li>
