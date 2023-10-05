@@ -8,9 +8,6 @@ import org.displaytag.util.ParamEncoder;
 import javax.servlet.http.HttpServletRequest;
 
 public class DisplayTagUtils {
-
-    //private static final Logger log = Logger.getLogger(DisplayTagUtils.class);
-
     public static void of(HttpServletRequest request, AbstractDTO dto) {
         if (dto != null) {
             String sPage = request.getParameter(new ParamEncoder(dto.getTableId()).encodeParameterName(TableTagParameters.PARAMETER_PAGE));

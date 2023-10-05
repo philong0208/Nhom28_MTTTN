@@ -18,11 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller(value = "postControllerOfAdmin")
 public class PostController {
@@ -39,14 +36,8 @@ public class PostController {
 		ModelAndView mav = new ModelAndView("admin/post/list");
 		DisplayTagUtils.of(request, model);
 		Pageable pageable = PageRequest.of(model.getPage() - 1, model.getMaxPageItems());
-//		PostBuilder postBuilder = new PostBuilder.Builder()
-//				.setShortTitle(model.getShortTitle() != null ? model.getShortTitle() : "")
-//				.setType(SystemConstant.ADMIN_POST_LIST)
-//				.build();
-//		List<PostDTO> posts = postService.findAll(postBuilder, pageable);
-		List<PostDTO> posts = postService.findAll(model.getShortTitle() != null ? model.getShortTitle() : "", pageable);
-		model.setListResult(posts);
-		model.setTotalItems(postService.getTotalItems(model.getShortTitle() != null ? model.getShortTitle() : ""));
+		model.setListResult(postService.findAll(Optional.ofNullable(model.getShortTitle()).orElse(""), pageable));
+		model.setTotalItems(postService.getTotalItems(Optional.ofNullable(model.getShortTitle()).orElse("")));
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;

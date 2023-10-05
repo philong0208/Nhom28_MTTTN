@@ -36,47 +36,15 @@ public class PostService implements IPostService {
 
     @Value("${dir.default}")
     private String dirDefault;
-
-//    @Override
-//    public List<PostDTO> findAll(PostBuilder postBuilder, Pageable pageable) {
-//        List<PostEntity> results = null;
-//        if (postBuilder.getType().equals(SystemConstant.ADMIN_POST_LIST)) {
-//            results = postRepository.findByShortTitleContainingIgnoreCase(postBuilder.getShortTitle(), pageable).getContent();
-//        } else if (postBuilder.getType().equals(SystemConstant.BLOG)) {
-//            results = postRepository.findByBlogConfigurationAndShortTitleContainingIgnoreCase(
-//                    postBuilder.getBlogConfiguration(), postBuilder.getShortTitle(), pageable).getContent();
-//        }
-//        return results.stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
-//    }
     @Override
     public List<PostDTO> findAll(String shortTitle, Pageable pageable) {
         return postRepository.findByShortTitleContainingIgnoreCase(shortTitle, pageable)
                 .getContent().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
-//    @Override
-//    public List<PostDTO> findAll(PostBuilder postBuilder, Pageable pageable) {
-//        return postRepository.findByShortTitleContainingIgnoreCase(postBuilder.getShortTitle(), pageable)
-//                .getContent().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
-//    }
-
-//    @Override
-//    public int getTotalItems(PostBuilder postBuilder) {
-//        return (int) postRepository.countByShortTitleContainingIgnoreCase(postBuilder.getShortTitle());
-//    }
     @Override
     public int getTotalItems(String shortTitle) {
         return (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle);
     }
-//    @Override
-//    public int getTotalItems(PostBuilder postBuilder) {
-//        if (postBuilder.getType().equals(SystemConstant.ADMIN_POST_LIST)) {
-//            return (int) postRepository.countByShortTitleContainingIgnoreCase(postBuilder.getShortTitle());
-//        } else if (postBuilder.getType().equals(SystemConstant.BLOG)) {
-//            return (int) postRepository.countByBlogConfigurationAndShortTitleContainingIgnoreCase
-//                    (postBuilder.getBlogConfiguration(), postBuilder.getShortTitle());
-//        }
-//        return 0;
-//    }
 
     @Override
     @Transactional

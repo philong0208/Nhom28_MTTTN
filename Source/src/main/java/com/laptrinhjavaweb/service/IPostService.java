@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface IPostService {
     List<PostDTO> findAll(String shortTitle, Pageable pageable);
-//    List<PostDTO> findAll(PostBuilder postBuilder, Pageable pageable);
     int getTotalItems(String shortTitle);
-//    int getTotalItems(PostBuilder postBuilder);
     PostDTO insert(PostDTO postDTO);
     PostDTO findById(long id);
     PostDTO update(PostDTO postDTO);
