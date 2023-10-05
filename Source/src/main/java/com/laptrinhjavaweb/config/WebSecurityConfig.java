@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.config;
 
+import com.laptrinhjavaweb.security.CustomLogoutSuccessHandler;
 import com.laptrinhjavaweb.security.CustomSuccessHandler;
 import com.laptrinhjavaweb.service.impl.CustomUserDetailService;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -42,19 +44,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-                http.csrf().disable()
+        http.csrf().disable()
                 .authorizeRequests()
-                        .antMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().permitAll()
                 .and()
                 .formLogin().loginPage("/loginAdmin").usernameParameter("j_username").passwordParameter("j_password").permitAll()
                 .loginProcessingUrl("/j_spring_security_check")
-                .successHandler(myAuthenticationSuccessHandler())
-                .failureUrl("/loginAdmin?incorrectAccount").and()
-                .logout().logoutUrl("/logout").deleteCookies("JSESSIONID")
+                .successHandler(myAuthenticationSuccessHandler()).failureUrl("/loginAdmin?incorrectAccount").and()
+                .requestCache().and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessHandler(new CustomLogoutSuccessHandler())
+                .logoutUrl("/logout").deleteCookies("JSESSIONID")
                 .and().exceptionHandling().accessDeniedPage("/access-denied").and()
-                .sessionManagement().maximumSessions(1).expiredUrl("/loginAdmin?sessionTimeout");
+                .sessionManagement().maximumSessions(1);
     }
+
 
     @Bean
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
