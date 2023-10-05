@@ -1,6 +1,5 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.builder.PostBuilder;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.PostConverter;
 import com.laptrinhjavaweb.dto.PostDTO;
@@ -50,14 +49,23 @@ public class PostService implements IPostService {
 //        return results.stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
 //    }
     @Override
-    public List<PostDTO> findAll(PostBuilder postBuilder, Pageable pageable) {
-        return postRepository.findByShortTitleContainingIgnoreCase(postBuilder.getShortTitle(), pageable)
+    public List<PostDTO> findAll(String shortTitle, Pageable pageable) {
+        return postRepository.findByShortTitleContainingIgnoreCase(shortTitle, pageable)
                 .getContent().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
+//    @Override
+//    public List<PostDTO> findAll(PostBuilder postBuilder, Pageable pageable) {
+//        return postRepository.findByShortTitleContainingIgnoreCase(postBuilder.getShortTitle(), pageable)
+//                .getContent().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+//    }
 
+//    @Override
+//    public int getTotalItems(PostBuilder postBuilder) {
+//        return (int) postRepository.countByShortTitleContainingIgnoreCase(postBuilder.getShortTitle());
+//    }
     @Override
-    public int getTotalItems(PostBuilder postBuilder) {
-        return (int) postRepository.countByShortTitleContainingIgnoreCase(postBuilder.getShortTitle());
+    public int getTotalItems(String shortTitle) {
+        return (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle);
     }
 //    @Override
 //    public int getTotalItems(PostBuilder postBuilder) {

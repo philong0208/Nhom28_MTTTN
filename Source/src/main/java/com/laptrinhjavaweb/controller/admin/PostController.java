@@ -1,6 +1,5 @@
 package com.laptrinhjavaweb.controller.admin;
 
-import com.laptrinhjavaweb.builder.PostBuilder;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.PostDTO;
 import com.laptrinhjavaweb.service.ICategoryService;
@@ -40,13 +39,14 @@ public class PostController {
 		ModelAndView mav = new ModelAndView("admin/post/list");
 		DisplayTagUtils.of(request, model);
 		Pageable pageable = PageRequest.of(model.getPage() - 1, model.getMaxPageItems());
-		PostBuilder postBuilder = new PostBuilder.Builder()
-				.setShortTitle(model.getShortTitle() != null ? model.getShortTitle() : "")
-				.setType(SystemConstant.ADMIN_POST_LIST)
-				.build();
-		List<PostDTO> posts = postService.findAll(postBuilder, pageable);
+//		PostBuilder postBuilder = new PostBuilder.Builder()
+//				.setShortTitle(model.getShortTitle() != null ? model.getShortTitle() : "")
+//				.setType(SystemConstant.ADMIN_POST_LIST)
+//				.build();
+//		List<PostDTO> posts = postService.findAll(postBuilder, pageable);
+		List<PostDTO> posts = postService.findAll(model.getShortTitle() != null ? model.getShortTitle() : "", pageable);
 		model.setListResult(posts);
-		model.setTotalItems(postService.getTotalItems(postBuilder));
+		model.setTotalItems(postService.getTotalItems(model.getShortTitle() != null ? model.getShortTitle() : ""));
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;
