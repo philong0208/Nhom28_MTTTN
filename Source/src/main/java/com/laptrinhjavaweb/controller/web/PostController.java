@@ -58,6 +58,15 @@ public class PostController {
         return mav;
     }
 
+    @RequestMapping(value = "/tieu-thuyet/{id}", method = RequestMethod.GET)
+    public ModelAndView post(@PathVariable("id") Long postId) {
+        ModelAndView mav = new ModelAndView("web/post/detail");
+        PostDTO model = postService.findById(postId);
+        model.setCanonicalUrl(model.getSeoUrl() +"-"+ model.getId());
+        model.setOgUrl(model.getSeoUrl() +"-"+ model.getId());
+        mav.addObject(SystemConstant.MODEL, model);
+        return mav;
+    }
     @RequestMapping(value = "/khoa-hoc-java-web-co-ban-den-nang-cao", method = RequestMethod.GET)
     public ModelAndView academyJavaWebCourse(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("web/course/java-web");
