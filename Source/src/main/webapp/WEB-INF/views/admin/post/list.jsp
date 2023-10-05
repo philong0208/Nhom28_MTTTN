@@ -111,7 +111,6 @@
                                         </display:column>
                                         <display:column headerClass="text-left" property="id" title="Id tiểu thuyết"/>
                                         <display:column headerClass="text-left" property="shortTitle" title="Tiêu đề"/>
-                                        <display:column headerClass="text-left" property="seoUrl" title="SEO url"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
                                             <c:url var="editPost" value="/admin/post/edit">
                                                 <c:param name="id" value="${tableList.id}"/>
