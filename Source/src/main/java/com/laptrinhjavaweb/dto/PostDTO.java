@@ -2,6 +2,15 @@ package com.laptrinhjavaweb.dto;
 
 public class PostDTO extends AbstractDTO<PostDTO> {
 
+    private String[] tagArray = new String[]{};
+
+    public String[] getTagArray() {
+        return tagArray;
+    }
+
+    public void setTagArray(String[] tagArray) {
+        this.tagArray = tagArray;
+    }
     private static final long serialVersionUID = -605223606014371190L;
 
     private String title;

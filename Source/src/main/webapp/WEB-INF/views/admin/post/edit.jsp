@@ -44,13 +44,22 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Tiêu đề ngắn</label>
+                            <label class="col-sm-3 control-label no-padding-right">Tag</label>
+                            <div class="col-sm-9">
+                                <form:checkboxes path="tagArray" items="${tags}" element="li"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Tiêu đề</label>
                             <div class="col-sm-9">
                                 <form:input path="shortTitle" id="title" cssClass="form-control"/>
                             </div>
                         </div>
                         <br/>
                         <br/>
+                        <br/><br/><br/>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">Thumbnail tiểu thuyết:</label>
                             <div class="col-sm-4">
@@ -132,9 +141,15 @@
         event.preventDefault();
         var data = {};
         var formData = $('#formEdit').serializeArray();
+        var tagsArray = [];
         $.each(formData, function (i, v) {
-            data["" + v.name + ""] = v.value;
+            if (v.name == "tagArray") {
+                tagsArray.push(v.value);
+            } else {
+                data["" + v.name + ""] = v.value;
+            }
         });
+        data["tagArray"] = tagsArray;
         data["content"] = editor.getData();
         if (thumbnailBase64 != '') {
             data['thumbnailBase64'] = thumbnailBase64;

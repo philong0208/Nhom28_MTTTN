@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.PostDTO;
 import com.laptrinhjavaweb.service.ICategoryService;
 import com.laptrinhjavaweb.service.IPostService;
+import com.laptrinhjavaweb.service.ITagService;
 import com.laptrinhjavaweb.utils.DisplayTagUtils;
 import com.laptrinhjavaweb.utils.MessageResponseUtils;
 import org.apache.commons.lang.StringUtils;
@@ -30,6 +31,8 @@ public class PostController {
 	@Autowired
 	private ICategoryService categoryService;
 
+	@Autowired
+	private ITagService tagService;
 	@RequestMapping(value = "/admin/post/list", method = RequestMethod.GET)
 	public ModelAndView getNews(@ModelAttribute(SystemConstant.MODEL) PostDTO model,
                                 HttpServletRequest request) {
@@ -52,6 +55,7 @@ public class PostController {
 		}
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.CATEGORIES, categoryService.getCategories());
+		mav.addObject(SystemConstant.TAGS, tagService.getTags());
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;
 	}
