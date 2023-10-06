@@ -33,6 +33,12 @@ public class TagService implements ITagService {
         tagRepository.findAll().forEach(item -> results.put(item.getCode(), item.getName()));
         return results;
     }
+    @Override
+    public Map<String, TagEntity> getTagEntity() {
+        Map<String, TagEntity> results = new HashMap<>();
+        tagRepository.findAll().forEach(item -> results.put(item.getCode(), item));
+        return results;
+    }
 
     @Override
     public List<TagDTO> findAll() {

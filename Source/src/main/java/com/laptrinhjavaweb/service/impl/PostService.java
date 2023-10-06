@@ -4,10 +4,12 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.PostConverter;
 import com.laptrinhjavaweb.dto.PostDTO;
 import com.laptrinhjavaweb.entity.PostEntity;
+import com.laptrinhjavaweb.entity.TagEntity;
 import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.repository.PostRepository;
 import com.laptrinhjavaweb.repository.TagRepository;
 import com.laptrinhjavaweb.service.IPostService;
+import com.laptrinhjavaweb.service.ITagService;
 import com.laptrinhjavaweb.utils.UploadFileUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,6 +56,8 @@ public class PostService implements IPostService {
     public int getTotalItems(String shortTitle) {
         return (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle);
     }
+    @Autowired
+    private ITagService tagService;
 
     @Override
     @Transactional
@@ -60,9 +65,13 @@ public class PostService implements IPostService {
         try {
             PostEntity postEntity = postConverter.convertToEntity(postDTO);
             postEntity.setCategory(categoryRepository.findOneByCode(postDTO.getCategoryCode()));
-            postEntity.getTags().addAll(Arrays.stream(postDTO.getTagCodeArray())
+            /*postEntity.getTags().addAll(Arrays.stream(postDTO.getTagCodeArray())
                     .map(tagRepository::findOneByCode)
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toList()));*/
+            Map<String, TagEntity> tagMap = tagService.getTagEntity();
+            postEntity.getTags().addAll(
+                    Arrays.asList(postDTO.getTagCodeArray()).stream().map(tagMap::get)
+                            .collect(Collectors.toList()));
             saveThumbnail(postDTO, postEntity);
             saveOgImage(postDTO, postEntity);
             postEntity = postRepository.save(postEntity);
@@ -89,9 +98,13 @@ public class PostService implements IPostService {
             updatePost.setThumbnail(existsPost.getThumbnail());
             updatePost.setOgImage(existsPost.getOgImage());
             updatePost.setCategory(categoryRepository.findOneByCode(postDTO.getCategoryCode()));
-            updatePost.getTags().addAll(Arrays.stream(postDTO.getTagCodeArray())
+            /*updatePost.getTags().addAll(Arrays.stream(postDTO.getTagCodeArray())
                     .map(tagRepository::findOneByCode)
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toList()));*/
+            Map<String, TagEntity> tagMap = tagService.getTagEntity();
+            updatePost.getTags().addAll(
+                    Arrays.asList(postDTO.getTagCodeArray()).stream().map(tagMap::get)
+                            .collect(Collectors.toList()));
             saveThumbnail(postDTO, updatePost);
             saveOgImage(postDTO, updatePost);
             postRepository.save(updatePost);
