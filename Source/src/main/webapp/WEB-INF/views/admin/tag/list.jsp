@@ -112,6 +112,8 @@
                                         <display:column headerClass="text-left" property="id" title="Id tag"/>
                                         <display:column headerClass="text-left" property="name" title="Tên tag"/>
                                         <display:column headerClass="text-left" property="code" title="Mã tag"/>
+                                        <display:column headerClass="text-left" property="totalPosts" title="Số lượng tiểu thuyết"/>
+                                        <display:column headerClass="text-left" property="nameOfPostsStr" title="Danh sách tiểu thuyết"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
                                             <c:url var="editTag" value="/admin/tag/edit">
                                                 <c:param name="id" value="${tableList.id}"/>

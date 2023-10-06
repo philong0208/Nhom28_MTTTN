@@ -22,4 +22,5 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     long countByCategory_Code(String code);
     PostEntity findByShortUrl(String shortUrl);
     List<PostEntity> findByCategory_Id(Long id);
+    List<PostEntity> findByTags_Id(Long id);
 }
