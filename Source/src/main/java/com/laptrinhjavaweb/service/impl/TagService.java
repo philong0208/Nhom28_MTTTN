@@ -7,7 +7,9 @@ import com.laptrinhjavaweb.repository.TagRepository;
 import com.laptrinhjavaweb.service.ITagService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,9 +45,11 @@ public class TagService implements ITagService {
     public List<TagDTO> findAll(String name, Pageable pageable) {
         List<TagEntity> results = null;
         if (StringUtils.isNotBlank(name)) {
-            results = tagRepository.findByNameContainingIgnoreCase(name, pageable).getContent();
+            results = tagRepository.findByNameContainingIgnoreCase(name, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.by("modifiedDate").descending())).getContent();
         } else {
-            results = tagRepository.findAll(pageable).getContent();
+            results = tagRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.by("modifiedDate").descending())).getContent();
         }
         return results.stream().map(item -> tagConverter.convertToDto(item)).collect(Collectors.toList());
     }

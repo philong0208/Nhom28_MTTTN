@@ -7,7 +7,9 @@ import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.service.ICategoryService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,9 +45,11 @@ public class CategoryService implements ICategoryService {
     public List<CategoryDTO> findAll(String name, Pageable pageable) {
         List<CategoryEntity> results = null;
         if (StringUtils.isNotBlank(name)) {
-            results = categoryRepository.findByNameContainingIgnoreCase(name, pageable).getContent();
+            results = categoryRepository.findByNameContainingIgnoreCase(name, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.by("modifiedDate").descending())).getContent();
         } else {
-            results = categoryRepository.findAll(pageable).getContent();
+            results = categoryRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.by("modifiedDate").descending())).getContent();
         }
         return results.stream().map(item -> categoryConverter.convertToDto(item)).collect(Collectors.toList());
     }
