@@ -98,7 +98,7 @@
                                            value="Thêm mới tiểu thuyết" id="btnAddOrUpdatePost"/>
                                 </c:if>
                                 <a href="<c:url value="/format-editor-help-147"/>"
-                                   class="btn btn-white btn-warning btn-bold" role="button">Format khi soạn thảo</a>
+                                   class="btn btn-white btn-warning btn-bold" role="button" disabled="true">Format khi soạn thảo</a>
                             </div>
                         </div>
                         <form:hidden path="id" id="postId"/>
