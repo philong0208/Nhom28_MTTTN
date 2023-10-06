@@ -1,9 +1,8 @@
 package com.laptrinhjavaweb.controller.admin;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.dto.PostDTO;
-import com.laptrinhjavaweb.service.ICategoryService;
-import com.laptrinhjavaweb.service.IPostService;
+import com.laptrinhjavaweb.dto.TagDTO;
+import com.laptrinhjavaweb.service.ITagService;
 import com.laptrinhjavaweb.utils.DisplayTagUtils;
 import com.laptrinhjavaweb.utils.MessageResponseUtils;
 import org.apache.commons.lang.StringUtils;
@@ -18,40 +17,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-@Controller(value = "postControllerOfAdmin")
-public class PostController {
-
-	@Autowired
-	private IPostService postService;
+@Controller(value = "tagControllerOfAdmin")
+public class TagController {
 
 	@Autowired
-	private ICategoryService categoryService;
+	private ITagService tagService;
 
-	@RequestMapping(value = "/admin/post/list", method = RequestMethod.GET)
-	public ModelAndView getNews(@ModelAttribute(SystemConstant.MODEL) PostDTO model,
-                                HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("admin/post/list");
+	@RequestMapping(value = "/admin/tag/list", method = RequestMethod.GET)
+	public ModelAndView getNews(@ModelAttribute(SystemConstant.MODEL) TagDTO model,
+								HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("admin/tag/list");
 		DisplayTagUtils.of(request, model);
 		Pageable pageable = PageRequest.of(model.getPage() - 1, model.getMaxPageItems());
-		model.setListResult(postService.findAll(Optional.ofNullable(model.getShortTitle()).orElse(""), pageable));
-		model.setTotalItems(postService.getTotalItems(Optional.ofNullable(model.getShortTitle()).orElse("")));
+		List<TagDTO> tagDTOS = tagService.findAll(model.getName(), pageable);
+		model.setListResult(tagDTOS);
+		model.setTotalItems(tagService.getTotalItems(model.getName()));
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/post/edit", method = RequestMethod.GET)
-	public ModelAndView editPostPage(@ModelAttribute(SystemConstant.MODEL) PostDTO model,
-                                     @RequestParam(value = "id", required = false) Long id, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("admin/post/edit");
+	@RequestMapping(value = "/admin/tag/edit", method = RequestMethod.GET)
+	public ModelAndView editPostPage(@ModelAttribute(SystemConstant.MODEL) TagDTO model,
+									 @RequestParam(value = "id", required = false) Long id, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("admin/tag/edit");
 		if (id != null) {
-			model = postService.findById(id);
+			model = tagService.findById(id);
 		}
 		initMessageResponse(mav, request);
-		mav.addObject(SystemConstant.CATEGORIES, categoryService.getCategories());
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;
 	}
@@ -64,4 +60,5 @@ public class PostController {
 			mav.addObject(SystemConstant.MESSAGE_RESPONSE, messageMap.get(SystemConstant.MESSAGE_RESPONSE));
 		}
 	}
+
 }

@@ -1,6 +1,5 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.builder.PostBuilder;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.PostConverter;
 import com.laptrinhjavaweb.dto.PostDTO;
@@ -12,7 +11,9 @@ import com.laptrinhjavaweb.utils.UploadFileUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,28 +38,16 @@ public class PostService implements IPostService {
 
     @Value("${dir.default}")
     private String dirDefault;
-
     @Override
-    public List<PostDTO> findAll(PostBuilder postBuilder, Pageable pageable) {
-        List<PostEntity> results = null;
-        if (postBuilder.getType().equals(SystemConstant.ADMIN_POST_LIST)) {
-            results = postRepository.findByShortTitleContainingIgnoreCase(postBuilder.getShortTitle(), pageable).getContent();
-        } else if (postBuilder.getType().equals(SystemConstant.BLOG)) {
-            results = postRepository.findByBlogConfigurationAndShortTitleContainingIgnoreCase(
-                    postBuilder.getBlogConfiguration(), postBuilder.getShortTitle(), pageable).getContent();
-        }
-        return results.stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+    public List<PostDTO> findAll(String shortTitle, Pageable pageable) {
+        return postRepository.findByShortTitleContainingIgnoreCase(shortTitle,
+                        PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                                Sort.by("modifiedDate").descending()))
+                .getContent().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
-
     @Override
-    public int getTotalItems(PostBuilder postBuilder) {
-        if (postBuilder.getType().equals(SystemConstant.ADMIN_POST_LIST)) {
-            return (int) postRepository.countByShortTitleContainingIgnoreCase(postBuilder.getShortTitle());
-        } else if (postBuilder.getType().equals(SystemConstant.BLOG)) {
-            return (int) postRepository.countByBlogConfigurationAndShortTitleContainingIgnoreCase
-                    (postBuilder.getBlogConfiguration(), postBuilder.getShortTitle());
-        }
-        return 0;
+    public int getTotalItems(String shortTitle) {
+        return (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle);
     }
 
     @Override

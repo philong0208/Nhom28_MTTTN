@@ -1,6 +1,8 @@
 package com.laptrinhjavaweb.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -119,6 +121,19 @@ public class PostEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "post_tag",
+            joinColumns = @JoinColumn(name = "post_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "tag_id", nullable = false))
+    private List<TagEntity> tags = new ArrayList<>();
+
+    public List<TagEntity> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<TagEntity> tags) {
+        this.tags = tags;
+    }
 
     public String getContent() {
         return content;

@@ -5,7 +5,7 @@
 <head>
     <title>Đăng nhập</title>
     <!-- favicon -->
-    <link rel="shortcut icon" href="/template/web/image/logo/favicon-java-web.png" />
+    <link rel="shortcut icon" href="/template/web/image/logo/favicon-light-novel.png" />
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css' />" />
     <link rel="stylesheet" href="<c:url value='/template/admin/font-awesome/4.5.0/css/font-awesome.min.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/home.css' />">
@@ -30,7 +30,7 @@
                     Phiên làm việc hết hạn, yêu cầu đăng nhập lại!
                 </div>
             </c:if>
-            <img id="logo" src="/template/web/image/logo/logo-java-web.png" alt="logo">
+            <img id="logo" src="/template/web/image/logo/favicon-light-novel.png" alt="logo">
             <h3 class="text-center">Đăng nhập</h3>
             <div class="form-group">
                 <label for="username">Tên đăng nhập</label>

@@ -42,7 +42,7 @@
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-newspaper-o"></i>
-                <span class="menu-text">QL bài đăng</span>
+                <span class="menu-text">Quản lý tiểu thuyết</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -50,13 +50,47 @@
                 <li class="">
                     <a href='<c:url value="/admin/post/list"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS bài đăng
+                        DS tiểu thuyết
                     </a>
                     <b class="arrow"></b>
                 </li>
             </ul>
         </li>
-
+        
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-bars"></i>
+                <span class="menu-text">QL thể loại</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="">
+                    <a href='<c:url value="/admin/category/list"/>'>
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        DS thể loại
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-bars"></i>
+                <span class="menu-text">QL tag</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="">
+                    <a href='<c:url value="/admin/tag/list"/>'>
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        DS tag
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-building"></i>
@@ -81,7 +115,7 @@
                 </li>
             </ul>
         </li>
-        <!--li class="">
+        <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fas fa-users"></i>
                 <span class="menu-text">Quản lý tài khoản</span>
@@ -97,7 +131,7 @@
                     <b class="arrow"></b>
                 </li>
             </ul>
-        </li-->
+        </li>
     </ul>
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
         <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left"

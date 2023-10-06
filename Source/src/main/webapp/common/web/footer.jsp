@@ -16,7 +16,7 @@
                     <h4 class="mobile-margin-10px-bottom">Liên hệ</h4>
                     <ul class="">
                         <li><i class="ti-location-pin margin-10px-right md-margin-two-right text-theme-color"></i>52/27 Đường số 4, Phường Hiệp Bình Phước, Thành Phố Thủ Đức, Hồ Chí Minh</li>
-                        <li><i class="ti-email margin-10px-right md-margin-two-right text-theme-color"></i>cskh@laptrinhjavaweb.com</li>
+                        <li><i class="ti-email margin-10px-right md-margin-two-right text-theme-color"></i>cskh@lightnovel.com</li>
                         <li><i class="ti-mobile margin-10px-right md-margin-two-right text-theme-color"></i>Hotline: 0354.502.773 / 0819.423.713/ 0909.804.713</li>
                     </ul>
 

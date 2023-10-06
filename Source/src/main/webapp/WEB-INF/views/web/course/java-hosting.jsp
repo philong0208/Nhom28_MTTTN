@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- favicon -->
-    <link rel="shortcut icon" href="<c:url value='/template/web/image/logo/favicon-java-web.png' />" />
+    <link rel="shortcut icon" href="<c:url value='/template/web/image/logo/favicon-light-novel.png' />" />
 
     <title>${model.title}</title>
 
@@ -71,10 +71,10 @@
     <!--end-->
 
     <!-- Script Popup -->
-    <script src="https://salekit.io/embed/js/0b44020a" async="async"></script>
+<%--    <script src="https://salekit.io/embed/js/0b44020a" async="async"></script>--%>
 
     <%--Script Form--%>
-    <script src="https://salekit.io/assets/js/embed/sk.js"></script>
+<%--    <script src="https://salekit.io/assets/js/embed/sk.js"></script>--%>
 
 </head>
 <body nid='' uid='' class="light-page">
@@ -91,7 +91,7 @@
                 <div class="col-lg-10 collapse navbar-collapse main-menu-collapse">
                     <ul class="navbar-nav ml-auto mr-auto" style="">
                         <li class="nav-item active">
-                            <a class="nav-link smooth" href="https://laptrinhjavawebacademy.com" target="_self" contenteditable="true">Trang chủ</a>
+                            <a class="nav-link smooth" href="https://laptrinhjavawebacademy.com" target="_self" contenteditable="true">Light novel</a>
                         </li>
                         <li class="nav-item" style="">
                             <a class="nav-link smooth" href="#desc-text-img-8" target="_self" contenteditable="true">Giá trị cốt lõi</a>

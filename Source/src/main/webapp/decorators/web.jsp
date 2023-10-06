@@ -18,7 +18,7 @@
     <meta property="og:image" content="https://laptrinhjavaweb.com/repository${model.ogImage}" />
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="<c:url value='/template/web/image/logo/favicon-java-web.png' />" />
+    <link rel="shortcut icon" href="<c:url value='/template/web/image/logo/favicon-light-novel.png' />" />
 
     <!-- plugins -->
     <link rel="stylesheet" href="<c:url value='/template/web/css/plugins.css' />" />
@@ -85,10 +85,10 @@
     </script>
 
     <!-- Script Popup -->
-    <script src="https://salekit.io/embed/js/0b750217" async="async"></script>
+<%--    <script src="https://salekit.io/embed/js/0b750217" async="async"></script>--%>
 
     <%--Script Form--%>
-    <script src="https://salekit.io/assets/js/embed/sk.js"></script>
+<%--    <script src="https://salekit.io/assets/js/embed/sk.js"></script>--%>
 
     <decorator:getProperty property="page.local_header"></decorator:getProperty>
     <decorator:getProperty property="page.local_css"></decorator:getProperty>
@@ -182,7 +182,7 @@
         </div>
     </div>
 
-    <a href="https://zalo.me/4588194011921423842" class="zalo-icon" data-toggle="tooltip" data-placement="left" title="Chat với Laptrinhjavaweb trên zalo" target="_blank">
+    <a href="https://zalo.me/4588194011921423842" class="zalo-icon" data-toggle="tooltip" data-placement="left" title="Chat với Light Novel trên zalo" target="_blank">
         <img src="<c:url value='/template/web/image/abc/icons8-zalo.svg' />" alt="zalo">
     </a>
 

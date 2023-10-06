@@ -26,7 +26,7 @@
             <a href="<c:url value='/admin/home'/>" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    Trang chủ
+                    Light novel
                 </small>
             </a>
         </div>
