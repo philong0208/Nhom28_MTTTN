@@ -59,7 +59,7 @@
                         </div>
                         <br/>
                         <br/>
-                        <br/><br/><br/>
+                        &nbsp
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">Thumbnail tiểu thuyết:</label>
                             <div class="col-sm-4">
