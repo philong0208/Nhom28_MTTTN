@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">Tag</label>
                             <div class="col-sm-9">
-                                <form:checkboxes path="tagArray" items="${tags}" element="li"/>
+                                <form:checkboxes path="tagCodeArray" items="${tags}" element="li"/>
                             </div>
                         </div>
                         <br/>
@@ -141,15 +141,15 @@
         event.preventDefault();
         var data = {};
         var formData = $('#formEdit').serializeArray();
-        var tagsArray = [];
+        var tagCodeArray = [];
         $.each(formData, function (i, v) {
-            if (v.name == "tagArray") {
-                tagsArray.push(v.value);
+            if (v.name === "tagCodeArray") {
+                tagCodeArray.push(v.value);
             } else {
                 data["" + v.name + ""] = v.value;
             }
         });
-        data["tagArray"] = tagsArray;
+        data["tagCodeArray"] = tagCodeArray;
         data["content"] = editor.getData();
         if (thumbnailBase64 != '') {
             data['thumbnailBase64'] = thumbnailBase64;

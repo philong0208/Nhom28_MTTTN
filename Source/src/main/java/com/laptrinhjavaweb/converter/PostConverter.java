@@ -1,15 +1,12 @@
 package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.dto.PostDTO;
-import com.laptrinhjavaweb.dto.TagDTO;
 import com.laptrinhjavaweb.entity.PostEntity;
 import com.laptrinhjavaweb.entity.TagEntity;
-import com.laptrinhjavaweb.service.ITagService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 @Component
 public class PostConverter {
 
@@ -18,7 +15,7 @@ public class PostConverter {
 
     public PostDTO convertToDto (PostEntity entity){
         PostDTO result = modelMapper.map(entity, PostDTO.class);
-        result.setTagArray(entity.getTags().stream()
+        result.setTagCodeArray(entity.getTags().stream()
                 .map(TagEntity::getCode)
                 .toArray(String[]::new));
         return result;

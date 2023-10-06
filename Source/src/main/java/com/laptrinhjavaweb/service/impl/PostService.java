@@ -3,14 +3,11 @@ package com.laptrinhjavaweb.service.impl;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.PostConverter;
 import com.laptrinhjavaweb.dto.PostDTO;
-import com.laptrinhjavaweb.dto.TagDTO;
 import com.laptrinhjavaweb.entity.PostEntity;
-import com.laptrinhjavaweb.entity.TagEntity;
 import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.repository.PostRepository;
 import com.laptrinhjavaweb.repository.TagRepository;
 import com.laptrinhjavaweb.service.IPostService;
-import com.laptrinhjavaweb.service.ITagService;
 import com.laptrinhjavaweb.utils.UploadFileUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +60,7 @@ public class PostService implements IPostService {
         try {
             PostEntity postEntity = postConverter.convertToEntity(postDTO);
             postEntity.setCategory(categoryRepository.findOneByCode(postDTO.getCategoryCode()));
-            postEntity.getTags().addAll(Arrays.stream(postDTO.getTagArray())
+            postEntity.getTags().addAll(Arrays.stream(postDTO.getTagCodeArray())
                     .map(tagRepository::findOneByCode)
                     .collect(Collectors.toList()));
             saveThumbnail(postDTO, postEntity);
@@ -92,7 +89,7 @@ public class PostService implements IPostService {
             updatePost.setThumbnail(existsPost.getThumbnail());
             updatePost.setOgImage(existsPost.getOgImage());
             updatePost.setCategory(categoryRepository.findOneByCode(postDTO.getCategoryCode()));
-            updatePost.getTags().addAll(Arrays.stream(postDTO.getTagArray())
+            updatePost.getTags().addAll(Arrays.stream(postDTO.getTagCodeArray())
                     .map(tagRepository::findOneByCode)
                     .collect(Collectors.toList()));
             saveThumbnail(postDTO, updatePost);
