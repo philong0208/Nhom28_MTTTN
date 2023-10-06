@@ -49,7 +49,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Nội dung</label>
+                            <label class="col-sm-3 control-label no-padding-right">Mô tả</label>
                             <div class="col-sm-9" style="margin-bottom: 10px">
                                 <form:textarea path="content" cols="80" rows="10" id="content" cssStyle="width: 943px; height: 72px"/>
                             </div>
