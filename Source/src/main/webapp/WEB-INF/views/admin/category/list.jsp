@@ -112,6 +112,8 @@
                                         <display:column headerClass="text-left" property="id" title="Id thể loại"/>
                                         <display:column headerClass="text-left" property="name" title="Tên thể loại"/>
                                         <display:column headerClass="text-left" property="code" title="Mã thể loại"/>
+                                        <display:column headerClass="text-left" property="totalPosts" title="Số lượng tiểu thuyết"/>
+                                        <display:column headerClass="text-left" property="nameOfPostsStr" title="Danh sách tiểu thuyết"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
                                             <c:url var="editCategory" value="/admin/category/edit">
                                                 <c:param name="id" value="${tableList.id}"/>

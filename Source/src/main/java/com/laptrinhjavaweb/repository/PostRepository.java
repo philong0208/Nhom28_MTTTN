@@ -21,4 +21,5 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     Page<PostEntity> findByCategory_CodeOrderByCreatedDateAsc(String code, Pageable pageable);
     long countByCategory_Code(String code);
     PostEntity findByShortUrl(String shortUrl);
+    List<PostEntity> findByCategory_Id(Long id);
 }
