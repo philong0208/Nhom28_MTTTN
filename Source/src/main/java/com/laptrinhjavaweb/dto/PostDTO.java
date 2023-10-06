@@ -1,6 +1,15 @@
 package com.laptrinhjavaweb.dto;
 
 public class PostDTO extends AbstractDTO<PostDTO> {
+    private String tagNameStr;
+
+    public String getTagNameStr() {
+        return tagNameStr;
+    }
+
+    public void setTagNameStr(String tagNameStr) {
+        this.tagNameStr = tagNameStr;
+    }
 
     private String[] tagCodeArray = new String[]{};
 

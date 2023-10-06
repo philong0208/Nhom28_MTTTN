@@ -18,6 +18,10 @@ public class PostConverter {
         result.setTagCodeArray(entity.getTags().stream()
                 .map(TagEntity::getCode)
                 .toArray(String[]::new));
+        result.setTagNameStr(entity.getTags().stream()
+                .map(TagEntity::getName)
+                .reduce((a, b) -> a + ", " + b)
+                .orElse(null));
         return result;
     }
 
