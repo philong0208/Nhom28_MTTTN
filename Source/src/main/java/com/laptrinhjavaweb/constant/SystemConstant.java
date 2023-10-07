@@ -38,6 +38,7 @@ public class SystemConstant {
     public static final String TALK_SEO_URL = "tam-su";
     public static final String CATEGORIES = "categories";
     public static final String TAGS = "tags";
+    public static final String AUTHORS = "authors";
 
     public static final String POSITIONS = "positions";
 

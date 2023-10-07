@@ -76,7 +76,7 @@
                                     <div class="pull-right tableTools-container">
                                         <div class="dt-buttons btn-overlap btn-group">
                                             <a flag="info" class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
-                                               data-toggle="tooltip" title="Thêm tag" href='<c:url value="/admin/tag/edit"/>'>
+                                               data-toggle="tooltip" title="Thêm author" href='<c:url value="/admin/author/edit"/>'>
                                                     <span>
                                                     <i class="fa fa-plus-circle bigger-110 purple"></i>
                                                 </span>
@@ -115,11 +115,11 @@
                                         <display:column headerClass="text-left" property="totalPosts" title="Số lượng tiểu thuyết"/>
                                         <display:column headerClass="text-left" property="nameOfPostsStr" title="Danh sách tiểu thuyết"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
-                                            <c:url var="editTag" value="/admin/tag/edit">
+                                            <c:url var="editAuthor" value="/admin/author/edit">
                                                 <c:param name="id" value="${tableList.id}"/>
                                             </c:url>
                                             <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                               title="Cập nhật tag" href='${editTag}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                               title="Cập nhật author" href='${editAuthor}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             </a>
                                         </display:column>
                                     </display:table>
@@ -145,22 +145,22 @@
             var dataArray = $(' tbody input[type=checkbox]:checked').map(function () {
                 return $(this).val();
             }).get();
-            deleteTag(dataArray);
+            deleteAuthor(dataArray);
         });
     }
 
-    function deleteTag(data) {
+    function deleteAuthor(data) {
         $.ajax({
-            url: '${tagAPI}',
+            url: '${authorAPI}',
             type: 'DELETE',
             contentType:'application/json',
             data: JSON.stringify(data),
             success: function(res) {
-                window.location.href = "<c:url value='/admin/tag/list?message=delete_success'/>";
+                window.location.href = "<c:url value='/admin/author/list?message=delete_success'/>";
             },
             error: function(res) {
                 console.log(res);
-                window.location.href = "<c:url value='/admin/tag/list?message=error_system'/>";
+                window.location.href = "<c:url value='/admin/author/list?message=error_system'/>";
             }
         });
     }

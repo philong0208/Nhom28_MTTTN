@@ -130,6 +130,15 @@ public class PostEntity extends BaseEntity {
     public List<TagEntity> getTags() {
         return tags;
     }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "post_author",
+            joinColumns = @JoinColumn(name = "post_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "author_id", nullable = false))
+    private List<AuthorEntity> authors = new ArrayList<>();
+
+    public List<AuthorEntity> getAuthors() {
+        return authors;
+    }
 
     public void setTags(List<TagEntity> tags) {
         this.tags = tags;

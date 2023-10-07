@@ -20,6 +20,25 @@ public class PostDTO extends AbstractDTO<PostDTO> {
     public void setTagCodeArray(String[] tagCodeArray) {
         this.tagCodeArray = tagCodeArray;
     }
+    private String authorNameStr;
+
+    public String getAuthorNameStr() {
+        return authorNameStr;
+    }
+
+    public void setAuthorNameStr(String authorNameStr) {
+        this.authorNameStr = authorNameStr;
+    }
+
+    private String[] authorCodeArray = new String[]{};
+
+    public String[] getAuthorCodeArray() {
+        return authorCodeArray;
+    }
+
+    public void setAuthorCodeArray(String[] authorCodeArray) {
+        this.authorCodeArray = authorCodeArray;
+    }
     private static final long serialVersionUID = -605223606014371190L;
 
     private String title;

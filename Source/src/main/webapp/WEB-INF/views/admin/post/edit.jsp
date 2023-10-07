@@ -52,6 +52,14 @@
                         <br/>
                         <br/>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Tác giả</label>
+                            <div class="col-sm-9">
+                                <form:checkboxes path="authorCodeArray" items="${authors}" element="li"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">Tiêu đề</label>
                             <div class="col-sm-9">
                                 <form:input path="shortTitle" id="title" cssClass="form-control"/>
@@ -142,14 +150,18 @@
         var data = {};
         var formData = $('#formEdit').serializeArray();
         var tagCodeArray = [];
+        var authorCodeArray = [];
         $.each(formData, function (i, v) {
             if (v.name === "tagCodeArray") {
                 tagCodeArray.push(v.value);
+            } else if (v.name === "authorCodeArray") {
+                authorCodeArray.push(v.value);
             } else {
                 data["" + v.name + ""] = v.value;
             }
         });
         data["tagCodeArray"] = tagCodeArray;
+        data["authorCodeArray"] = authorCodeArray;
         data["content"] = editor.getData();
         if (thumbnailBase64 != '') {
             data['thumbnailBase64'] = thumbnailBase64;

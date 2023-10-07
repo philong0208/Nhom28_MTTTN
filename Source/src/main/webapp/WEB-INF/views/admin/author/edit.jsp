@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="formUrl" value="/api/admin/tag"/>
+<c:url var="formUrl" value="/api/admin/author"/>
 <html>
 <head>
     <title>Chỉnh sửa author</title>
@@ -17,7 +17,7 @@
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="#">Trang chủ</a>
                 </li>
-                <li class="active">Chỉnh sửa thể loại</li>
+                <li class="active">Chỉnh sửa tác giả</li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">
@@ -33,7 +33,7 @@
                     </c:if>
                     <form:form id="formEdit" modelAttribute="model">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Tên thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Tên tác giả</label>
                             <div class="col-sm-9">
                                 <form:input path="name" id="name" cssClass="form-control"/>
                             </div>
@@ -41,7 +41,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Mã thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Mã tác giả</label>
                             <div class="col-sm-9">
                                 <form:input path="code" id="code" cssClass="form-control"/>
                             </div>
@@ -49,7 +49,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Mô tả thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Mô tả tác giả</label>
                             <div class="col-sm-9" style="margin-bottom: 10px">
                                 <form:textarea path="content" cols="80" rows="10" id="content" cssStyle="width: 943px; height: 72px"/>
                             </div>

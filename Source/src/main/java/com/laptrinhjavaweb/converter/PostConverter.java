@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.dto.PostDTO;
+import com.laptrinhjavaweb.entity.AuthorEntity;
 import com.laptrinhjavaweb.entity.PostEntity;
 import com.laptrinhjavaweb.entity.TagEntity;
 import org.modelmapper.ModelMapper;
@@ -20,6 +21,13 @@ public class PostConverter {
                 .toArray(String[]::new));
         result.setTagNameStr(entity.getTags().stream()
                 .map(TagEntity::getName)
+                .reduce((a, b) -> a + ", " + b)
+                .orElse(null));
+        result.setAuthorCodeArray(entity.getAuthors().stream()
+                .map(AuthorEntity::getCode)
+                .toArray(String[]::new));
+        result.setAuthorNameStr(entity.getAuthors().stream()
+                .map(AuthorEntity::getName)
                 .reduce((a, b) -> a + ", " + b)
                 .orElse(null));
         return result;

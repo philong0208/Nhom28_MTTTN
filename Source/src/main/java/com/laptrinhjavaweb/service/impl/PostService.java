@@ -3,11 +3,13 @@ package com.laptrinhjavaweb.service.impl;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.PostConverter;
 import com.laptrinhjavaweb.dto.PostDTO;
+import com.laptrinhjavaweb.entity.AuthorEntity;
 import com.laptrinhjavaweb.entity.PostEntity;
 import com.laptrinhjavaweb.entity.TagEntity;
 import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.repository.PostRepository;
 import com.laptrinhjavaweb.repository.TagRepository;
+import com.laptrinhjavaweb.service.IAuthorService;
 import com.laptrinhjavaweb.service.IPostService;
 import com.laptrinhjavaweb.service.ITagService;
 import com.laptrinhjavaweb.utils.UploadFileUtils;
@@ -58,6 +60,8 @@ public class PostService implements IPostService {
     }
     @Autowired
     private ITagService tagService;
+    @Autowired
+    private IAuthorService authorService;
 
     @Override
     @Transactional
@@ -71,6 +75,10 @@ public class PostService implements IPostService {
             Map<String, TagEntity> tagMap = tagService.getTagEntity();
             postEntity.getTags().addAll(
                     Arrays.asList(postDTO.getTagCodeArray()).stream().map(tagMap::get)
+                            .collect(Collectors.toList()));
+            Map<String, AuthorEntity> authorMap = authorService.getAuthorEntity();
+            postEntity.getAuthors().addAll(
+                    Arrays.asList(postDTO.getAuthorCodeArray()).stream().map(authorMap::get)
                             .collect(Collectors.toList()));
             saveThumbnail(postDTO, postEntity);
             saveOgImage(postDTO, postEntity);
@@ -104,6 +112,10 @@ public class PostService implements IPostService {
             Map<String, TagEntity> tagMap = tagService.getTagEntity();
             updatePost.getTags().addAll(
                     Arrays.asList(postDTO.getTagCodeArray()).stream().map(tagMap::get)
+                            .collect(Collectors.toList()));
+            Map<String, AuthorEntity> authorMap = authorService.getAuthorEntity();
+            updatePost.getAuthors().addAll(
+                    Arrays.asList(postDTO.getAuthorCodeArray()).stream().map(authorMap::get)
                             .collect(Collectors.toList()));
             saveThumbnail(postDTO, updatePost);
             saveOgImage(postDTO, updatePost);

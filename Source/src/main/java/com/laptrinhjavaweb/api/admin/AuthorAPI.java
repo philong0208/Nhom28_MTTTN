@@ -1,0 +1,33 @@
+package com.laptrinhjavaweb.api.admin;
+
+import com.laptrinhjavaweb.dto.AuthorDTO;
+import com.laptrinhjavaweb.service.IAuthorService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController(value = "authorApiOfAdmin")
+@RequestMapping(value = "/api/admin/author")
+public class AuthorAPI {
+
+    @Autowired
+    private IAuthorService authorService;
+
+    @PostMapping
+    public ResponseEntity<AuthorDTO> createAuthor(@RequestBody AuthorDTO authorDTO) {
+        return ResponseEntity.ok(authorService.insert(authorDTO));
+    }
+
+    @PutMapping
+    public ResponseEntity<AuthorDTO> updateAuthor(@RequestBody AuthorDTO authorDTO) {
+        return ResponseEntity.ok(authorService.update(authorDTO));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteAuthor(@RequestBody long[] ids) {
+        if (ids.length > 0) {
+            authorService.deleteAuthor(ids);
+        }
+        return ResponseEntity.ok("success");
+    }
+}
