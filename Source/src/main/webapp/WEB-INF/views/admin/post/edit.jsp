@@ -44,7 +44,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Tag</label>
+                            <label class="col-sm-3 control-label no-padding-right">Thể loại</label>
                             <div class="col-sm-9">
                                 <form:checkboxes path="tagCodeArray" items="${tags}" element="li"/>
                             </div>
