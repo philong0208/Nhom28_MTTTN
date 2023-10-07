@@ -41,7 +41,7 @@
     <ul class="nav nav-list">
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-newspaper-o"></i>
+                <i class="menu-icon fa fa-book"></i>
                 <span class="menu-text">Quản lý tiểu thuyết</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -59,7 +59,7 @@
         
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-bars"></i>
+                <i class="menu-icon fa fa-users"></i>
                 <span class="menu-text">Quản lý nhóm dịch</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -93,7 +93,7 @@
         </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-bars"></i>
+                <i class="menu-icon fa fa-user"></i>
                 <span class="menu-text">Quản lý tác giả</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -134,7 +134,7 @@
         </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fas fa-users"></i>
+                <i class="menu-icon fa fas fa-cog"></i>
                 <span class="menu-text">Quản lý tài khoản</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
