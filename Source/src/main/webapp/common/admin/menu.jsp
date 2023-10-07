@@ -77,7 +77,7 @@
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-bars"></i>
-                <span class="menu-text">QL tag</span>
+                <span class="menu-text">Quản lý thể loại</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -85,7 +85,7 @@
                 <li class="">
                     <a href='<c:url value="/admin/tag/list"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS tag
+                        Danh sách thể loại
                     </a>
                     <b class="arrow"></b>
                 </li>

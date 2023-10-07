@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Danh sách tag</title>
+    <title>Danh sách thể loại</title>
 </head>
 <body>
 <div class="main-content">
@@ -22,7 +22,7 @@
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="#">Trang chủ</a>
                     </li>
-                    <li class="active">Danh sách tag</li>
+                    <li class="active">Danh sách thể loại</li>
                 </ul><!-- /.breadcrumb -->
             </div>
             <div class="page-content">
@@ -52,7 +52,7 @@
                                         <div class="widget-main">
                                             <div class="form-horizontal">
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Tiêu đề tag:</label>
+                                                    <label class="col-sm-2 control-label">Tiêu đề thể loại:</label>
                                                     <div class="col-sm-8">
                                                         <div class="fg-line">
                                                             <form:input path="name" cssClass="form-control input-sm"/>
@@ -109,9 +109,9 @@
                                                 <input type="checkbox" name="checkList" value="${tableList.id}" id="checkbox_${tableList.id}" class="check-box-element"/>
                                             </fieldset>
                                         </display:column>
-                                        <display:column headerClass="text-left" property="id" title="Id tag"/>
-                                        <display:column headerClass="text-left" property="name" title="Tên tag"/>
-                                        <display:column headerClass="text-left" property="code" title="Mã tag"/>
+                                        <display:column headerClass="text-left" property="id" title="Id thể loại"/>
+                                        <display:column headerClass="text-left" property="name" title="Tên thể loại"/>
+                                        <display:column headerClass="text-left" property="code" title="Mã thể loại"/>
                                         <display:column headerClass="text-left" property="totalPosts" title="Số lượng tiểu thuyết"/>
                                         <display:column headerClass="text-left" property="nameOfPostsStr" title="Danh sách tiểu thuyết"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
