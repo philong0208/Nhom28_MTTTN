@@ -3,7 +3,7 @@
 <c:url var="formUrl" value="/api/admin/tag"/>
 <html>
 <head>
-    <title>Chỉnh sửa tag</title>
+    <title>Chỉnh sửa thể loại</title>
 </head>
 <body>
 <div class="main-content">
@@ -17,7 +17,7 @@
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="#">Trang chủ</a>
                 </li>
-                <li class="active">Chỉnh sửa tag</li>
+                <li class="active">Chỉnh sửa thể loại</li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">
