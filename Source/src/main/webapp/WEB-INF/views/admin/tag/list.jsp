@@ -22,7 +22,7 @@
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="#">Trang chủ</a>
                     </li>
-                    <li class="active">Danh sách tag</li>
+                    <li class="active">Danh sách thể loại</li>
                 </ul><!-- /.breadcrumb -->
             </div>
             <div class="page-content">
