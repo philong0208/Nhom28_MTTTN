@@ -60,7 +60,7 @@
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-bars"></i>
-                <span class="menu-text">QL thể loại</span>
+                <span class="menu-text">Quản lý nhóm dịch</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -68,7 +68,7 @@
                 <li class="">
                     <a href='<c:url value="/admin/category/list"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS thể loại
+                        Danh sách nhóm dịch
                     </a>
                     <b class="arrow"></b>
                 </li>

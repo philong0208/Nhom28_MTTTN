@@ -33,20 +33,30 @@
                     </c:if>
                     <form:form id="formEdit" modelAttribute="model">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Tiêu đề</label>
                             <div class="col-sm-9">
-                                <form:select path="categoryCode" id="categoryCode">
-                                    <form:option value="" label="--- Chọn thể loại ---"/>
-                                    <form:options items="${categories}"/>
-                                </form:select>
+                                <form:input path="shortTitle" id="title" cssClass="form-control"/>
                             </div>
                         </div>
                         <br/>
                         <br/>
+                        &nbsp;
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">Thể loại</label>
                             <div class="col-sm-9">
                                 <form:checkboxes path="tagCodeArray" items="${tags}" element="li"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Nhóm dịch</label>
+                            <div class="col-sm-9">
+                                <form:select path="categoryCode" id="categoryCode">
+                                    <form:option value="" label="--- Chọn nhóm dịch ---"/>
+                                    <form:options items="${categories}"/>
+                                </form:select>
                             </div>
                         </div>
                         <br/>
@@ -59,15 +69,7 @@
                         </div>
                         <br/>
                         <br/>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Tiêu đề</label>
-                            <div class="col-sm-9">
-                                <form:input path="shortTitle" id="title" cssClass="form-control"/>
-                            </div>
-                        </div>
-                        <br/>
-                        <br/>
-                        &nbsp
+                        &nbsp;
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">Thumbnail tiểu thuyết:</label>
                             <div class="col-sm-4">

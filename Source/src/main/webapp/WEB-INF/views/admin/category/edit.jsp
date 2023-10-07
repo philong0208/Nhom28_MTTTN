@@ -3,7 +3,7 @@
 <c:url var="formUrl" value="/api/admin/category"/>
 <html>
 <head>
-    <title>Chỉnh sửa thể loại</title>
+    <title>Chỉnh sửa nhóm dịch</title>
 </head>
 <body>
 <div class="main-content">
@@ -17,7 +17,7 @@
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="#">Trang chủ</a>
                 </li>
-                <li class="active">Chỉnh sửa thể loại</li>
+                <li class="active">Chỉnh sửa nhóm dịch</li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">
@@ -33,7 +33,7 @@
                     </c:if>
                     <form:form id="formEdit" modelAttribute="model">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Tên thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Tên nhóm dịch</label>
                             <div class="col-sm-9">
                                 <form:input path="name" id="name" cssClass="form-control"/>
                             </div>
@@ -41,7 +41,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Mã thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Mã nhóm dịch</label>
                             <div class="col-sm-9">
                                 <form:input path="code" id="code" cssClass="form-control"/>
                             </div>
@@ -57,10 +57,10 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <c:if test="${not empty model.id}">
-                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật thể loại" id="btnAddOrUpdateCategory"/>
+                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật nhóm dịch" id="btnAddOrUpdateCategory"/>
                                 </c:if>
                                 <c:if test="${empty model.id}">
-                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm mới thể loại" id="btnAddOrUpdateCategory"/>
+                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm mới nhóm dịch" id="btnAddOrUpdateCategory"/>
                                 </c:if>
                             </div>
                         </div>
