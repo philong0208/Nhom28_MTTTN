@@ -76,13 +76,13 @@
                                     <div class="pull-right tableTools-container">
                                         <div class="dt-buttons btn-overlap btn-group">
                                             <a flag="info" class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
-                                               data-toggle="tooltip" title="Thêm author" href='<c:url value="/admin/author/edit"/>'>
+                                               data-toggle="tooltip" title="Thêm tác giả" href='<c:url value="/admin/author/edit"/>'>
                                                     <span>
                                                     <i class="fa fa-plus-circle bigger-110 purple"></i>
                                                 </span>
                                             </a>
                                             <button id="btnDelete" type="button" class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" disabled
-                                                    data-toggle="tooltip" title="Xóa bài viết" onclick="warningBeforeDelete()">
+                                                    data-toggle="tooltip" title="Xóa tác giả" onclick="warningBeforeDelete()">
                                                     <span>
                                                     <i class="fa fa-trash-o bigger-110 pink"></i>
                                                 	</span>

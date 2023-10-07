@@ -82,7 +82,7 @@
                                                 </span>
                                             </a>
                                             <button id="btnDelete" type="button" class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" disabled
-                                                    data-toggle="tooltip" title="Xóa bài viết" onclick="warningBeforeDelete()">
+                                                    data-toggle="tooltip" title="Xóa thể loại" onclick="warningBeforeDelete()">
                                                     <span>
                                                     <i class="fa fa-trash-o bigger-110 pink"></i>
                                                 	</span>

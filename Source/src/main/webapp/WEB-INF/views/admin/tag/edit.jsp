@@ -3,7 +3,7 @@
 <c:url var="formUrl" value="/api/admin/tag"/>
 <html>
 <head>
-    <title>Chỉnh sửa author</title>
+    <title>Chỉnh sửa tag</title>
 </head>
 <body>
 <div class="main-content">
@@ -17,7 +17,7 @@
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="#">Trang chủ</a>
                 </li>
-                <li class="active">Chỉnh sửa thể loại</li>
+                <li class="active">Chỉnh sửa tag</li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">
@@ -49,7 +49,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Mô tả thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Mô tả</label>
                             <div class="col-sm-9" style="margin-bottom: 10px">
                                 <form:textarea path="content" cols="80" rows="10" id="content" cssStyle="width: 943px; height: 72px"/>
                             </div>
@@ -57,14 +57,14 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <c:if test="${not empty model.id}">
-                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật author" id="btnAddOrUpdateAuthor"/>
+                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật thể loại" id="btnAddOrUpdateTag"/>
                                 </c:if>
                                 <c:if test="${empty model.id}">
-                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm mới author" id="btnAddOrUpdateAuthor"/>
+                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm mới thể loại" id="btnAddOrUpdateTag"/>
                                 </c:if>
                             </div>
                         </div>
-                        <form:hidden path="id" id="authorId"/>
+                        <form:hidden path="id" id="tagId"/>
                     </form:form>
                 </div>
             </div>
@@ -77,7 +77,7 @@
         editor = CKEDITOR.replace( 'content');
     });
 
-    $('#btnAddOrUpdateAuthor').click(function (event) {
+    $('#btnAddOrUpdateTag').click(function (event) {
         event.preventDefault();
         var data = {};
         var formData = $('#formEdit').serializeArray();
@@ -85,15 +85,15 @@
             data[""+v.name+""] = v.value;
         });
         data["content"] = editor.getData();
-        var id = $('#authorId').val();
+        var id = $('#tagId').val();
         if (id == "") {
-            addAuthor(data);
+            addTag(data);
         } else {
-            updateAuthor(data);
+            updateTag(data);
         }
     });
 
-    function addAuthor(data) {
+    function addTag(data) {
         $.ajax({
             url: '${formUrl}',
             type: 'POST',
@@ -101,15 +101,15 @@
             contentType:'application/json',
             data: JSON.stringify(data),
             success: function(res) {
-                window.location.href = "<c:url value='/admin/author/edit?id="+res.id+"&message=insert_success'/>";
+                window.location.href = "<c:url value='/admin/tag/edit?id="+res.id+"&message=insert_success'/>";
             },
             error: function(res) {
-                window.location.href = "<c:url value='/admin/author/edit?id="+res.id+"&message=error_system'/>";
+                window.location.href = "<c:url value='/admin/tag/edit?id="+res.id+"&message=error_system'/>";
             }
         });
     }
 
-    function updateAuthor(data) {
+    function updateTag(data) {
         $.ajax({
             url: '${formUrl}',
             type: 'PUT',
@@ -117,10 +117,10 @@
             contentType:'application/json',
             data: JSON.stringify(data),
             success: function(res) {
-                window.location.href = "<c:url value='/admin/author/edit?id="+res.id+"&message=update_success'/>";
+                window.location.href = "<c:url value='/admin/tag/edit?id="+res.id+"&message=update_success'/>";
             },
             error: function(res) {
-                window.location.href = "<c:url value='/admin/author/edit?id="+res.id+"&message=error_system'/>";
+                window.location.href = "<c:url value='/admin/tag/edit?id="+res.id+"&message=error_system'/>";
             }
         });
     }

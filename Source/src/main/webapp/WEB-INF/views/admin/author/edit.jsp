@@ -57,10 +57,10 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <c:if test="${not empty model.id}">
-                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật author" id="btnAddOrUpdateAuthor"/>
+                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật tác giả" id="btnAddOrUpdateAuthor"/>
                                 </c:if>
                                 <c:if test="${empty model.id}">
-                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm mới author" id="btnAddOrUpdateAuthor"/>
+                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm mới tác giả" id="btnAddOrUpdateAuthor"/>
                                 </c:if>
                             </div>
                         </div>
