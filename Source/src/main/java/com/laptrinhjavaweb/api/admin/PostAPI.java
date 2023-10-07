@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.api.admin;
 
 import com.laptrinhjavaweb.dto.PostDTO;
+import com.laptrinhjavaweb.repository.PostRepository;
 import com.laptrinhjavaweb.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,14 @@ public class PostAPI {
 
     @Autowired
     private IPostService postService;
+    @Autowired
+    private PostRepository postRepository;
 
     @PostMapping
     public ResponseEntity<PostDTO> createPost(@RequestBody PostDTO postDTO) {
-        return ResponseEntity.ok(postService.insert(postDTO));
+        return postRepository.existsByShortTitleIgnoreCase(postDTO.getShortTitle())
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(postService.insert(postDTO));
     }
 
     @PutMapping

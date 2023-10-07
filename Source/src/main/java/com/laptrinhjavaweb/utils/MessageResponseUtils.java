@@ -21,6 +21,9 @@ public class MessageResponseUtils {
         } else if (message.equals(SystemConstant.ERROR_SYSTEM)) {
             results.put(SystemConstant.ALERT, "danger");
             results.put(SystemConstant.MESSAGE_RESPONSE, "Error system");
+        } else if (message.equals(SystemConstant.INSERT_FAILED)) {
+            results.put(SystemConstant.ALERT, "danger");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Trùng tên tiểu thuyết, vui lòng nhập lại");
         }
         return results;
     }

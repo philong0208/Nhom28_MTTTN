@@ -25,4 +25,5 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByTags_Id(Long id);
 
     List<PostEntity> findByAuthors_Id(Long id);
+    boolean existsByShortTitleIgnoreCase(String shortTitle);
 }
