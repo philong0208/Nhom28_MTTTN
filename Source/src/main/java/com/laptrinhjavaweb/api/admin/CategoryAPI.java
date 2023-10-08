@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.api.admin;
 
 import com.laptrinhjavaweb.dto.CategoryDTO;
+import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,15 @@ public class CategoryAPI {
     @Autowired
     private ICategoryService categoryService;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @PostMapping
     public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO categoryDTO) {
-        return ResponseEntity.ok(categoryService.insert(categoryDTO));
+        return categoryRepository.existsByCodeIgnoreCase(categoryDTO.getCode())
+                || categoryRepository.existsByNameIgnoreCase(categoryDTO.getName())
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(categoryService.insert(categoryDTO));
     }
 
     @PutMapping
