@@ -24,6 +24,9 @@ public class MessageResponseUtils {
         } else if (message.equals(SystemConstant.INSERT_FAILED)) {
             results.put(SystemConstant.ALERT, "danger");
             results.put(SystemConstant.MESSAGE_RESPONSE, "Tên này đã tồn tại, vui lòng nhập lại");
+        } else if (message.equals(SystemConstant.UPDATE_FAILED)) {
+            results.put(SystemConstant.ALERT, "danger");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Bản ghi này đã tồn tại, cập nhật thất bại");
         }
         return results;
     }

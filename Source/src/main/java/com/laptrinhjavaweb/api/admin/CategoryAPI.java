@@ -27,7 +27,10 @@ public class CategoryAPI {
 
     @PutMapping
     public ResponseEntity<CategoryDTO> updateCategory(@RequestBody CategoryDTO categoryDTO) {
-        return ResponseEntity.ok(categoryService.update(categoryDTO));
+        return categoryRepository.existsByCodeIgnoreCaseAndIdNot(categoryDTO.getCode(), categoryDTO.getId())
+                || categoryRepository.existsByNameIgnoreCaseAndIdNot(categoryDTO.getName(), categoryDTO.getId())
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(categoryService.update(categoryDTO));
     }
 
     @DeleteMapping
