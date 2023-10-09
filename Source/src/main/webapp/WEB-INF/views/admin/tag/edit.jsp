@@ -36,6 +36,7 @@
                             <label class="col-sm-3 control-label no-padding-right">Tên thể loại</label>
                             <div class="col-sm-9">
                                 <form:input path="name" id="name" cssClass="form-control"/>
+                                <span id="nameVal" class="red" style="display: none;"></span><br/>
                             </div>
                         </div>
                         <br/>
@@ -44,6 +45,7 @@
                             <label class="col-sm-3 control-label no-padding-right">Mã thể loại</label>
                             <div class="col-sm-9">
                                 <form:input path="code" id="code" cssClass="form-control"/>
+                                <span id="codeVal" class="red" style="display: none;"></span><br/>
                             </div>
                         </div>
                         <br/>
@@ -81,15 +83,37 @@
         event.preventDefault();
         var data = {};
         var formData = $('#formEdit').serializeArray();
-        $.each(formData, function (i,v) {
-            data[""+v.name+""] = v.value;
+        var hasError = false;
+        $('#nameVal').html('');
+        $('#codeVal').html('');
+        $('#nameVal').css('display', 'none');
+        $('#codeVal').css('display', 'none');
+        $.each(formData, function (i, v) {
+            data["" + v.name + ""] = v.value;
+            if (v.name === "name" && v.value === "") {
+                $('#nameVal').html('Tên không được để trống!');
+                $('#nameVal').css('display', 'block');
+                hasError = true;
+            }
+            if (v.name === "code" && !/^[a-zA-Z0-9-]+$/.test(v.value)) {
+                $('#codeVal').html('Mã code không hợp lệ. Mã code chỉ bao gồm chữ cái, chữ số và dấu gạch ngang!');
+                $('#codeVal').css('display', 'block');
+                hasError = true;
+            }
         });
         data["content"] = editor.getData();
         var id = $('#tagId').val();
-        if (id == "") {
-            addTag(data);
+        if (!hasError) {
+            if (id == "") {
+                addTag(data);
+            } else {
+                updateTag(data);
+            }
         } else {
-            updateTag(data);
+            setTimeout(function () {
+                $('#nameVal').css('display', 'none');
+                $('#codeVal').css('display', 'none');
+            }, 1500);
         }
     });
 
