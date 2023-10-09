@@ -15,7 +15,7 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Trang chủ</a>
+                    <a href='<c:url value="/admin/tag/list"/>'>Danh sách thể loại</a>
                 </li>
                 <li class="active">Chỉnh sửa thể loại</li>
             </ul><!-- /.breadcrumb -->
