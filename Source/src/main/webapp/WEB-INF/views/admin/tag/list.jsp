@@ -160,7 +160,7 @@
             },
             error: function(res) {
                 console.log(res);
-                window.location.href = "<c:url value='/admin/tag/list?message=error_system'/>";
+                window.location.href = "<c:url value='/admin/tag/list?message=delete_failed'/>";
             }
         });
     }

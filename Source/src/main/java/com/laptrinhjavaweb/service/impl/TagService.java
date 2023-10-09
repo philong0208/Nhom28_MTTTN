@@ -13,9 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -105,7 +103,19 @@ public class TagService implements ITagService {
             tagRepository.deleteById(item);
         }
     }
-
+    @Override
+    @Transactional
+    public String deleteTagWithoutPost(long[] ids) {
+        tagRepository.deleteAllByIdIn(ids);
+        return "success";
+    }
+    @Override
+    public boolean hasPost(long[] ids) {
+        return Arrays.stream(ids)
+                .anyMatch(id -> tagRepository.findById(id)
+                        .map(tagEntity -> !tagEntity.getPosts().isEmpty())
+                        .orElse(false));
+    }
     @Override
     public TagDTO findByCode(String code) {
         return tagConverter.convertToDto(tagRepository.findOneByCode(code));

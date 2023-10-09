@@ -34,9 +34,8 @@ public class TagAPI {
 
     @DeleteMapping
     public ResponseEntity<String> deleteTag(@RequestBody long[] ids) {
-        if (ids.length > 0) {
-            tagService.deleteTag(ids);
-        }
-        return ResponseEntity.ok("success");
+        return tagService.hasPost(ids)
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(tagService.deleteTagWithoutPost(ids));
     }
 }

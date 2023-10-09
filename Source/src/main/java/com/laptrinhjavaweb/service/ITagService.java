@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.service;
 import com.laptrinhjavaweb.dto.TagDTO;
 import com.laptrinhjavaweb.entity.TagEntity;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -17,5 +18,11 @@ public interface ITagService {
     TagDTO insert(TagDTO tagDTO);
     TagDTO update(TagDTO tagDTO);
     void deleteTag(long[] ids);
+
+    @Transactional
+    String deleteTagWithoutPost(long[] ids);
+
+    boolean hasPost(long[] ids);
+
     TagDTO findByCode(String code);
 }
