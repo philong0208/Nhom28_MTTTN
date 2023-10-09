@@ -120,7 +120,7 @@
                 window.location.href = "<c:url value='/admin/author/edit?id="+res.id+"&message=update_success'/>";
             },
             error: function(res) {
-                window.location.href = "<c:url value='/admin/author/edit?id="+res.id+"&message=error_system'/>";
+                window.location.href = "<c:url value='/admin/author/list?message=update_failed'/>";
             }
         });
     }

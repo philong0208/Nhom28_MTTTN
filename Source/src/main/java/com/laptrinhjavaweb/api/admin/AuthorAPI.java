@@ -26,7 +26,10 @@ public class AuthorAPI {
 
     @PutMapping
     public ResponseEntity<AuthorDTO> updateAuthor(@RequestBody AuthorDTO authorDTO) {
-        return ResponseEntity.ok(authorService.update(authorDTO));
+        return authorRepository.existsByCodeIgnoreCaseAndIdNot(authorDTO.getCode(), authorDTO.getId())
+                || authorRepository.existsByNameIgnoreCaseAndIdNot(authorDTO.getName(), authorDTO.getId())
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(authorService.update(authorDTO));
     }
 
     @DeleteMapping
