@@ -104,7 +104,7 @@
                 window.location.href = "<c:url value='/admin/tag/edit?id="+res.id+"&message=insert_success'/>";
             },
             error: function(res) {
-                window.location.href = "<c:url value='/admin/tag/edit?id="+res.id+"&message=error_system'/>";
+                window.location.href = "<c:url value='/admin/tag/edit?message=insert_failed'/>";
             }
         });
     }

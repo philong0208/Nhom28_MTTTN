@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.api.admin;
 
 import com.laptrinhjavaweb.dto.TagDTO;
+import com.laptrinhjavaweb.repository.TagRepository;
 import com.laptrinhjavaweb.service.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,15 @@ public class TagAPI {
 
     @Autowired
     private ITagService tagService;
+    @Autowired
+    private TagRepository tagRepository;
 
     @PostMapping
     public ResponseEntity<TagDTO> createTag(@RequestBody TagDTO tagDTO) {
-        return ResponseEntity.ok(tagService.insert(tagDTO));
+        return tagRepository.existsByCodeIgnoreCase(tagDTO.getCode())
+                || tagRepository.existsByNameIgnoreCase(tagDTO.getName())
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(tagService.insert(tagDTO));
     }
 
     @PutMapping
