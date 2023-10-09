@@ -10,4 +10,6 @@ public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
     Page<AuthorEntity> findAll(Pageable pageable);
     Page<AuthorEntity> findByNameContainingIgnoreCase(String name, Pageable pageable);
     long countByNameContainingIgnoreCase(String name);
+    boolean existsByNameIgnoreCase(String name);
+    boolean existsByCodeIgnoreCase(String code);
 }
