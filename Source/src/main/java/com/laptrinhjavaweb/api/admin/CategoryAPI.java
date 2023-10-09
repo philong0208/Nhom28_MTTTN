@@ -35,9 +35,8 @@ public class CategoryAPI {
 
     @DeleteMapping
     public ResponseEntity<String> deleteCategory(@RequestBody long[] ids) {
-        if (ids.length > 0) {
-            categoryService.deleteCategory(ids);
-        }
-        return ResponseEntity.ok("success");
+        return categoryService.hasPost(ids)
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(categoryService.deleteCategoryWithoutPost(ids));
     }
 }

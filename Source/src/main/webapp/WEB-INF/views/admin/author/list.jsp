@@ -160,7 +160,7 @@
             },
             error: function(res) {
                 console.log(res);
-                window.location.href = "<c:url value='/admin/author/list?message=error_system'/>";
+                window.location.href = "<c:url value='/admin/author/list?message=delete_failed'/>";
             }
         });
     }

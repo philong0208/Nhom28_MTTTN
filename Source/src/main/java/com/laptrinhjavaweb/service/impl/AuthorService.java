@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,6 +105,19 @@ public class AuthorService implements IAuthorService {
             }
             authorRepository.deleteById(item);
         }
+    }
+    @Override
+    @Transactional
+    public String deleteAuthorWithoutPost(long[] ids) {
+        authorRepository.deleteAllByIdIn(ids);
+        return "success";
+    }
+    @Override
+    public boolean hasPost(long[] ids) {
+        return Arrays.stream(ids)
+                .anyMatch(id -> authorRepository.findById(id)
+                        .map(tagEntity -> !tagEntity.getPosts().isEmpty())
+                        .orElse(false));
     }
 
     @Override

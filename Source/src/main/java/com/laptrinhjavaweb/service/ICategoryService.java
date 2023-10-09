@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.dto.CategoryDTO;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -16,4 +17,7 @@ public interface ICategoryService {
     CategoryDTO update(CategoryDTO categoryDTO);
     void deleteCategory(long[] ids);
     CategoryDTO findByCode(String code);
+    @Transactional
+    String deleteCategoryWithoutPost(long[] ids);
+    boolean hasPost(long[] ids);
 }

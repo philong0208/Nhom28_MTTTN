@@ -34,9 +34,8 @@ public class AuthorAPI {
 
     @DeleteMapping
     public ResponseEntity<String> deleteAuthor(@RequestBody long[] ids) {
-        if (ids.length > 0) {
-            authorService.deleteAuthor(ids);
-        }
-        return ResponseEntity.ok("success");
+        return authorService.hasPost(ids)
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(authorService.deleteAuthorWithoutPost(ids));
     }
 }

@@ -14,4 +14,5 @@ public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
     boolean existsByCodeIgnoreCase(String code);
     boolean existsByCodeIgnoreCaseAndIdNot(String code, long id);
     boolean existsByNameIgnoreCaseAndIdNot(String name, long id);
+    void deleteAllByIdIn(long[] ids);
 }

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,7 +100,19 @@ public class CategoryService implements ICategoryService {
             categoryRepository.deleteById(item);
         }
     }
-
+    @Override
+    @Transactional
+    public String deleteCategoryWithoutPost(long[] ids) {
+        categoryRepository.deleteAllByIdIn(ids);
+        return "success";
+    }
+    @Override
+    public boolean hasPost(long[] ids) {
+        return Arrays.stream(ids)
+                .anyMatch(id -> categoryRepository.findById(id)
+                        .map(categoryEntity -> !categoryEntity.getPosts().isEmpty())
+                        .orElse(false));
+    }
     @Override
     public CategoryDTO findByCode(String code) {
         return categoryConverter.convertToDto(categoryRepository.findOneByCode(code));

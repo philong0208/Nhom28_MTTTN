@@ -14,4 +14,5 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
     boolean existsByCodeIgnoreCase(String code);
     boolean existsByCodeIgnoreCaseAndIdNot(String code, long id);
     boolean existsByNameIgnoreCaseAndIdNot(String name, long id);
+    void deleteAllByIdIn(long[] ids);
 }
