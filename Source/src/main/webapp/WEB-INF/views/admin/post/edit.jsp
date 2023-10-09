@@ -36,6 +36,7 @@
                             <label class="col-sm-3 control-label no-padding-right">Tiêu đề</label>
                             <div class="col-sm-9">
                                 <form:input path="shortTitle" id="title" cssClass="form-control"/>
+                                <span id="nameVal" class="red" style="display: none;"></span><br/>
                             </div>
                         </div>
                         <br/>
@@ -151,6 +152,9 @@
         event.preventDefault();
         var data = {};
         var formData = $('#formEdit').serializeArray();
+        var hasError = false;
+        $('#nameVal').html('');
+        $('#nameVal').css('display', 'none');
         var tagCodeArray = [];
         var authorCodeArray = [];
         $.each(formData, function (i, v) {
@@ -160,6 +164,11 @@
                 authorCodeArray.push(v.value);
             } else {
                 data["" + v.name + ""] = v.value;
+            }
+            if (v.name === "shortTitle" && v.value === "") {
+                $('#nameVal').html('Tên không được để trống!');
+                $('#nameVal').css('display', 'block');
+                hasError = true;
             }
         });
         data["tagCodeArray"] = tagCodeArray;
@@ -179,10 +188,16 @@
                 data[contentId] = CKEDITOR.instances['content' + i].getData()
             }
         }
-        if (id == "") {
-            addPost(data);
+        if (!hasError) {
+            if (id == "") {
+                addPost(data);
+            } else {
+                updatePost(data);
+            }
         } else {
-            updatePost(data);
+            setTimeout(function () {
+                $('#nameVal').css('display', 'none');
+            }, 5000);
         }
     });
 
