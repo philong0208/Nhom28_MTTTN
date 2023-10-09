@@ -25,7 +25,9 @@ public class PostAPI {
 
     @PutMapping
     public ResponseEntity<PostDTO> updatePost(@RequestBody PostDTO postDTO) {
-        return ResponseEntity.ok(postService.update(postDTO));
+        return postRepository.existsByShortTitleIgnoreCaseAndIdNot(postDTO.getShortTitle(), postDTO.getId())
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(postService.update(postDTO));
     }
 
     @DeleteMapping

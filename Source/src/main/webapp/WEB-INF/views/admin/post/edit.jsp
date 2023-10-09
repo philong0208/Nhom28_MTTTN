@@ -213,7 +213,7 @@
                 window.location.href = "<c:url value='/admin/post/edit?id="+res.id+"&message=update_success'/>";
             },
             error: function (res) {
-                window.location.href = "<c:url value='/admin/post/edit?id="+res.id+"&message=error_system'/>";
+                window.location.href = "<c:url value='/admin/post/list?message=update_failed'/>";
             }
         });
     }
