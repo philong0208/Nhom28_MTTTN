@@ -26,7 +26,10 @@ public class TagAPI {
 
     @PutMapping
     public ResponseEntity<TagDTO> updateTag(@RequestBody TagDTO tagDTO) {
-        return ResponseEntity.ok(tagService.update(tagDTO));
+        return tagRepository.existsByCodeIgnoreCaseAndIdNot(tagDTO.getCode(), tagDTO.getId())
+                || tagRepository.existsByNameIgnoreCaseAndIdNot(tagDTO.getName(), tagDTO.getId())
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(tagService.update(tagDTO));
     }
 
     @DeleteMapping
