@@ -50,7 +50,7 @@
                 <li class="">
                     <a href='<c:url value="/admin/post/list"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS tiểu thuyết
+                        Danh sách tiểu thuyết
                     </a>
                     <b class="arrow"></b>
                 </li>
