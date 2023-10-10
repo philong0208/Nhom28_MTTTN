@@ -58,7 +58,7 @@
         </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-book"></i>
+                <i class="menu-icon fa fa-bookmark"></i>
                 <span class="menu-text">Quản lý chương</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
