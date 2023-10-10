@@ -111,6 +111,7 @@
                                         </display:column>
                                         <display:column headerClass="text-left" property="id" title="Id chương"/>
                                         <display:column headerClass="text-left" property="shortTitle" title="Tiêu đề"/>
+                                        <display:column headerClass="text-left" property="postShortTitle" title="Tiểu thuyết"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
                                             <c:url var="editChapter" value="/admin/chapter/edit">
                                                 <c:param name="id" value="${tableList.id}"/>

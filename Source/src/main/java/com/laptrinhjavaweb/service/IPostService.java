@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.dto.PostDTO;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IPostService {
     List<PostDTO> findAll(String shortTitle, Pageable pageable);
@@ -21,4 +22,5 @@ public interface IPostService {
     List<PostDTO> findByCategory(String code, Pageable pageable);
     int getTotalItemsByCategory(String code);
     PostDTO findByShortUrl(String shortUrl);
+    Map<Long, String> getPosts();
 }

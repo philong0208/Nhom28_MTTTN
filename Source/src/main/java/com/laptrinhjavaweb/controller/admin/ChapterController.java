@@ -2,10 +2,7 @@ package com.laptrinhjavaweb.controller.admin;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.ChapterDTO;
-import com.laptrinhjavaweb.service.IAuthorService;
-import com.laptrinhjavaweb.service.ICategoryService;
-import com.laptrinhjavaweb.service.IChapterService;
-import com.laptrinhjavaweb.service.ITagService;
+import com.laptrinhjavaweb.service.*;
 import com.laptrinhjavaweb.utils.DisplayTagUtils;
 import com.laptrinhjavaweb.utils.MessageResponseUtils;
 import org.apache.commons.lang.StringUtils;
@@ -25,17 +22,10 @@ import java.util.Optional;
 
 @Controller(value = "chapterControllerOfAdmin")
 public class ChapterController {
-
 	@Autowired
 	private IChapterService chapterService;
-
 	@Autowired
-	private ICategoryService categoryService;
-
-	@Autowired
-	private ITagService tagService;
-	@Autowired
-	private IAuthorService authorService;
+	private IPostService postService;
 	@RequestMapping(value = "/admin/chapter/list", method = RequestMethod.GET)
 	public ModelAndView getNews(@ModelAttribute(SystemConstant.MODEL) ChapterDTO model,
                                 HttpServletRequest request) {
@@ -57,9 +47,7 @@ public class ChapterController {
 			model = chapterService.findById(id);
 		}
 		initMessageResponse(mav, request);
-		mav.addObject(SystemConstant.CATEGORIES, categoryService.getCategories());
-		mav.addObject(SystemConstant.TAGS, tagService.getTags());
-		mav.addObject(SystemConstant.AUTHORS, authorService.getAuthors());
+		mav.addObject(SystemConstant.POSTS, postService.getPosts());
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;
 	}

@@ -1,6 +1,22 @@
 package com.laptrinhjavaweb.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PostDTO extends AbstractDTO<PostDTO> {
+    private List<String> nameOfChapters = new ArrayList<>();
+    public List<String> getNameOfChapters() {
+        return nameOfChapters;
+    }
+    public void setNameOfChapters(List<String> nameOfChapters) {
+        this.nameOfChapters = nameOfChapters;
+    }
+    public int getTotalChapters() {
+        return nameOfChapters.size();
+    }
+    public String getNameOfChaptersStr() {
+        return String.join(", ", nameOfChapters);
+    }
     private String tagNameStr;
 
     public String getTagNameStr() {

@@ -42,6 +42,17 @@
                         <br/>
                         <br/>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Tiểu thuyết</label>
+                            <div class="col-sm-9">
+                                <form:select path="postId" id="postId">
+                                    <form:option value="" label="--- Chọn tiểu thuyết ---"/>
+                                    <form:options items="${posts}"/>
+                                </form:select>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">Thumbnail chương:</label>
                             <div class="col-sm-4">
                                 <input type="file" id="uploadImage"/>

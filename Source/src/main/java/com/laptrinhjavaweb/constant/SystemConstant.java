@@ -43,6 +43,7 @@ public class SystemConstant {
     public static final String CATEGORIES = "categories";
     public static final String TAGS = "tags";
     public static final String AUTHORS = "authors";
+    public static final String POSTS = "posts";
 
     public static final String POSITIONS = "positions";
 

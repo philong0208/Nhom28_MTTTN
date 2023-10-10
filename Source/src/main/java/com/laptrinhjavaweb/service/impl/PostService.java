@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -226,5 +227,11 @@ public class PostService implements IPostService {
             uploadFileUtils.writeOrUpdate(path, bytes);
             postEntity.setThumbnail(path);
         }
+    }
+    @Override
+    public Map<Long, String> getPosts() {
+        Map<Long, String> results = new HashMap<>();
+        postRepository.findAll().forEach(item -> results.put(item.getId(), item.getShortTitle()));
+        return results;
     }
 }

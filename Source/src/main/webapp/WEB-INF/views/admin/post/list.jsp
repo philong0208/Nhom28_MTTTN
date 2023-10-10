@@ -114,6 +114,8 @@
                                         <display:column headerClass="text-left" property="categoryName" title="Nhóm dịch"/>
                                         <display:column headerClass="text-left" property="tagNameStr" title="Thể loại"/>
                                         <display:column headerClass="text-left" property="authorNameStr" title="Tác giả"/>
+                                        <display:column headerClass="text-left" property="totalChapters" title="Số lượng chương"/>
+                                        <display:column headerClass="text-left" property="nameOfChaptersStr" title="Danh sách chương"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
                                             <c:url var="editPost" value="/admin/post/edit">
                                                 <c:param name="id" value="${tableList.id}"/>
