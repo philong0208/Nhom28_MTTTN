@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.security.utils;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.MyUserDetail;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,5 +22,11 @@ public class SecurityUtils {
             results.add(authority.getAuthority());
         }
         return results;
+    }
+    public static boolean isAdmin() {
+        return getAuthorities().contains(SystemConstant.ADMIN_ROLE);
+    }
+    public static boolean isUser() {
+        return getAuthorities().contains(SystemConstant.USER_ROLE);
     }
 }
