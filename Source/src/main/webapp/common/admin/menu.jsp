@@ -75,40 +75,6 @@
         </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-bars"></i>
-                <span class="menu-text">Quản lý thể loại</span>
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-            <b class="arrow"></b>
-            <ul class="submenu">
-                <li class="">
-                    <a href='<c:url value="/admin/tag/list"/>'>
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Danh sách thể loại
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
-        <li class="">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-users"></i>
-                <span class="menu-text">Quản lý nhóm dịch</span>
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-            <b class="arrow"></b>
-            <ul class="submenu">
-                <li class="">
-                    <a href='<c:url value="/admin/category/list"/>'>
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Danh sách nhóm dịch
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
-        <li class="">
-            <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-user"></i>
                 <span class="menu-text">Quản lý tác giả</span>
                 <b class="arrow fa fa-angle-down"></b>
@@ -124,47 +90,83 @@
                 </li>
             </ul>
         </li>
-        <li>
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-building"></i>
-                <span class="menu-text">Quản lý giao diện</span>
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-            <b class="arrow"></b>
-            <ul class="submenu">
-                <li class="">
-                    <a href='<c:url value='/admin/menu-page/list'/>'>
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Menu
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/admin/configuration/theme/default/home-page"/>">
-                        <i class="menu-icon fa fa-home"></i>
-                        <span class="menu-text">Page trang chủ </span>
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
-        <li class="">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fas fa-cog"></i>
-                <span class="menu-text">Quản lý tài khoản</span>
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-            <b class="arrow"></b>
-            <ul class="submenu">
-                <li class="">
-                    <a href='<c:url value='/admin/user/list'/>'>
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        List
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
+        <c:if test="${SecurityUtils.isAdmin()}">
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-bars"></i>
+                    <span class="menu-text">Quản lý thể loại</span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="">
+                        <a href='<c:url value="/admin/tag/list"/>'>
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Danh sách thể loại
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-users"></i>
+                    <span class="menu-text">Quản lý nhóm dịch</span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="">
+                        <a href='<c:url value="/admin/category/list"/>'>
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Danh sách nhóm dịch
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-building"></i>
+                    <span class="menu-text">Quản lý giao diện</span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="">
+                        <a href='<c:url value='/admin/menu-page/list'/>'>
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Menu
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="<c:url value="/admin/configuration/theme/default/home-page"/>">
+                            <i class="menu-icon fa fa-home"></i>
+                            <span class="menu-text">Page trang chủ </span>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fas fa-cog"></i>
+                    <span class="menu-text">Quản lý tài khoản</span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="">
+                        <a href='<c:url value='/admin/user/list'/>'>
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            List
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+        </c:if>
     </ul>
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
         <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left"
