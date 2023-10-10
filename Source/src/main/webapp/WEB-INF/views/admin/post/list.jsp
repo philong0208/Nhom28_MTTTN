@@ -123,13 +123,11 @@
                                             <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
                                                title="Cập nhật tiểu thuyết" href='${editPost}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             </a>
-                                        </display:column>
-                                        <display:column headerClass="col-actions" title="Cập nhật chương">
                                             <c:url var="editChapters" value="/admin/chapter/list">
                                                 <c:param name="id" value="${tableList.id}"/>
                                             </c:url>
                                             <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                               title="Cập nhật chương" href='${editChapters}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                               title="Cập nhật chương" href='${editChapters}'><i class="fa fa-bookmark" aria-hidden="true"></i>
                                             </a>
                                         </display:column>
                                     </display:table>
