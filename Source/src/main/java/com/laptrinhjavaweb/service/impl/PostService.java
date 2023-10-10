@@ -3,10 +3,15 @@ package com.laptrinhjavaweb.service.impl;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.PostConverter;
 import com.laptrinhjavaweb.dto.PostDTO;
+import com.laptrinhjavaweb.entity.AuthorEntity;
 import com.laptrinhjavaweb.entity.PostEntity;
+import com.laptrinhjavaweb.entity.TagEntity;
 import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.repository.PostRepository;
+import com.laptrinhjavaweb.repository.TagRepository;
+import com.laptrinhjavaweb.service.IAuthorService;
 import com.laptrinhjavaweb.service.IPostService;
+import com.laptrinhjavaweb.service.ITagService;
 import com.laptrinhjavaweb.utils.UploadFileUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +23,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,6 +43,8 @@ public class PostService implements IPostService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private TagRepository tagRepository;
 
     @Value("${dir.default}")
     private String dirDefault;
@@ -49,6 +59,10 @@ public class PostService implements IPostService {
     public int getTotalItems(String shortTitle) {
         return (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle);
     }
+    @Autowired
+    private ITagService tagService;
+    @Autowired
+    private IAuthorService authorService;
 
     @Override
     @Transactional
@@ -56,6 +70,17 @@ public class PostService implements IPostService {
         try {
             PostEntity postEntity = postConverter.convertToEntity(postDTO);
             postEntity.setCategory(categoryRepository.findOneByCode(postDTO.getCategoryCode()));
+            /*postEntity.getTags().addAll(Arrays.stream(postDTO.getTagCodeArray())
+                    .map(tagRepository::findOneByCode)
+                    .collect(Collectors.toList()));*/
+            Map<String, TagEntity> tagMap = tagService.getTagEntity();
+            postEntity.getTags().addAll(
+                    Arrays.asList(postDTO.getTagCodeArray()).stream().map(tagMap::get)
+                            .collect(Collectors.toList()));
+            Map<String, AuthorEntity> authorMap = authorService.getAuthorEntity();
+            postEntity.getAuthors().addAll(
+                    Arrays.asList(postDTO.getAuthorCodeArray()).stream().map(authorMap::get)
+                            .collect(Collectors.toList()));
             saveThumbnail(postDTO, postEntity);
             saveOgImage(postDTO, postEntity);
             postEntity = postRepository.save(postEntity);
@@ -82,6 +107,17 @@ public class PostService implements IPostService {
             updatePost.setThumbnail(existsPost.getThumbnail());
             updatePost.setOgImage(existsPost.getOgImage());
             updatePost.setCategory(categoryRepository.findOneByCode(postDTO.getCategoryCode()));
+            /*updatePost.getTags().addAll(Arrays.stream(postDTO.getTagCodeArray())
+                    .map(tagRepository::findOneByCode)
+                    .collect(Collectors.toList()));*/
+            Map<String, TagEntity> tagMap = tagService.getTagEntity();
+            updatePost.getTags().addAll(
+                    Arrays.asList(postDTO.getTagCodeArray()).stream().map(tagMap::get)
+                            .collect(Collectors.toList()));
+            Map<String, AuthorEntity> authorMap = authorService.getAuthorEntity();
+            updatePost.getAuthors().addAll(
+                    Arrays.asList(postDTO.getAuthorCodeArray()).stream().map(authorMap::get)
+                            .collect(Collectors.toList()));
             saveThumbnail(postDTO, updatePost);
             saveOgImage(postDTO, updatePost);
             postRepository.save(updatePost);
@@ -191,5 +227,23 @@ public class PostService implements IPostService {
             uploadFileUtils.writeOrUpdate(path, bytes);
             postEntity.setThumbnail(path);
         }
+    }
+    @Override
+    public Map<Long, String> getPosts() {
+        Map<Long, String> results = new HashMap<>();
+        postRepository.findAll().forEach(item -> results.put(item.getId(), item.getShortTitle()));
+        return results;
+    }
+    @Override
+    public String deletePostWithoutChapter(long[] ids) {
+        postRepository.deleteAllByIdIn(ids);
+        return "success";
+    }
+    @Override
+    public boolean hasChapter(long[] ids) {
+        return Arrays.stream(ids)
+                .anyMatch(id -> postRepository.findById(id)
+                        .map(postEntity -> !postEntity.getChapters().isEmpty())
+                        .orElse(false));
     }
 }

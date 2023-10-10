@@ -41,7 +41,7 @@
     <ul class="nav nav-list">
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-newspaper-o"></i>
+                <i class="menu-icon fa fa-book"></i>
                 <span class="menu-text">Quản lý tiểu thuyết</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -50,25 +50,24 @@
                 <li class="">
                     <a href='<c:url value="/admin/post/list"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS tiểu thuyết
+                        Danh sách tiểu thuyết
                     </a>
                     <b class="arrow"></b>
                 </li>
             </ul>
         </li>
-        
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-bars"></i>
-                <span class="menu-text">QL thể loại</span>
+                <i class="menu-icon fa fa-bookmark"></i>
+                <span class="menu-text">Quản lý chương</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
-                    <a href='<c:url value="/admin/category/list"/>'>
+                    <a href='<c:url value="/admin/chapter/list"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS thể loại
+                        Danh sách chương
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -77,7 +76,7 @@
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-bars"></i>
-                <span class="menu-text">QL tag</span>
+                <span class="menu-text">Quản lý thể loại</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -85,7 +84,41 @@
                 <li class="">
                     <a href='<c:url value="/admin/tag/list"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS tag
+                        Danh sách thể loại
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-users"></i>
+                <span class="menu-text">Quản lý nhóm dịch</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="">
+                    <a href='<c:url value="/admin/category/list"/>'>
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Danh sách nhóm dịch
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-user"></i>
+                <span class="menu-text">Quản lý tác giả</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="">
+                    <a href='<c:url value="/admin/author/list"/>'>
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Danh sách tác giả
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -117,7 +150,7 @@
         </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fas fa-users"></i>
+                <i class="menu-icon fa fas fa-cog"></i>
                 <span class="menu-text">Quản lý tài khoản</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>

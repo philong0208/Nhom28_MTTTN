@@ -7,10 +7,13 @@ import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.service.ICategoryService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,9 +46,11 @@ public class CategoryService implements ICategoryService {
     public List<CategoryDTO> findAll(String name, Pageable pageable) {
         List<CategoryEntity> results = null;
         if (StringUtils.isNotBlank(name)) {
-            results = categoryRepository.findByNameContainingIgnoreCase(name, pageable).getContent();
+            results = categoryRepository.findByNameContainingIgnoreCase(name, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.by("modifiedDate").descending())).getContent();
         } else {
-            results = categoryRepository.findAll(pageable).getContent();
+            results = categoryRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.by("modifiedDate").descending())).getContent();
         }
         return results.stream().map(item -> categoryConverter.convertToDto(item)).collect(Collectors.toList());
     }
@@ -95,7 +100,19 @@ public class CategoryService implements ICategoryService {
             categoryRepository.deleteById(item);
         }
     }
-
+    @Override
+    @Transactional
+    public String deleteCategoryWithoutPost(long[] ids) {
+        categoryRepository.deleteAllByIdIn(ids);
+        return "success";
+    }
+    @Override
+    public boolean hasPost(long[] ids) {
+        return Arrays.stream(ids)
+                .anyMatch(id -> categoryRepository.findById(id)
+                        .map(categoryEntity -> !categoryEntity.getPosts().isEmpty())
+                        .orElse(false));
+    }
     @Override
     public CategoryDTO findByCode(String code) {
         return categoryConverter.convertToDto(categoryRepository.findOneByCode(code));

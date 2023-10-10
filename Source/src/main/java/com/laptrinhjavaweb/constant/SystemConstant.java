@@ -10,12 +10,16 @@ public class SystemConstant {
     public static final String MODEL = "model";
     public static final String CONTENT = "content";
     public static final String INSERT_SUCCESS = "insert_success";
+    public static final String INSERT_FAILED = "insert_failed";
     public static final String UPDATE_SUCCESS = "update_success";
+    public static final String UPDATE_FAILED = "update_failed";
     public static final String DELETE_SUCCESS = "delete_success";
+    public static final String DELETE_FAILED = "delete_failed";
     public static final String ERROR_SYSTEM = "error_system";
     public static final String ALERT = "alert";
     public static final String MESSAGE_RESPONSE = "messageResponse";
     public static final String POST_IMAGE = "/post";
+    public static final String CHAPTER_IMAGE = "/chapter";
 
     //host post
     public static final String HOT_POST = "hotposts";
@@ -37,6 +41,9 @@ public class SystemConstant {
 
     public static final String TALK_SEO_URL = "tam-su";
     public static final String CATEGORIES = "categories";
+    public static final String TAGS = "tags";
+    public static final String AUTHORS = "authors";
+    public static final String POSTS = "posts";
 
     public static final String POSITIONS = "positions";
 

@@ -11,16 +11,25 @@ public class MessageResponseUtils {
         Map<String, String> results = new HashMap<>();
         if (message.equals(SystemConstant.INSERT_SUCCESS)) {
             results.put(SystemConstant.ALERT, "success");
-            results.put(SystemConstant.MESSAGE_RESPONSE, "insert success");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Thêm dữ liệu thành công");
         } else if (message.equals(SystemConstant.UPDATE_SUCCESS)) {
             results.put(SystemConstant.ALERT, "success");
-            results.put(SystemConstant.MESSAGE_RESPONSE, "Update success");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Cập nhật dữ liệu thành công");
         } else if (message.equals(SystemConstant.DELETE_SUCCESS)) {
             results.put(SystemConstant.ALERT, "success");
-            results.put(SystemConstant.MESSAGE_RESPONSE, "Delete success");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Xóa dữ liệu thành công");
         } else if (message.equals(SystemConstant.ERROR_SYSTEM)) {
             results.put(SystemConstant.ALERT, "danger");
-            results.put(SystemConstant.MESSAGE_RESPONSE, "Error system");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Đã có lỗi xảy ra, vui lòng thử lại sau");
+        } else if (message.equals(SystemConstant.INSERT_FAILED)) {
+            results.put(SystemConstant.ALERT, "danger");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Dữ liệu này đã tồn tại, vui lòng nhập lại");
+        } else if (message.equals(SystemConstant.UPDATE_FAILED)) {
+            results.put(SystemConstant.ALERT, "danger");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Dữ liệu này đã tồn tại, cập nhật thất bại");
+        } else if (message.equals(SystemConstant.DELETE_FAILED)) {
+            results.put(SystemConstant.ALERT, "danger");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Xóa thất bại, đảm bảo rằng dữ liệu bạn xóa không được sử dụng ở bất kỳ đâu");
         }
         return results;
     }

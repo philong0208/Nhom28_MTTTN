@@ -7,6 +7,20 @@ import java.util.List;
 @Entity
 @Table(name = "post")
 public class PostEntity extends BaseEntity {
+    @OneToMany(mappedBy="post", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<ChapterEntity> chapters = new ArrayList<>();
+
+    public List<ChapterEntity> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(List<ChapterEntity> chapters) {
+        this.chapters = chapters;
+    }
+
+    public void setAuthors(List<AuthorEntity> authors) {
+        this.authors = authors;
+    }
 
     private static final long serialVersionUID = 1444028163589745435L;
 
@@ -129,6 +143,15 @@ public class PostEntity extends BaseEntity {
 
     public List<TagEntity> getTags() {
         return tags;
+    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "post_author",
+            joinColumns = @JoinColumn(name = "post_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "author_id", nullable = false))
+    private List<AuthorEntity> authors = new ArrayList<>();
+
+    public List<AuthorEntity> getAuthors() {
+        return authors;
     }
 
     public void setTags(List<TagEntity> tags) {

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="formUrl" value="/admin/tag/list"/>
-<c:url var="tagAPI" value="/api/admin/tag"/>
+<c:url var="formUrl" value="/admin/author/list"/>
+<c:url var="authorAPI" value="/api/admin/author"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Danh sách thể loại</title>
+    <title>Danh sách tác giả</title>
 </head>
 <body>
 <div class="main-content">
@@ -22,7 +22,7 @@
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="#">Trang chủ</a>
                     </li>
-                    <li class="active">Danh sách thể loại</li>
+                    <li class="active">Danh sách tác giả</li>
                 </ul><!-- /.breadcrumb -->
             </div>
             <div class="page-content">
@@ -52,7 +52,7 @@
                                         <div class="widget-main">
                                             <div class="form-horizontal">
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Tiêu đề thể loại:</label>
+                                                    <label class="col-sm-2 control-label">Tiêu đề tác giả:</label>
                                                     <div class="col-sm-8">
                                                         <div class="fg-line">
                                                             <form:input path="name" cssClass="form-control input-sm"/>
@@ -76,13 +76,13 @@
                                     <div class="pull-right tableTools-container">
                                         <div class="dt-buttons btn-overlap btn-group">
                                             <a flag="info" class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
-                                               data-toggle="tooltip" title="Thêm thể loại" href='<c:url value="/admin/tag/edit"/>'>
+                                               data-toggle="tooltip" title="Thêm tác giả" href='<c:url value="/admin/author/edit"/>'>
                                                     <span>
                                                     <i class="fa fa-plus-circle bigger-110 purple"></i>
                                                 </span>
                                             </a>
                                             <button id="btnDelete" type="button" class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" disabled
-                                                    data-toggle="tooltip" title="Xóa thể loại" onclick="warningBeforeDelete()">
+                                                    data-toggle="tooltip" title="Xóa tác giả" onclick="warningBeforeDelete()">
                                                     <span>
                                                     <i class="fa fa-trash-o bigger-110 pink"></i>
                                                 	</span>
@@ -109,17 +109,17 @@
                                                 <input type="checkbox" name="checkList" value="${tableList.id}" id="checkbox_${tableList.id}" class="check-box-element"/>
                                             </fieldset>
                                         </display:column>
-                                        <display:column headerClass="text-left" property="id" title="Id thể loại"/>
-                                        <display:column headerClass="text-left" property="name" title="Tên thể loại"/>
-                                        <display:column headerClass="text-left" property="code" title="Mã thể loại"/>
+                                        <display:column headerClass="text-left" property="id" title="Id tác giả"/>
+                                        <display:column headerClass="text-left" property="name" title="Tên tác giả"/>
+                                        <display:column headerClass="text-left" property="code" title="Mã tác giả"/>
                                         <display:column headerClass="text-left" property="totalPosts" title="Số lượng tiểu thuyết"/>
                                         <display:column headerClass="text-left" property="nameOfPostsStr" title="Danh sách tiểu thuyết"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
-                                            <c:url var="editTag" value="/admin/tag/edit">
+                                            <c:url var="editAuthor" value="/admin/author/edit">
                                                 <c:param name="id" value="${tableList.id}"/>
                                             </c:url>
                                             <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                               title="Cập nhật thể loại" href='${editTag}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                               title="Cập nhật author" href='${editAuthor}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             </a>
                                         </display:column>
                                     </display:table>
@@ -145,22 +145,22 @@
             var dataArray = $(' tbody input[type=checkbox]:checked').map(function () {
                 return $(this).val();
             }).get();
-            deleteTag(dataArray);
+            deleteAuthor(dataArray);
         });
     }
 
-    function deleteTag(data) {
+    function deleteAuthor(data) {
         $.ajax({
-            url: '${tagAPI}',
+            url: '${authorAPI}',
             type: 'DELETE',
             contentType:'application/json',
             data: JSON.stringify(data),
             success: function(res) {
-                window.location.href = "<c:url value='/admin/tag/list?message=delete_success'/>";
+                window.location.href = "<c:url value='/admin/author/list?message=delete_success'/>";
             },
             error: function(res) {
                 console.log(res);
-                window.location.href = "<c:url value='/admin/tag/list?message=delete_failed'/>";
+                window.location.href = "<c:url value='/admin/author/list?message=delete_failed'/>";
             }
         });
     }

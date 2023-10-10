@@ -1,7 +1,60 @@
 package com.laptrinhjavaweb.dto;
 
-public class PostDTO extends AbstractDTO<PostDTO> {
+import java.util.ArrayList;
+import java.util.List;
 
+public class PostDTO extends AbstractDTO<PostDTO> {
+    private List<String> nameOfChapters = new ArrayList<>();
+    public List<String> getNameOfChapters() {
+        return nameOfChapters;
+    }
+    public void setNameOfChapters(List<String> nameOfChapters) {
+        this.nameOfChapters = nameOfChapters;
+    }
+    public int getTotalChapters() {
+        return nameOfChapters.size();
+    }
+    public String getNameOfChaptersStr() {
+        return String.join(", ", nameOfChapters);
+    }
+    private String tagNameStr;
+
+    public String getTagNameStr() {
+        return tagNameStr;
+    }
+
+    public void setTagNameStr(String tagNameStr) {
+        this.tagNameStr = tagNameStr;
+    }
+
+    private String[] tagCodeArray = new String[]{};
+
+    public String[] getTagCodeArray() {
+        return tagCodeArray;
+    }
+
+    public void setTagCodeArray(String[] tagCodeArray) {
+        this.tagCodeArray = tagCodeArray;
+    }
+    private String authorNameStr;
+
+    public String getAuthorNameStr() {
+        return authorNameStr;
+    }
+
+    public void setAuthorNameStr(String authorNameStr) {
+        this.authorNameStr = authorNameStr;
+    }
+
+    private String[] authorCodeArray = new String[]{};
+
+    public String[] getAuthorCodeArray() {
+        return authorCodeArray;
+    }
+
+    public void setAuthorCodeArray(String[] authorCodeArray) {
+        this.authorCodeArray = authorCodeArray;
+    }
     private static final long serialVersionUID = -605223606014371190L;
 
     private String title;

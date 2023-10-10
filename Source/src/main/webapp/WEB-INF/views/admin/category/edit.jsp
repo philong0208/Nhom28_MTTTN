@@ -3,7 +3,7 @@
 <c:url var="formUrl" value="/api/admin/category"/>
 <html>
 <head>
-    <title>Chỉnh sửa thể loại</title>
+    <title>Chỉnh sửa nhóm dịch</title>
 </head>
 <body>
 <div class="main-content">
@@ -15,9 +15,9 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Trang chủ</a>
+                    <a href='<c:url value="/admin/category/list"/>'>Danh sách nhóm dịch</a>
                 </li>
-                <li class="active">Chỉnh sửa thể loại</li>
+                <li class="active">Chỉnh sửa nhóm dịch</li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">
@@ -33,17 +33,19 @@
                     </c:if>
                     <form:form id="formEdit" modelAttribute="model">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Tên thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Tên nhóm dịch</label>
                             <div class="col-sm-9">
                                 <form:input path="name" id="name" cssClass="form-control"/>
+                                <span id="nameVal" class="red" style="display: none;"></span><br/>
                             </div>
                         </div>
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Mã thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Mã nhóm dịch</label>
                             <div class="col-sm-9">
                                 <form:input path="code" id="code" cssClass="form-control"/>
+                                <span id="codeVal" class="red" style="display: none;"></span><br/>
                             </div>
                         </div>
                         <br/>
@@ -57,10 +59,10 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <c:if test="${not empty model.id}">
-                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật thể loại" id="btnAddOrUpdateCategory"/>
+                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật nhóm dịch" id="btnAddOrUpdateCategory"/>
                                 </c:if>
                                 <c:if test="${empty model.id}">
-                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm mới thể loại" id="btnAddOrUpdateCategory"/>
+                                    <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm mới nhóm dịch" id="btnAddOrUpdateCategory"/>
                                 </c:if>
                             </div>
                         </div>
@@ -81,15 +83,37 @@
         event.preventDefault();
         var data = {};
         var formData = $('#formEdit').serializeArray();
+        var hasError = false;
+        $('#nameVal').html('');
+        $('#codeVal').html('');
+        $('#nameVal').css('display', 'none');
+        $('#codeVal').css('display', 'none');
         $.each(formData, function (i,v) {
             data[""+v.name+""] = v.value;
+            if (v.name === "name" && v.value === "") {
+                $('#nameVal').html('Tên không được để trống!');
+                $('#nameVal').css('display', 'block');
+                hasError = true;
+            }
+            if (v.name === "code" && !/^[a-zA-Z0-9-]+$/.test(v.value)) {
+                $('#codeVal').html('Mã code không hợp lệ. Mã code chỉ bao gồm chữ cái, chữ số và dấu gạch ngang!');
+                $('#codeVal').css('display', 'block');
+                hasError = true;
+            }
         });
         data["content"] = editor.getData();
         var id = $('#categoryId').val();
-        if (id == "") {
-            addCategory(data);
+        if (!hasError) {
+            if (id == "") {
+                addCategory(data);
+            } else {
+                updateCategory(data);
+            }
         } else {
-            updateCategory(data);
+            setTimeout(function () {
+                $('#nameVal').css('display', 'none');
+                $('#codeVal').css('display', 'none');
+            }, 1500);
         }
     });
 
@@ -104,7 +128,7 @@
                 window.location.href = "<c:url value='/admin/category/edit?id="+res.id+"&message=insert_success'/>";
             },
             error: function(res) {
-                window.location.href = "<c:url value='/admin/category/edit?id="+res.id+"&message=error_system'/>";
+                window.location.href = "<c:url value='/admin/category/edit?message=insert_failed'/>";
             }
         });
     }
@@ -120,7 +144,7 @@
                 window.location.href = "<c:url value='/admin/category/edit?id="+res.id+"&message=update_success'/>";
             },
             error: function(res) {
-                window.location.href = "<c:url value='/admin/category/edit?id="+res.id+"&message=error_system'/>";
+                window.location.href = "<c:url value='/admin/category/list?message=update_failed'/>";
             }
         });
     }

@@ -7,13 +7,13 @@ import com.laptrinhjavaweb.repository.TagRepository;
 import com.laptrinhjavaweb.service.ITagService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +31,12 @@ public class TagService implements ITagService {
         tagRepository.findAll().forEach(item -> results.put(item.getCode(), item.getName()));
         return results;
     }
+    @Override
+    public Map<String, TagEntity> getTagEntity() {
+        Map<String, TagEntity> results = new HashMap<>();
+        tagRepository.findAll().forEach(item -> results.put(item.getCode(), item));
+        return results;
+    }
 
     @Override
     public List<TagDTO> findAll() {
@@ -43,9 +49,11 @@ public class TagService implements ITagService {
     public List<TagDTO> findAll(String name, Pageable pageable) {
         List<TagEntity> results = null;
         if (StringUtils.isNotBlank(name)) {
-            results = tagRepository.findByNameContainingIgnoreCase(name, pageable).getContent();
+            results = tagRepository.findByNameContainingIgnoreCase(name, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.by("modifiedDate").descending())).getContent();
         } else {
-            results = tagRepository.findAll(pageable).getContent();
+            results = tagRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.by("modifiedDate").descending())).getContent();
         }
         return results.stream().map(item -> tagConverter.convertToDto(item)).collect(Collectors.toList());
     }
@@ -95,7 +103,19 @@ public class TagService implements ITagService {
             tagRepository.deleteById(item);
         }
     }
-
+    @Override
+    @Transactional
+    public String deleteTagWithoutPost(long[] ids) {
+        tagRepository.deleteAllByIdIn(ids);
+        return "success";
+    }
+    @Override
+    public boolean hasPost(long[] ids) {
+        return Arrays.stream(ids)
+                .anyMatch(id -> tagRepository.findById(id)
+                        .map(tagEntity -> !tagEntity.getPosts().isEmpty())
+                        .orElse(false));
+    }
     @Override
     public TagDTO findByCode(String code) {
         return tagConverter.convertToDto(tagRepository.findOneByCode(code));

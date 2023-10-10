@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
-<c:url var="formUrl" value="/api/admin/post"/>
+<c:url var="formUrl" value="/api/admin/chapter"/>
 <html>
 <head>
     <title>${model.shortTitle}</title>
@@ -15,9 +15,9 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href='<c:url value="/admin/post/list"/>'>Danh sách tiểu thuyết</a>
+                    <a href='<c:url value="/admin/chapter/list"/>'>Danh sách chương</a>
                 </li>
-                <li class="active">Chỉnh sửa tiểu thuyết</li>
+                <li class="active">Chỉnh sửa chương</li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">
@@ -41,38 +41,19 @@
                         </div>
                         <br/>
                         <br/>
-                        &nbsp;
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Thể loại</label>
+                            <label class="col-sm-3 control-label no-padding-right">Tiểu thuyết</label>
                             <div class="col-sm-9">
-                                <form:checkboxes path="tagCodeArray" items="${tags}" element="li"/>
-                            </div>
-                        </div>
-                        <br/>
-                        <br/>
-                        &nbsp;&nbsp;&nbsp;
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Nhóm dịch</label>
-                            <div class="col-sm-9">
-                                <form:select path="categoryCode" id="categoryCode">
-                                    <form:option value="" label="--- Chọn nhóm dịch ---"/>
-                                    <form:options items="${categories}"/>
+                                <form:select path="postId" id="postId">
+                                    <form:option value="" label="--- Chọn tiểu thuyết ---"/>
+                                    <form:options items="${posts}"/>
                                 </form:select>
                             </div>
                         </div>
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Tác giả</label>
-                            <div class="col-sm-9">
-                                <form:checkboxes path="authorCodeArray" items="${authors}" element="li"/>
-                            </div>
-                        </div>
-                        <br/>
-                        <br/>
-                        &nbsp;
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Thumbnail tiểu thuyết:</label>
+                            <label class="col-sm-3 control-label no-padding-right">Thumbnail chương:</label>
                             <div class="col-sm-4">
                                 <input type="file" id="uploadImage"/>
                             </div>
@@ -91,7 +72,7 @@
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Nội dung tiểu thuyết</label>
+                            <label class="col-sm-3 control-label no-padding-right">Nội dung chương</label>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12" style="margin-bottom: 10px">
@@ -102,17 +83,17 @@
                             <div class="col-sm-12">
                                 <c:if test="${not empty model.id}">
                                     <input type="button" class="btn btn-white btn-warning btn-bold"
-                                           value="Cập nhật tiểu thuyết" id="btnAddOrUpdatePost"/>
+                                           value="Cập nhật chương" id="btnAddOrUpdateChapter"/>
                                 </c:if>
                                 <c:if test="${empty model.id}">
                                     <input type="button" class="btn btn-white btn-warning btn-bold"
-                                           value="Thêm mới tiểu thuyết" id="btnAddOrUpdatePost"/>
+                                           value="Thêm mới chương" id="btnAddOrUpdateChapter"/>
                                 </c:if>
                                 <a href="<c:url value="/format-editor-help-147"/>"
                                    class="btn btn-white btn-warning btn-bold" role="button" disabled="true">Format khi soạn thảo</a>
                             </div>
                         </div>
-                        <form:hidden path="id" id="postId"/>
+                        <form:hidden path="id" id="chapterId"/>
                     </form:form>
                 </div>
             </div>
@@ -125,7 +106,7 @@
     var thumbnailImageName = '';
     var ogImageBase64 = '';
     var ogImageName = '';
-    var id = $('#postId').val();
+    var id = $('#chapterId').val();
     $(document).ready(function () {
         const configCKEditor = {
             allowedContent: true,
@@ -148,31 +129,21 @@
         }
     });
 
-    $('#btnAddOrUpdatePost').click(function (event) {
+    $('#btnAddOrUpdateChapter').click(function (event) {
         event.preventDefault();
         var data = {};
         var formData = $('#formEdit').serializeArray();
         var hasError = false;
         $('#nameVal').html('');
         $('#nameVal').css('display', 'none');
-        var tagCodeArray = [];
-        var authorCodeArray = [];
         $.each(formData, function (i, v) {
-            if (v.name === "tagCodeArray") {
-                tagCodeArray.push(v.value);
-            } else if (v.name === "authorCodeArray") {
-                authorCodeArray.push(v.value);
-            } else {
-                data["" + v.name + ""] = v.value;
-            }
+            data["" + v.name + ""] = v.value;
             if (v.name === "shortTitle" && v.value === "") {
                 $('#nameVal').html('Tên không được để trống!');
                 $('#nameVal').css('display', 'block');
                 hasError = true;
             }
         });
-        data["tagCodeArray"] = tagCodeArray;
-        data["authorCodeArray"] = authorCodeArray;
         data["content"] = editor.getData();
         if (thumbnailBase64 != '') {
             data['thumbnailBase64'] = thumbnailBase64;
@@ -190,9 +161,9 @@
         }
         if (!hasError) {
             if (id == "") {
-                addPost(data);
+                addChapter(data);
             } else {
-                updatePost(data);
+                updateChapter(data);
             }
         } else {
             setTimeout(function () {
@@ -201,7 +172,7 @@
         }
     });
 
-    function addPost(data) {
+    function addChapter(data) {
         $.ajax({
             url: '${formUrl}',
             type: 'POST',
@@ -209,15 +180,15 @@
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function (res) {
-                window.location.href = "<c:url value='/admin/post/edit?id="+res.id+"&message=insert_success'/>";
+                window.location.href = "<c:url value='/admin/chapter/edit?id="+res.id+"&message=insert_success'/>";
             },
             error: function (res) {
-                window.location.href = "<c:url value='/admin/post/edit?message=insert_failed'/>";
+                window.location.href = "<c:url value='/admin/chapter/edit?message=insert_failed'/>";
             }
         });
     }
 
-    function updatePost(data) {
+    function updateChapter(data) {
         $.ajax({
             url: '${formUrl}',
             type: 'PUT',
@@ -225,10 +196,10 @@
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function (res) {
-                window.location.href = "<c:url value='/admin/post/edit?id="+res.id+"&message=update_success'/>";
+                window.location.href = "<c:url value='/admin/chapter/edit?id="+res.id+"&message=update_success'/>";
             },
             error: function (res) {
-                window.location.href = "<c:url value='/admin/post/list?message=update_failed'/>";
+                window.location.href = "<c:url value='/admin/chapter/list?message=update_failed'/>";
             }
         });
     }

@@ -3,7 +3,7 @@ package com.laptrinhjavaweb.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagDTO extends AbstractDTO<TagDTO> {
+public class AuthorDTO extends AbstractDTO<AuthorDTO> {
     private List<String> nameOfPosts = new ArrayList<>();
     public List<String> getNameOfPosts() {
         return nameOfPosts;

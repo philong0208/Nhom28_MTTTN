@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.dto;
 
+import java.util.ArrayList;
+import java.util.List;
 public class CategoryDTO extends AbstractDTO<CategoryDTO> {
 
     private static final long serialVersionUID = -4553583583100510783L;
@@ -9,6 +11,7 @@ public class CategoryDTO extends AbstractDTO<CategoryDTO> {
     private String title;
     private String content;
     private String description;
+    private List<String> nameOfPosts = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -48,5 +51,17 @@ public class CategoryDTO extends AbstractDTO<CategoryDTO> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public List<String> getNameOfPosts() {
+        return nameOfPosts;
+    }
+    public void setNameOfPosts(List<String> nameOfPosts) {
+        this.nameOfPosts = nameOfPosts;
+    }
+    public int getTotalPosts() {
+        return nameOfPosts.size();
+    }
+    public String getNameOfPostsStr() {
+        return String.join(", ", nameOfPosts);
     }
 }

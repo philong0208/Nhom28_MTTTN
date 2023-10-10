@@ -111,12 +111,25 @@
                                         </display:column>
                                         <display:column headerClass="text-left" property="id" title="Id tiểu thuyết"/>
                                         <display:column headerClass="text-left" property="shortTitle" title="Tiêu đề"/>
+                                        <display:column headerClass="text-left" property="categoryName" title="Nhóm dịch"/>
+                                        <display:column headerClass="text-left" property="tagNameStr" title="Thể loại"/>
+                                        <display:column headerClass="text-left" property="authorNameStr" title="Tác giả"/>
+                                        <display:column headerClass="text-left" property="totalChapters" title="Số lượng chương"/>
+                                        <display:column headerClass="text-left" property="nameOfChaptersStr" title="Danh sách chương"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
                                             <c:url var="editPost" value="/admin/post/edit">
                                                 <c:param name="id" value="${tableList.id}"/>
                                             </c:url>
                                             <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
                                                title="Cập nhật tiểu thuyết" href='${editPost}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </a>
+                                        </display:column>
+                                        <display:column headerClass="col-actions" title="Cập nhật chương">
+                                            <c:url var="editChapters" value="/admin/chapter/list">
+                                                <c:param name="id" value="${tableList.id}"/>
+                                            </c:url>
+                                            <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
+                                               title="Cập nhật chương" href='${editChapters}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             </a>
                                         </display:column>
                                     </display:table>
@@ -157,7 +170,7 @@
             },
             error: function(res) {
                 console.log(res);
-                window.location.href = "<c:url value='/admin/post/list?message=error_system'/>";
+                window.location.href = "<c:url value='/admin/post/list?message=delete_failed'/>";
             }
         });
     }

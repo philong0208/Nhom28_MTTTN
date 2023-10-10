@@ -10,4 +10,9 @@ public interface TagRepository extends JpaRepository<TagEntity, Long> {
     Page<TagEntity> findAll(Pageable pageable);
     Page<TagEntity> findByNameContainingIgnoreCase(String name, Pageable pageable);
     long countByNameContainingIgnoreCase(String name);
+    boolean existsByNameIgnoreCase(String name);
+    boolean existsByCodeIgnoreCase(String code);
+    boolean existsByCodeIgnoreCaseAndIdNot(String code, long id);
+    boolean existsByNameIgnoreCaseAndIdNot(String name, long id);
+    void deleteAllByIdIn(long[] ids);
 }

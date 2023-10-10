@@ -1,11 +1,8 @@
 package com.laptrinhjavaweb.controller.admin;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.dto.PostDTO;
-import com.laptrinhjavaweb.service.IAuthorService;
-import com.laptrinhjavaweb.service.ICategoryService;
-import com.laptrinhjavaweb.service.IPostService;
-import com.laptrinhjavaweb.service.ITagService;
+import com.laptrinhjavaweb.dto.ChapterDTO;
+import com.laptrinhjavaweb.service.*;
 import com.laptrinhjavaweb.utils.DisplayTagUtils;
 import com.laptrinhjavaweb.utils.MessageResponseUtils;
 import org.apache.commons.lang.StringUtils;
@@ -23,43 +20,38 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Optional;
 
-@Controller(value = "postControllerOfAdmin")
-public class PostController {
-
+@Controller(value = "chapterControllerOfAdmin")
+public class ChapterController {
+	@Autowired
+	private IChapterService chapterService;
 	@Autowired
 	private IPostService postService;
-
-	@Autowired
-	private ICategoryService categoryService;
-
-	@Autowired
-	private ITagService tagService;
-	@Autowired
-	private IAuthorService authorService;
-	@RequestMapping(value = "/admin/post/list", method = RequestMethod.GET)
-	public ModelAndView getNews(@ModelAttribute(SystemConstant.MODEL) PostDTO model,
+	@RequestMapping(value = "/admin/chapter/list", method = RequestMethod.GET)
+	public ModelAndView getNews(@ModelAttribute(SystemConstant.MODEL) ChapterDTO model,
                                 HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("admin/post/list");
+		ModelAndView mav = new ModelAndView("admin/chapter/list");
 		DisplayTagUtils.of(request, model);
 		Pageable pageable = PageRequest.of(model.getPage() - 1, model.getMaxPageItems());
-		model.setListResult(postService.findAll(Optional.ofNullable(model.getShortTitle()).orElse(""), pageable));
-		model.setTotalItems(postService.getTotalItems(Optional.ofNullable(model.getShortTitle()).orElse("")));
+		model.setListResult(chapterService.findAll(Optional.ofNullable(model.getShortTitle()).orElse(""), pageable));
+		model.setTotalItems(chapterService.getTotalItems(Optional.ofNullable(model.getShortTitle()).orElse("")));
+		if (model.getId()!=null){
+			model.setListResult(chapterService.findByPostId(model.getId(), pageable));
+			model.setTotalItems(chapterService.getTotalItemsByPostId(model.getId()));
+		}
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/post/edit", method = RequestMethod.GET)
-	public ModelAndView editPostPage(@ModelAttribute(SystemConstant.MODEL) PostDTO model,
+	@RequestMapping(value = "/admin/chapter/edit", method = RequestMethod.GET)
+	public ModelAndView editChapterPage(@ModelAttribute(SystemConstant.MODEL) ChapterDTO model,
                                      @RequestParam(value = "id", required = false) Long id, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("admin/post/edit");
+		ModelAndView mav = new ModelAndView("admin/chapter/edit");
 		if (id != null) {
-			model = postService.findById(id);
+			model = chapterService.findById(id);
 		}
 		initMessageResponse(mav, request);
-		mav.addObject(SystemConstant.CATEGORIES, categoryService.getCategories());
-		mav.addObject(SystemConstant.TAGS, tagService.getTags());
-		mav.addObject(SystemConstant.AUTHORS, authorService.getAuthors());
+		mav.addObject(SystemConstant.POSTS, postService.getPosts());
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;
 	}
