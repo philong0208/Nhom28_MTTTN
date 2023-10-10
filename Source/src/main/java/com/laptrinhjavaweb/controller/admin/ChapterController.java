@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.controller.admin;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.ChapterDTO;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.*;
 import com.laptrinhjavaweb.utils.DisplayTagUtils;
 import com.laptrinhjavaweb.utils.MessageResponseUtils;
@@ -49,6 +50,9 @@ public class ChapterController {
 		ModelAndView mav = new ModelAndView("admin/chapter/edit");
 		if (id != null) {
 			model = chapterService.findById(id);
+			if (!model.getCreatedBy().equals(SecurityUtils.getPrincipal().getUsername())) {
+				return new ModelAndView("redirect:/admin/chapter/list?message=data_access_denied");
+			}
 		}
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.POSTS, postService.getPosts());
