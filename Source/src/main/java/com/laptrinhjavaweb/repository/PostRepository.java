@@ -27,4 +27,5 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByAuthors_Id(Long id);
     boolean existsByShortTitleIgnoreCase(String shortTitle);
     boolean existsByShortTitleIgnoreCaseAndIdNot(String shortTitle, long id);
+    void deleteAllByIdIn(long[] ids);
 }

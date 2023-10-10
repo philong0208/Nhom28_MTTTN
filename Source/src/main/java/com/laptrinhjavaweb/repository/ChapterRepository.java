@@ -13,4 +13,6 @@ public interface ChapterRepository extends JpaRepository<ChapterEntity, Long> {
     boolean existsByShortTitleIgnoreCase(String shortTitle);
     boolean existsByShortTitleIgnoreCaseAndIdNot(String shortTitle, long id);
     List<ChapterEntity> findByPost_Id(long postId);
+    Page<ChapterEntity> findByPost_Id(Long id, Pageable pageable);
+    long countByPost_Id(Long id);
 }

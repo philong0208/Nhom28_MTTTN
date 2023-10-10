@@ -32,9 +32,8 @@ public class PostAPI {
 
     @DeleteMapping
     public ResponseEntity<String> deleteNew(@RequestBody long[] ids) {
-        if (ids.length > 0) {
-            postService.deletePost(ids);
-        }
-        return ResponseEntity.ok("success");
+        return postService.hasChapter(ids)
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(postService.deletePostWithoutChapter(ids));
     }
 }

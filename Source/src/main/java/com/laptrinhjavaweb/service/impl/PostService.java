@@ -234,4 +234,16 @@ public class PostService implements IPostService {
         postRepository.findAll().forEach(item -> results.put(item.getId(), item.getShortTitle()));
         return results;
     }
+    @Override
+    public String deletePostWithoutChapter(long[] ids) {
+        postRepository.deleteAllByIdIn(ids);
+        return "success";
+    }
+    @Override
+    public boolean hasChapter(long[] ids) {
+        return Arrays.stream(ids)
+                .anyMatch(id -> postRepository.findById(id)
+                        .map(postEntity -> !postEntity.getChapters().isEmpty())
+                        .orElse(false));
+    }
 }

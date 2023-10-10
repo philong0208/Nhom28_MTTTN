@@ -34,6 +34,10 @@ public class ChapterController {
 		Pageable pageable = PageRequest.of(model.getPage() - 1, model.getMaxPageItems());
 		model.setListResult(chapterService.findAll(Optional.ofNullable(model.getShortTitle()).orElse(""), pageable));
 		model.setTotalItems(chapterService.getTotalItems(Optional.ofNullable(model.getShortTitle()).orElse("")));
+		if (model.getId()!=null){
+			model.setListResult(chapterService.findByPostId(model.getId(), pageable));
+			model.setTotalItems(chapterService.getTotalItemsByPostId(model.getId()));
+		}
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;

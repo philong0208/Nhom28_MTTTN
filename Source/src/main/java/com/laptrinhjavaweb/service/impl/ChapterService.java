@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,8 +50,19 @@ public class ChapterService implements IChapterService {
                 .getContent().stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
     }
     @Override
+    public List<ChapterDTO> findByPostId(Long id, Pageable pageable) {
+        return chapterRepository.findByPost_Id(id,
+                        PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                                Sort.by("modifiedDate").descending()))
+                .getContent().stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
+    }
+    @Override
     public int getTotalItems(String shortTitle) {
         return (int) chapterRepository.countByShortTitleContainingIgnoreCase(shortTitle);
+    }
+    @Override
+    public int getTotalItemsByPostId(Long id) {
+        return (int) chapterRepository.countByPost_Id(id);
     }
 
     @Override
