@@ -30,6 +30,9 @@ public class MessageResponseUtils {
         } else if (message.equals(SystemConstant.DELETE_FAILED)) {
             results.put(SystemConstant.ALERT, "danger");
             results.put(SystemConstant.MESSAGE_RESPONSE, "Xóa thất bại, đảm bảo rằng dữ liệu bạn xóa không được sử dụng ở bất kỳ đâu");
+        } else if (message.equals(SystemConstant.DATA_ACCESS_DENIED)) {
+            results.put(SystemConstant.ALERT, "danger");
+            results.put(SystemConstant.MESSAGE_RESPONSE, "Bạn không có quyền truy cập vào dữ liệu này");
         }
         return results;
     }

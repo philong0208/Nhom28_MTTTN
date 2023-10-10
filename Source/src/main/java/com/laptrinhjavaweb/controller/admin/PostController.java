@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.controller.admin;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.PostDTO;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.IAuthorService;
 import com.laptrinhjavaweb.service.ICategoryService;
 import com.laptrinhjavaweb.service.IPostService;
@@ -55,6 +56,9 @@ public class PostController {
 		ModelAndView mav = new ModelAndView("admin/post/edit");
 		if (id != null) {
 			model = postService.findById(id);
+		}
+		if (!model.getCreatedBy().equals(SecurityUtils.getPrincipal().getUsername())) {
+			return new ModelAndView("redirect:/admin/post/list?message=data_access_denied");
 		}
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.CATEGORIES, categoryService.getCategories());

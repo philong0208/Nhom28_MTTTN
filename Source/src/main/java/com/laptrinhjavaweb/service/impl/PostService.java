@@ -61,7 +61,9 @@ public class PostService implements IPostService {
     }
     @Override
     public int getTotalItems(String shortTitle) {
-        return (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle);
+        return SecurityUtils.isAdmin() ? (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle)
+                : (int) postRepository.countByShortTitleContainingIgnoreCaseAndCreatedBy(shortTitle,
+                        SecurityUtils.getPrincipal().getUsername());
     }
     @Autowired
     private ITagService tagService;
