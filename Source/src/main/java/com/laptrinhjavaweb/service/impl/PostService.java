@@ -237,7 +237,10 @@ public class PostService implements IPostService {
     @Override
     public Map<Long, String> getPosts() {
         Map<Long, String> results = new HashMap<>();
-        postRepository.findAll().forEach(item -> results.put(item.getId(), item.getShortTitle()));
+        (SecurityUtils.isAdmin()
+                        ? postRepository.findAll()
+                        : postRepository.findByCreatedBy(SecurityUtils.getPrincipal().getUsername()))
+                .forEach(item -> results.put(item.getId(), item.getShortTitle()));
         return results;
     }
     @Override

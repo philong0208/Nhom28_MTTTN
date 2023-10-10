@@ -56,9 +56,9 @@ public class PostController {
 		ModelAndView mav = new ModelAndView("admin/post/edit");
 		if (id != null) {
 			model = postService.findById(id);
-		}
-		if (!model.getCreatedBy().equals(SecurityUtils.getPrincipal().getUsername())) {
-			return new ModelAndView("redirect:/admin/post/list?message=data_access_denied");
+			if (!model.getCreatedBy().equals(SecurityUtils.getPrincipal().getUsername())) {
+				return new ModelAndView("redirect:/admin/post/list?message=data_access_denied");
+			}
 		}
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.CATEGORIES, categoryService.getCategories());
