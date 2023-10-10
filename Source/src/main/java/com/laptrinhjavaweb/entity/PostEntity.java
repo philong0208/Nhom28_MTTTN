@@ -7,6 +7,20 @@ import java.util.List;
 @Entity
 @Table(name = "post")
 public class PostEntity extends BaseEntity {
+    @OneToMany(mappedBy="post", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<ChapterEntity> chapters = new ArrayList<>();
+
+    public List<ChapterEntity> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(List<ChapterEntity> chapters) {
+        this.chapters = chapters;
+    }
+
+    public void setAuthors(List<AuthorEntity> authors) {
+        this.authors = authors;
+    }
 
     private static final long serialVersionUID = 1444028163589745435L;
 

@@ -19,6 +19,7 @@ public class SystemConstant {
     public static final String ALERT = "alert";
     public static final String MESSAGE_RESPONSE = "messageResponse";
     public static final String POST_IMAGE = "/post";
+    public static final String CHAPTER_IMAGE = "/chapter";
 
     //host post
     public static final String HOT_POST = "hotposts";
