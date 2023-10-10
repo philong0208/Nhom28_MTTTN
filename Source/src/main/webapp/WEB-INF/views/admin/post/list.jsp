@@ -111,8 +111,8 @@
                                         </display:column>
                                         <display:column headerClass="text-left" property="id" title="Id tiểu thuyết"/>
                                         <display:column headerClass="text-left" property="shortTitle" title="Tiêu đề"/>
-                                        <display:column headerClass="text-left" property="categoryName" title="Thể loại"/>
-                                        <display:column headerClass="text-left" property="tagNameStr" title="Tag"/>
+                                        <display:column headerClass="text-left" property="categoryName" title="Nhóm dịch"/>
+                                        <display:column headerClass="text-left" property="tagNameStr" title="Thể loại"/>
                                         <display:column headerClass="text-left" property="authorNameStr" title="Tác giả"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
                                             <c:url var="editPost" value="/admin/post/edit">
