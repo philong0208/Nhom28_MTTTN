@@ -127,6 +127,9 @@ public class PostService implements IPostService {
                             .collect(Collectors.toList()));
             saveThumbnail(postDTO, updatePost);
             saveOgImage(postDTO, updatePost);
+            if (SecurityUtils.isUser()) {
+                updatePost.setApproved(existsPost.isApproved());
+            }
             postRepository.save(updatePost);
             return postConverter.convertToDto(updatePost);
         } catch (Exception e) {

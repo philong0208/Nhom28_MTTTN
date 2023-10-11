@@ -100,6 +100,9 @@ public class ChapterService implements IChapterService {
             }
             updateChapter.setThumbnail(existsChapter.getThumbnail());
             saveThumbnail(chapterDTO, updateChapter);
+            if (SecurityUtils.isUser()) {
+                updateChapter.setApproved(existsChapter.isApproved());
+            }
             chapterRepository.save(updateChapter);
             return chapterConverter.convertToDto(updateChapter);
         } catch (Exception e) {

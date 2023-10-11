@@ -1,3 +1,4 @@
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <c:url var="formUrl" value="/api/admin/chapter"/>
@@ -79,12 +80,14 @@
                                 <form:textarea path="content" cols="80" rows="10" id="content"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">Duyệt bài</label>
-                            <div class="col-sm-9">
-                                <form:checkbox path="approved" id="approved" cssClass="form-control"/>
+                        <c:if test="${SecurityUtils.isAdmin()}">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right">Duyệt bài</label>
+                                <div class="col-sm-9">
+                                    <form:checkbox path="approved" id="approved" cssClass="form-control"/>
+                                </div>
                             </div>
-                        </div>
+                        </c:if>
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <c:if test="${not empty model.id}">
