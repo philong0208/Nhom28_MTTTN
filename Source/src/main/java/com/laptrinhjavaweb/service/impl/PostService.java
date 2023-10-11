@@ -89,6 +89,7 @@ public class PostService implements IPostService {
                             .collect(Collectors.toList()));
             saveThumbnail(postDTO, postEntity);
             saveOgImage(postDTO, postEntity);
+            postEntity.setApproved(false);
             postEntity = postRepository.save(postEntity);
             return postConverter.convertToDto(postEntity);
         } catch (Exception e) {

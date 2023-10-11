@@ -111,6 +111,7 @@
                                         </display:column>
                                         <display:column headerClass="text-left" property="id" title="Id chương"/>
                                         <display:column headerClass="text-left" property="shortTitle" title="Tiêu đề"/>
+                                        <display:column headerClass="text-left" property="createdByFullName" title="Người tạo"/>
                                         <display:column headerClass="text-left" property="postShortTitle" title="Tiểu thuyết"/>
                                         <display:column headerClass="col-actions" title="Thao tác">
                                             <c:url var="editChapter" value="/admin/chapter/edit">
@@ -120,6 +121,7 @@
                                                title="Cập nhật chương" href='${editChapter}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             </a>
                                         </display:column>
+                                        <display:column headerClass="text-left" property="approved" title="Trạng thái"/>
                                     </display:table>
                                 </div>
                             </div>

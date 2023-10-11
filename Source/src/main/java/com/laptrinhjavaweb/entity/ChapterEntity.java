@@ -7,6 +7,14 @@ import java.util.List;
 @Entity
 @Table(name = "chapter")
 public class ChapterEntity extends BaseEntity {
+    @Column(nullable = false)
+    private boolean approved;
+    public boolean isApproved() {
+        return approved;
+    }
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
     @Column(name = "shorttitle")
     private String shortTitle;
 

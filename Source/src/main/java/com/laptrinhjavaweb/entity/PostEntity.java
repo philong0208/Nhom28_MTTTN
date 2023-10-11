@@ -7,6 +7,14 @@ import java.util.List;
 @Entity
 @Table(name = "post")
 public class PostEntity extends BaseEntity {
+    @Column(nullable = false)
+    private boolean approved;
+    public boolean isApproved() {
+        return approved;
+    }
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
     @OneToMany(mappedBy="post", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<ChapterEntity> chapters = new ArrayList<>();
 

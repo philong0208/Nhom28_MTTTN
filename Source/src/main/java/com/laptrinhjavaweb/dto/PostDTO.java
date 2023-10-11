@@ -4,6 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostDTO extends AbstractDTO<PostDTO> {
+    private boolean approved;
+    public boolean isApproved() {
+        return approved;
+    }
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+    private String createdByFullName;
+    public String getCreatedByFullName() {
+        return createdByFullName;
+    }
+    public void setCreatedByFullName(String createdByFullName) {
+        this.createdByFullName = createdByFullName;
+    }
     private List<String> nameOfChapters = new ArrayList<>();
     public List<String> getNameOfChapters() {
         return nameOfChapters;

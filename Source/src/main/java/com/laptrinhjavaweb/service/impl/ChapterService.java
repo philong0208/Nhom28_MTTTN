@@ -76,6 +76,7 @@ public class ChapterService implements IChapterService {
         try {
             ChapterEntity chapterEntity = chapterConverter.convertToEntity(chapterDTO);
             saveThumbnail(chapterDTO, chapterEntity);
+            chapterEntity.setApproved(false);
             chapterEntity = chapterRepository.save(chapterEntity);
             return chapterConverter.convertToDto(chapterEntity);
         } catch (Exception e) {

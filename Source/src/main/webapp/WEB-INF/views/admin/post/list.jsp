@@ -111,6 +111,7 @@
                                         </display:column>
                                         <display:column headerClass="text-left" property="id" title="Id tiểu thuyết"/>
                                         <display:column headerClass="text-left" property="shortTitle" title="Tiêu đề"/>
+                                        <display:column headerClass="text-left" property="createdByFullName" title="Người tạo"/>
                                         <display:column headerClass="text-left" property="categoryName" title="Nhóm dịch"/>
                                         <display:column headerClass="text-left" property="tagNameStr" title="Thể loại"/>
                                         <display:column headerClass="text-left" property="authorNameStr" title="Tác giả"/>
@@ -130,6 +131,7 @@
                                                title="Cập nhật chương" href='${editChapters}'><i class="fa fa-bookmark" aria-hidden="true"></i>
                                             </a>
                                         </display:column>
+                                        <display:column headerClass="text-left" property="approved" title="Trạng thái"/>
                                     </display:table>
                                 </div>
                             </div>
