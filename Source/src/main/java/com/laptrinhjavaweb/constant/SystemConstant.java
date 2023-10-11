@@ -48,4 +48,5 @@ public class SystemConstant {
     public static final String POSITIONS = "positions";
 
     public static final String LIST_PARENT_MENU = "parents_id";
+    public static final String DATA_ACCESS_DENIED = "data_access_denied";
 }

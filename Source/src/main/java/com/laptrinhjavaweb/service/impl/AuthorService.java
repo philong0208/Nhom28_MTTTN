@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.converter.AuthorConverter;
 import com.laptrinhjavaweb.dto.AuthorDTO;
 import com.laptrinhjavaweb.entity.AuthorEntity;
 import com.laptrinhjavaweb.repository.AuthorRepository;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.IAuthorService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,12 +52,15 @@ public class AuthorService implements IAuthorService {
     @Override
     public List<AuthorDTO> findAll(String name, Pageable pageable) {
         List<AuthorEntity> results = null;
+        PageRequest sort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by("modifiedDate").descending());
         if (StringUtils.isNotBlank(name)) {
-            results = authorRepository.findByNameContainingIgnoreCase(name, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
-                    Sort.by("modifiedDate").descending())).getContent();
+            results = SecurityUtils.isAdmin() ? authorRepository.findByNameContainingIgnoreCase(name, sort).getContent()
+                    : authorRepository.findByNameContainingIgnoreCaseAndCreatedBy(name,
+                    SecurityUtils.getPrincipal().getUsername(), sort).getContent();
         } else {
-            results = authorRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
-                    Sort.by("modifiedDate").descending())).getContent();
+            results = SecurityUtils.isAdmin() ? authorRepository.findAll(sort).getContent()
+                    : authorRepository.findByCreatedBy(SecurityUtils.getPrincipal().getUsername(), sort).getContent();
         }
         return results.stream().map(item -> authorConverter.convertToDto(item)).collect(Collectors.toList());
     }
@@ -64,9 +68,12 @@ public class AuthorService implements IAuthorService {
     @Override
     public int getTotalItems(String name) {
         if (StringUtils.isNotBlank(name)) {
-            return (int) authorRepository.countByNameContainingIgnoreCase(name);
+            return SecurityUtils.isAdmin() ? (int) authorRepository.countByNameContainingIgnoreCase(name)
+                    : (int) authorRepository.countByNameContainingIgnoreCaseAndCreatedBy(name,
+                    SecurityUtils.getPrincipal().getUsername());
         } else {
-            return (int) authorRepository.count();
+            return SecurityUtils.isAdmin() ? (int) authorRepository.count()
+                    : (int) authorRepository.countByCreatedBy(SecurityUtils.getPrincipal().getUsername());
         }
     }
 

@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.controller.admin;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.AuthorDTO;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.IAuthorService;
 import com.laptrinhjavaweb.utils.DisplayTagUtils;
 import com.laptrinhjavaweb.utils.MessageResponseUtils;
@@ -46,6 +47,10 @@ public class AuthorController {
 		ModelAndView mav = new ModelAndView("admin/author/edit");
 		if (id != null) {
 			model = authorService.findById(id);
+			if (SecurityUtils.isUser() &&
+					!model.getCreatedBy().equals(SecurityUtils.getPrincipal().getUsername())) {
+				return new ModelAndView("redirect:/admin/author/list?message=data_access_denied");
+			}
 		}
 		initMessageResponse(mav, request);
 		mav.addObject(SystemConstant.MODEL, model);

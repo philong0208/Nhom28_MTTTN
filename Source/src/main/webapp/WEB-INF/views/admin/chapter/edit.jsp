@@ -80,6 +80,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Duyệt bài</label>
+                            <div class="col-sm-9">
+                                <form:checkbox path="approved" id="approved" cssClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-sm-12">
                                 <c:if test="${not empty model.id}">
                                     <input type="button" class="btn btn-white btn-warning btn-bold"

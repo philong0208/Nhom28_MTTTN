@@ -9,6 +9,7 @@ import com.laptrinhjavaweb.entity.TagEntity;
 import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.repository.PostRepository;
 import com.laptrinhjavaweb.repository.TagRepository;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.IAuthorService;
 import com.laptrinhjavaweb.service.IPostService;
 import com.laptrinhjavaweb.service.ITagService;
@@ -16,6 +17,7 @@ import com.laptrinhjavaweb.utils.UploadFileUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -50,14 +52,18 @@ public class PostService implements IPostService {
     private String dirDefault;
     @Override
     public List<PostDTO> findAll(String shortTitle, Pageable pageable) {
-        return postRepository.findByShortTitleContainingIgnoreCase(shortTitle,
-                        PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
-                                Sort.by("modifiedDate").descending()))
+        PageRequest sort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by("modifiedDate").descending());
+        return (SecurityUtils.isAdmin() ? postRepository.findByShortTitleContainingIgnoreCase(shortTitle,
+                        sort) : postRepository.findByShortTitleContainingIgnoreCaseAndCreatedBy(shortTitle,
+                        SecurityUtils.getPrincipal().getUsername(), sort))
                 .getContent().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
     @Override
     public int getTotalItems(String shortTitle) {
-        return (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle);
+        return SecurityUtils.isAdmin() ? (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle)
+                : (int) postRepository.countByShortTitleContainingIgnoreCaseAndCreatedBy(shortTitle,
+                        SecurityUtils.getPrincipal().getUsername());
     }
     @Autowired
     private ITagService tagService;
@@ -83,6 +89,7 @@ public class PostService implements IPostService {
                             .collect(Collectors.toList()));
             saveThumbnail(postDTO, postEntity);
             saveOgImage(postDTO, postEntity);
+            postEntity.setApproved(false);
             postEntity = postRepository.save(postEntity);
             return postConverter.convertToDto(postEntity);
         } catch (Exception e) {
@@ -231,7 +238,10 @@ public class PostService implements IPostService {
     @Override
     public Map<Long, String> getPosts() {
         Map<Long, String> results = new HashMap<>();
-        postRepository.findAll().forEach(item -> results.put(item.getId(), item.getShortTitle()));
+        (SecurityUtils.isAdmin()
+                        ? postRepository.findAll()
+                        : postRepository.findByCreatedBy(SecurityUtils.getPrincipal().getUsername()))
+                .forEach(item -> results.put(item.getId(), item.getShortTitle()));
         return results;
     }
     @Override

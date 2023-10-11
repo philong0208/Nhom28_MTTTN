@@ -1,6 +1,20 @@
 package com.laptrinhjavaweb.dto;
 
 public class ChapterDTO extends AbstractDTO<ChapterDTO> {
+    private boolean approved;
+    public boolean isApproved() {
+        return approved;
+    }
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+    private String createdByFullName;
+    public String getCreatedByFullName() {
+        return createdByFullName;
+    }
+    public void setCreatedByFullName(String createdByFullName) {
+        this.createdByFullName = createdByFullName;
+    }
     private String shortTitle;
     private String thumbnail;
     private String content;

@@ -8,12 +8,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
+    List<PostEntity> findByCreatedBy(String createdBy);
     List<PostEntity> findTop4ByHotPostOrderByCreatedDateDesc(String hotPost);
     List<PostEntity> findBySlideConfigurationOrderBySlideConfigurationNumberAsc(String value);
     List<PostEntity> findByMenuConfigurationOrderByMenuConfigurationNumber(String value);
     PostEntity findBySeoUrl(String seoUrl);
     Page<PostEntity> findByShortTitleContainingIgnoreCase(String shortTitle, Pageable pageable);
+    Page<PostEntity> findByShortTitleContainingIgnoreCaseAndCreatedBy(String shortTitle, String createdBy, Pageable pageable);
     long countByShortTitleContainingIgnoreCase(String shortTitle);
+    long countByShortTitleContainingIgnoreCaseAndCreatedBy(String shortTitle, String createdBy);
     Page<PostEntity> findByBlogConfigurationAndShortTitleContainingIgnoreCase(String blogConfig, String shortTitle, Pageable pageable);
     long countByBlogConfigurationAndShortTitleContainingIgnoreCase(String blogConfig, String shortTitle);
     Page<PostEntity> findBySeoUrlContainingIgnoreCase(String seoUrl, Pageable pageable);

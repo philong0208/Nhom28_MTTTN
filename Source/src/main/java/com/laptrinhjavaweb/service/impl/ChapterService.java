@@ -7,6 +7,7 @@ import com.laptrinhjavaweb.entity.ChapterEntity;
 import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.repository.ChapterRepository;
 import com.laptrinhjavaweb.repository.TagRepository;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.IChapterService;
 import com.laptrinhjavaweb.utils.UploadFileUtils;
 import org.apache.commons.codec.binary.Base64;
@@ -44,9 +45,11 @@ public class ChapterService implements IChapterService {
     private String dirDefault;
     @Override
     public List<ChapterDTO> findAll(String shortTitle, Pageable pageable) {
-        return chapterRepository.findByShortTitleContainingIgnoreCase(shortTitle,
-                        PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
-                                Sort.by("modifiedDate").descending()))
+        PageRequest sort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by("modifiedDate").descending());
+        return (SecurityUtils.isAdmin() ? chapterRepository.findByShortTitleContainingIgnoreCase(shortTitle,
+                        sort) : chapterRepository.findByShortTitleContainingIgnoreCaseAndCreatedBy(shortTitle,
+                        SecurityUtils.getPrincipal().getUsername(), sort))
                 .getContent().stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
     }
     @Override
@@ -58,7 +61,9 @@ public class ChapterService implements IChapterService {
     }
     @Override
     public int getTotalItems(String shortTitle) {
-        return (int) chapterRepository.countByShortTitleContainingIgnoreCase(shortTitle);
+        return SecurityUtils.isAdmin() ? (int) chapterRepository.countByShortTitleContainingIgnoreCase(shortTitle)
+                : (int) chapterRepository.countByShortTitleContainingIgnoreCaseAndCreatedBy(shortTitle,
+                SecurityUtils.getPrincipal().getUsername());
     }
     @Override
     public int getTotalItemsByPostId(Long id) {
@@ -71,6 +76,7 @@ public class ChapterService implements IChapterService {
         try {
             ChapterEntity chapterEntity = chapterConverter.convertToEntity(chapterDTO);
             saveThumbnail(chapterDTO, chapterEntity);
+            chapterEntity.setApproved(false);
             chapterEntity = chapterRepository.save(chapterEntity);
             return chapterConverter.convertToDto(chapterEntity);
         } catch (Exception e) {
