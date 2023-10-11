@@ -50,7 +50,8 @@ public class ChapterController {
 		ModelAndView mav = new ModelAndView("admin/chapter/edit");
 		if (id != null) {
 			model = chapterService.findById(id);
-			if (!model.getCreatedBy().equals(SecurityUtils.getPrincipal().getUsername())) {
+			if (SecurityUtils.isUser() &&
+					!model.getCreatedBy().equals(SecurityUtils.getPrincipal().getUsername())) {
 				return new ModelAndView("redirect:/admin/chapter/list?message=data_access_denied");
 			}
 		}

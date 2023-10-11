@@ -47,7 +47,8 @@ public class AuthorController {
 		ModelAndView mav = new ModelAndView("admin/author/edit");
 		if (id != null) {
 			model = authorService.findById(id);
-			if (!model.getCreatedBy().equals(SecurityUtils.getPrincipal().getUsername())) {
+			if (SecurityUtils.isUser() &&
+					!model.getCreatedBy().equals(SecurityUtils.getPrincipal().getUsername())) {
 				return new ModelAndView("redirect:/admin/author/list?message=data_access_denied");
 			}
 		}
