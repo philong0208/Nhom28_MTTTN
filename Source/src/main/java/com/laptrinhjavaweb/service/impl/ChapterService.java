@@ -13,6 +13,7 @@ import com.laptrinhjavaweb.utils.UploadFileUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -54,9 +55,11 @@ public class ChapterService implements IChapterService {
     }
     @Override
     public List<ChapterDTO> findByPostId(Long id, Pageable pageable) {
-        return chapterRepository.findByPost_Id(id,
-                        PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
-                                Sort.by("modifiedDate").descending()))
+        PageRequest sort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by("modifiedDate").descending());
+        Page<ChapterEntity> result = SecurityUtils.isAdmin() ? chapterRepository.findByPost_Id(id, sort)
+                : chapterRepository.findByPost_IdAndCreatedBy(id, SecurityUtils.getPrincipal().getUsername(), sort);
+        return result
                 .getContent().stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
     }
     @Override
@@ -67,7 +70,8 @@ public class ChapterService implements IChapterService {
     }
     @Override
     public int getTotalItemsByPostId(Long id) {
-        return (int) chapterRepository.countByPost_Id(id);
+        return SecurityUtils.isAdmin() ? (int) chapterRepository.countByPost_Id(id)
+                : (int) chapterRepository.countByPost_IdAndCreatedBy(id, SecurityUtils.getPrincipal().getUsername());
     }
 
     @Override
