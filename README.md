@@ -1,6 +1,9 @@
 # Nhom28_MTTTN
 Đồ án môn thay thế tốt nghiệp PTIT HCM
 
+Document: Chứa các tài liệu phân tích, thiết kế.
+Source: Chứa source code.
+
 Sinh viên thực hiện:
 - Bùi Phi Long
 - Nguyễn Phạm Nhật Minh
