@@ -1,5 +1,5 @@
 # Nhom28_MTTTN
-Đồ án môn thay thế tốt nghiệp PTIT HCMư
+Đồ án môn thay thế tốt nghiệp PTIT HCM
 
 Sinh viên thực hiện:
 - Bùi Phi Long
