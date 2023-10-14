@@ -121,9 +121,9 @@
         <section class="parallax" data-overlay-dark="75" data-background="">
             <div class="container">
                 <div class="text-center">
-                    <h4 class="text-white font-weight-500 font-size50 md-font-size44 sm-font-size40 xs-font-size34">Nhận Ebook phỏng vấn lập trình <br> <span class="text-theme-color"> Java và Spring Framework </span></h4>
-                    <p class="text-white width-50 md-width-60 sm-width-80 xs-width-auto center-col font-size16 margin-30px-bottom">Hy vọng tài liệu phỏng vấn này sẽ giúp cho anh/chị/em tốt hơn trong quá trình phỏng vấn</p>
-                    <a href='http://ebookjavaandspringframework.laptrinhjavaweb.com' target="_blank" class="butn white text-capitalize"><span>Đăng ký nhận ebook ngay</span></a>
+                    <h4 class="text-white font-weight-500 font-size50 md-font-size44 sm-font-size40 xs-font-size34">Trở thành cộng tác viên ngày hôm nay của<br> <span class="text-theme-color">Light novel</span></h4>
+                    <p class="text-white width-50 md-width-60 sm-width-80 xs-width-auto center-col font-size16 margin-30px-bottom">Xây dựng cộng đồng VNLN và kiếm thêm thu nhập</p>
+                    <a href='#' target="_blank" class="butn white text-capitalize"><span>Đăng ký thành viên ngay</span></a>
                 </div>
             </div>
         </section>

@@ -7,17 +7,17 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 sm-margin-25px-bottom mobile-margin-20px-bottom">
                     <div class="sm-padding-50px-right xs-no-padding-right">
-                        <p class="no-margin-bottom">Công ty TNHH công nghệ LAPTRINHJAVAWEB</p>
-                        <p class="no-margin-bottom">MST/ĐKKD/QĐTL: 0316791735</p>
+                        <p class="no-margin-bottom">Công ty TNHH công nghệ LightNovel</p>
+                        <p class="no-margin-bottom">MST/ĐKKD/QĐTL: 0316791999</p>
                     </div>
                 </div>
                 <div id="f-menu"></div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="mobile-margin-10px-bottom">Liên hệ</h4>
                     <ul class="">
-                        <li><i class="ti-location-pin margin-10px-right md-margin-two-right text-theme-color"></i>52/27 Đường số 4, Phường Hiệp Bình Phước, Thành Phố Thủ Đức, Hồ Chí Minh</li>
+                        <li><i class="ti-location-pin margin-10px-right md-margin-two-right text-theme-color"></i>40 Lý Thường Kệt, Thành Phố Thủ Đức, Hồ Chí Minh</li>
                         <li><i class="ti-email margin-10px-right md-margin-two-right text-theme-color"></i>cskh@lightnovel.com</li>
-                        <li><i class="ti-mobile margin-10px-right md-margin-two-right text-theme-color"></i>Hotline: 0354.502.773 / 0819.423.713/ 0909.804.713</li>
+                        <li><i class="ti-mobile margin-10px-right md-margin-two-right text-theme-color"></i>Hotline: 0354.502.999 / 0819.423.999/ 0909.804.999</li>
                     </ul>
 
                     <div class="footer-icon">
