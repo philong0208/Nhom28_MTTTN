@@ -121,7 +121,11 @@
                                                title="Cập nhật chương" href='${editChapter}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             </a>
                                         </display:column>
-                                        <display:column headerClass="text-left" property="approved" title="Trạng thái"/>
+                                        <display:column headerClass="text-left" title="Trạng thái">
+                                            <span class="badge badge-${tableList.approved ? 'success' : 'warning'}">
+                                                    ${tableList.approved ? 'Được duyệt' : 'Chưa duyệt'}
+                                            </span>
+                                        </display:column>
                                     </display:table>
                                 </div>
                             </div>
