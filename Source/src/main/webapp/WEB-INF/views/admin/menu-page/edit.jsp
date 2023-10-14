@@ -92,8 +92,10 @@
                                 Open New Tab
                             </label>
                             <div class="col-sm-9">
-                                <input id="newTab" checked="${newTab}" name="switch-field-1"
-                                       class="ace ace-switch ace-switch-2" type="checkbox">
+                                <%--<input id="newTab" checked="${newTab}" name="switch-field-1"
+                                       class="ace ace-switch ace-switch-2" type="checkbox">--%>
+                                <input type="checkbox" id="newTab" name="newTab" value="true"
+                                       class="ace ace-switch ace-switch-2" <c:if test="${model.newTab}">checked</c:if>/>
                                 <span class="lbl"></span>
                             </div>
 

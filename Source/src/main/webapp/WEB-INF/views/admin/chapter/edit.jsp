@@ -84,7 +84,9 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right">Duyệt bài</label>
                                 <div class="col-sm-9">
-                                    <form:checkbox path="approved" id="approved" cssClass="form-control"/>
+                                    <input type="checkbox" id="approved" name="approved" value="true"
+                                           class="ace ace-switch ace-switch-2" <c:if test="${model.approved}">checked</c:if>/>
+                                    <span class="lbl"></span>
                                 </div>
                             </div>
                         </c:if>
