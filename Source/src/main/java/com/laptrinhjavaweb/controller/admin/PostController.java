@@ -7,6 +7,7 @@ import com.laptrinhjavaweb.service.IAuthorService;
 import com.laptrinhjavaweb.service.ICategoryService;
 import com.laptrinhjavaweb.service.IPostService;
 import com.laptrinhjavaweb.service.ITagService;
+import com.laptrinhjavaweb.service.impl.CsvService;
 import com.laptrinhjavaweb.utils.DisplayTagUtils;
 import com.laptrinhjavaweb.utils.MessageResponseUtils;
 import org.apache.commons.lang.StringUtils;
@@ -68,6 +69,8 @@ public class PostController {
 		mav.addObject(SystemConstant.MODEL, model);
 		return mav;
 	}
+	@Autowired
+	private CsvService csvService;
 
 	private void initMessageResponse(ModelAndView mav, HttpServletRequest request) {
 		String message = request.getParameter("message");
@@ -76,5 +79,10 @@ public class PostController {
 			mav.addObject(SystemConstant.ALERT, messageMap.get(SystemConstant.ALERT));
 			mav.addObject(SystemConstant.MESSAGE_RESPONSE, messageMap.get(SystemConstant.MESSAGE_RESPONSE));
 		}
+		Map<String, String> stringStringMap = csvService.readCsvFile("D:\\Nhatminhptithcm\\Repository\\Workspace\\Nhom28_MTTTN\\Source\\src\\main\\resources\\message\\MessageData.csv");
+		for (Map.Entry<String, String> entry : stringStringMap.entrySet()) {
+			System.out.println(entry.getKey() + " " + entry.getValue());
+		}
+
 	}
 }
