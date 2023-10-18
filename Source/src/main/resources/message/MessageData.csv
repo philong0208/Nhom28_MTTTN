@@ -6,3 +6,20 @@ insert_failed,"Dữ liệu này đã tồn tại, vui lòng nhập lại"
 update_failed,"Dữ liệu này đã tồn tại, cập nhật thất bại"
 delete_failed,"Xóa thất bại, đảm bảo rằng dữ liệu bạn xóa không được sử dụng ở bất kỳ đâu"
 data_access_denied,Bạn không có quyền truy cập vào dữ liệu này
+VALIDATION_NOVEL_TITLE,Tiêu đề không được để trống
+VALIDATION_NOVEL_DESC,Mô tả không được để trống
+VALIDATION_NOVEL_GENRE,Hãy chọn ít nhất 1 thể loại
+VALIDATION_NOVEL_AUTHOR,Hãy chọn ít nhất 1 tác giả
+VALIDATION_NOVEL_COVER,Hãy chọn ảnh bìa
+VALIDATION_GENRE_NAME,Tên thể loại không được để trống
+VALIDATION_GENRE_DESC,Mô tả thể loại không được để trống
+VALIDATION_AUTHOR_NAME,Tên tác giả không được để trống
+VALIDATION_CHAPTER_NAME,Tên chương không được để trống
+VALIDATION_CHAPTER_CONTENT,Nội dung chương không được để trống
+VALIDATION_COMMENT_CONTENT,Nội dung bình luận không được để trống
+VALIDATION_USER_ID,Vui lòng nhập tên đăng nhập
+VALIDATION_USER_PASSWORD,Vui lòng nhập mật khẩu
+VALIDATION_USER_NAME,Tên hiển thị không được để trống
+VALIDATION_TEXT_ONLY,Chỉ chấp nhận chuỗi
+VALIDATION_INTEGER_ONLY,Chỉ chấp nhận số nguyên
+AUTHENTICATION_FAILED,"Sai tên đăng nhập hoặc mật khẩu, vui lòng nhập lại"
