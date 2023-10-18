@@ -2,7 +2,7 @@ insert_success,Thêm dữ liệu thành công
 update_success,Cập nhật dữ liệu thành công
 delete_success,Xóa dữ liệu thành công
 error_system,"Đã có lỗi xảy ra, vui lòng thử lại sau"
-insert_failed,"Dữ liệu này đã tồn tại, vui lòng nhập lại Nhật Minh"
-update_failed,"Dữ liệu này đã tồn tại, cập nhật thất bại Nhật Minh"
+insert_failed,"Dữ liệu này đã tồn tại, vui lòng nhập lại"
+update_failed,"Dữ liệu này đã tồn tại, cập nhật thất bại"
 delete_failed,"Xóa thất bại, đảm bảo rằng dữ liệu bạn xóa không được sử dụng ở bất kỳ đâu"
 data_access_denied,Bạn không có quyền truy cập vào dữ liệu này
