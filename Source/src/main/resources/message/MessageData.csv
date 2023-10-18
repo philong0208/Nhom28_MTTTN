@@ -20,6 +20,9 @@ VALIDATION_COMMENT_CONTENT,Nội dung bình luận không được để trống
 VALIDATION_USER_ID,Vui lòng nhập tên đăng nhập
 VALIDATION_USER_PASSWORD,Vui lòng nhập mật khẩu
 VALIDATION_USER_NAME,Tên hiển thị không được để trống
+VALIDATION_USER_EMAIL_E01,Email không được để trống
+VALIDATION_USER_EMAIL_E02,Email không đúng định dạng
 VALIDATION_TEXT_ONLY,Chỉ chấp nhận chuỗi
 VALIDATION_INTEGER_ONLY,Chỉ chấp nhận số nguyên
+AUTHENTICATION_SUCCESS,Đăng nhập thành công
 AUTHENTICATION_FAILED,"Sai tên đăng nhập hoặc mật khẩu, vui lòng nhập lại"
