@@ -7,11 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 @Component
 public class MessageResponseUtils {
-    public static Map<String, String> getMessage(String message) {
+    public static Map<String, String> getMessage(String key) {
         Map<String, String> results = new HashMap<>();
-        Map<String, String> stringStringMap = CsvService.readCsvFile();
-        results.put(SystemConstant.ALERT, message.contains("success") ? "success" : "danger");
-        results.put(SystemConstant.MESSAGE_RESPONSE, stringStringMap.get(message));
+        results.put(SystemConstant.ALERT, key.contains("success") ? "success" : "danger");
+        results.put(SystemConstant.MESSAGE_RESPONSE, CsvService.getMessageData(key));
         return results;
     }
 }
