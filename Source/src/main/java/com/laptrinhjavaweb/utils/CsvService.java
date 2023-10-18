@@ -1,27 +1,20 @@
-package com.laptrinhjavaweb.service.impl;
+package com.laptrinhjavaweb.utils;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
 public class CsvService {
-    public Map<String, String> readCsvFile(String filePath) {
+    public static Map<String, String> readCsvFile() {
         Map<String, String> dataMap = new HashMap<>();
-
-        try (FileInputStream fileInputStream = new FileInputStream(filePath);
-             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
+        try (InputStream inputStream = CsvService.class.getResourceAsStream("/message/MessageData.csv");
+             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
              BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
              CSVReader reader = new CSVReader(bufferedReader)) {
-
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
                 if (nextLine.length >= 2) {
@@ -32,10 +25,9 @@ public class CsvService {
             }
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
-            // Handle the exception as needed
         }
-
         return dataMap;
     }
+
 }
 
