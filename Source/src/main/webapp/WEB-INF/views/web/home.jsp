@@ -11,8 +11,10 @@
     <div class="col-md-4 col-sm-12 row-left">
         <div class="d-flex justify-content-center align-items-center h-100">
             <div class="text-center">
-                <h1 class="text-white">${leftBanner.name}</h1>
-                <a href="<c:url value="/san-pham/?productCategoryCode=${leftBanner.code}"/>"
+                <%--<h1 class="text-white">${leftBanner.name}</h1>--%>
+                <h1 class="text-white">Tiểu thuyết mới nhất</h1>
+                <%--<a href="<c:url value="/san-pham/?productCategoryCode=${leftBanner.code}"/>"--%>
+                <a href="<c:url value="#"/>"
                    class="gl-cta gl-cta--primary gl-cta--primary-light"
                    title="Chi tiết">Chi tiết
                     <span class="gl-icon__wrapper" role="img">
@@ -29,13 +31,15 @@
             <div class="cover-carousel" id="drag-container">
                 <div id="spin-container">
                     <c:forEach var="item" items="${slides}">
-                        <c:if test="${not empty item.image}">
-                            <c:set var="image" value="/repository/${item.image}"/>
+                        <c:if test="${not empty item.thumbnail}">
+                            <c:set var="image" value="/repository${item.thumbnail}"/>
+                            <%--<img src="${image}" style="cursor: pointer;" onclick="window.open('<c:url
+                                    value="/san-pham/${item.productCategoryCode}/${item.code}"/>', '_blank');">--%>
                             <img src="${image}" style="cursor: pointer;" onclick="window.open('<c:url
-                                    value="/san-pham/${item.productCategoryCode}/${item.code}"/>', '_blank');">
+                                    value="#"/>', '_blank');">
                         </c:if>
-                        <c:if test="${empty item.image}">
-                            <img src="<c:url value='/template/img/default.png'/>">
+                        <c:if test="${empty item.thumbnail}">
+                            <img src="<c:url value='/template/image/default.png'/>">
                         </c:if>
                     </c:forEach>
                 </div>
@@ -63,12 +67,13 @@
 
         <div class="new-collection">
             <!-- collection item -->
-            <c:forEach var="item" items="${producthots}">
-                <c:set var="imageStr" value="${item.image}"/>
+            <c:forEach var="item" items="${slides}">
+                <c:set var="imageStr" value="${item.thumbnail}"/>
+                <%--<c:set var="imageArray" value="${fn:split(imageStr, ',')}"/>--%>
                 <c:set var="imageArray" value="${fn:split(imageStr, ',')}"/>
                 <div>
-                    <div class="item w-100 position-relative" id="${item.code}">
-                        <a href="<c:url value="/san-pham/${item.productCategoryCode}/${item.code}"/>"
+                    <div class="item w-100 position-relative" id="${item.shortTitle}">
+                        <%--<a href="<c:url value="/san-pham/${item.productCategoryCode}/${item.code}"/>"
                            class="image-container w-100 h-100">
                             <c:if test="${not empty item.defaultImage}">
                                 <c:set var="image" value="/repository/${item.defaultImage}"/>
@@ -82,10 +87,20 @@
                             <c:if test="${not empty item.image && fn:length(imageArray) > 1}">
                                 <img class="card-img-top h-100 img-lv2" src="/repository/${imageArray[1]}" alt="">
                             </c:if>
+                        </a>--%>
+                        <a href="<c:url value="#"/>"
+                           class="image-container w-100 h-100">
+                            <c:if test="${not empty item.thumbnail}">
+                                <c:set var="image" value="/repository${item.thumbnail}"/>
+                            </c:if>
+                            <c:if test="${empty item.thumbnail}">
+                                <c:set var="image" value="/template/image/default.png"/>
+                            </c:if>
+                            <img class="card-img-top h-100 img-target" src="${image}" alt="">
                         </a>
                         <div>
-                            <p class="mb-0"><strong>${item.code}</strong></p>
-                            <p class="mb-0"><small>${item.content}</small></p>
+                            <p class="mb-0"><strong>${item.shortTitle}</strong></p>
+                            <p class="mb-0"><small>${item.shortTitle}</small></p>
                         </div>
                     </div>
                 </div>
@@ -94,8 +109,8 @@
         </div>
     </div>
 </div>
-<c:if test="${not empty bestSeller}">
-    <c:set var="image" value="/repository/${item.defaultImage}"/>
+<c:if test="${not empty slides}">
+    <c:set var="image" value="/repository/${item.thumbnail}"/>
     <!-- best seller -->
     <div class="discover">
         <div class="container py-3  shadow p-3  rounded">
@@ -112,7 +127,7 @@
 
             <div class="new-collection-selling">
                 <!-- collection item -->
-                <c:forEach var="item" items="${bestSeller}">
+                <%--<c:forEach var="item" items="${bestSeller}">
                     <c:set var="imageStr" value="${item.image}"/>
                     <c:set var="imageArray" value="${fn:split(imageStr, ',')}"/>
                     <div>
@@ -138,6 +153,27 @@
                             </div>
                         </div>
                     </div>
+                </c:forEach>--%>
+                <c:forEach var="item" items="${slides}">
+                    <c:set var="imageStr" value="${item.thumbnail}"/>
+                    <div>
+                        <div class="item w-100 position-relative" id="item-1">
+                            <a href="#"
+                               class="w-100 h-100">
+                                <c:if test="${not empty item.thumbnail}">
+                                    <c:set var="image" value="/repository${item.thumbnail}"/>
+                                </c:if>
+                                <c:if test="${empty item.thumbnail}">
+                                    <c:set var="image" value="/template/image/default.png"/>
+                                </c:if>
+                                <img class="card-img-top h-100 img-target" src="${image}" alt="">
+                            </a>
+                            <div>
+                                <p class="mb-0"><strong>${item.shortTitle}</strong></p>
+                                <p><small>${item.shortTitle}</small></p>
+                            </div>
+                        </div>
+                    </div>
                 </c:forEach>
                 <!-- collection item -->
             </div>
@@ -149,6 +185,7 @@
 
 <!-- home-detail-new-technology-left-to-right-->
 1
+<%--
 <div class="home-detail">
     <div class="container h-100">
         <div class="row h-100">
@@ -262,6 +299,7 @@
     </div>
 </div>
 <div class="mt-5"></div>
+--%>
 
 <%--<div class="support-bg">
     <div class="container">
