@@ -132,7 +132,7 @@
         });
     });
     var totalPages = ${model.totalPages};
-    var currentPage = ${searchModel.page};
+    var currentPage = ${model.page};
     $(function () {
         window.pagObj = $('#pagination').twbsPagination({
             totalPages: totalPages,
