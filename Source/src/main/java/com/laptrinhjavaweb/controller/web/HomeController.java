@@ -17,6 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.laptrinhjavaweb.constant.SystemConstant.OG_TITLE_HOME;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
@@ -27,9 +31,9 @@ public class HomeController {
 	@Autowired
 	private ITemplateService templateService;
 
-	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
+	@RequestMapping(value = "/trang-chu1", method = RequestMethod.GET)
 	public ModelAndView homePage2() throws Exception {
-		ModelAndView mav = new ModelAndView("web/home");
+		ModelAndView mav = new ModelAndView("web/home1");
 		mav.addObject(SystemConstant.HOT_POST, postService.findByHotPost(SystemConstant.HOT_POST_YES));
 		mav.addObject("slides", postService.findBySlidePost("YES"));
 		PostDTO postDTO = postService.findBySeoUrl(SystemConstant.HOME_PAGE);
@@ -38,6 +42,32 @@ public class HomeController {
 		TemplateDTO page =  templateService.getTemplate(SystemConstant.PAGE_NAME_LANDING);
 		mav.addObject(SystemConstant.CONTENT, page.getContent());
 		mav.addObject(SystemConstant.MODEL, postDTO);
+		return mav;
+	}
+	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
+	public ModelAndView homePage(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("web/home");
+		List<ProductDTO> productHots=  productService.getProductHot();
+		List<ProductDTO> productBanners=  new ArrayList<>();
+		if  (productHots != null && !productHots.isEmpty()){
+			productBanners.add(productHots.get(0));
+		}
+		List<ProductDTO> slide = productService.getSlide();
+		mav.addObject("slides", slide);
+		List<ProductDTO> productHot = productService.getProductHot();
+		mav.addObject("producthots", productHot);
+		List<ProductDTO> bestSellingProducts = productService.getBestSellingProducts();
+		mav.addObject("bestSeller", bestSellingProducts);
+		ProductCategoryDTO byCode = productCategoryService.findByCode("gach-lat-nen");
+		mav.addObject("leftBanner", byCode);
+		mav.addObject("productBanners", productBanners);
+		List<NewDTO> newToHomePage = newService.getNewToHomePage();
+		mav.addObject("news", newToHomePage);
+		ConfigDTO supportCenter = configService.findOneByCode("SUPPORT_CENTER");
+		mav.addObject("supportCenter", supportCenter);
+		SeoFriendlyUrlService seoFriendlyUrlSvc = new SeoFriendlyUrlService();
+		seoFriendlyUrlSvc.init(request, OG_TITLE_HOME, "", "");
+		mav.addObject(SystemConstant.MODEL_SEO_PAGE, seoFriendlyUrlSvc.GetSeoPage());
 		return mav;
 	}
 
