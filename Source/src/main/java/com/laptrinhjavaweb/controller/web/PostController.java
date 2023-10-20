@@ -3,6 +3,8 @@ package com.laptrinhjavaweb.controller.web;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.CategoryDTO;
 import com.laptrinhjavaweb.dto.PostDTO;
+import com.laptrinhjavaweb.entity.PostEntity;
+import com.laptrinhjavaweb.repository.PostRepository;
 import com.laptrinhjavaweb.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -42,28 +44,28 @@ public class PostController {
         mav.addObject(SystemConstant.MODEL, model);
         return mav;
     }
-//    @RequestMapping(value = "/san-pham/{productcategory}/{productcode}", method = RequestMethod.GET)
-//    public ModelAndView productDetail(@PathVariable("productcode") String productCode, HttpServletRequest request) {
-//        ModelAndView mav = new ModelAndView("web/product/detail");
-//        ProductDTO productDTO = productService.findByCode(productCode);
-//        if (productDTO == null){
-//            return new ModelAndView("redirect:/error/404");
-//        }
-//        String img = productDTO.getImage();
-//        mav.addObject("defaultImage", productDTO.getDefaultImage());
-//        String[] images = img.split(",", -1);
-//        mav.addObject("images", images);
-//        mav.addObject("product", productDTO);
-//        mav.addObject("relatedProducts", productService.getRelatedProduct(productDTO.getSizeCode(), productDTO.getProductCategoryCode()));
-//        SeoFriendlyUrlService seoFriendlyUrlSvc = new SeoFriendlyUrlService();
-//        String ogTitle = productDTO.getOgTitle();
-//        if (ogTitle == null || ogTitle.length() == 0) {
-//            ogTitle = "Sản phẩm gạch - " + productDTO.getCode();
-//        }
-//        seoFriendlyUrlSvc.init(request, ogTitle, productDTO.getOgDesc(), "");
-//        mav.addObject(SystemConstant.MODEL_SEO_PAGE, seoFriendlyUrlSvc.GetSeoPage());
-//        return mav;
-//    }
+    @RequestMapping(value = "/san-pham/{shortTitle}", method = RequestMethod.GET)
+    public ModelAndView productDetail(@PathVariable("shortTitle") String shortTitle, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("web/post/detail");
+        PostDTO postDTO = postService.findById(109L);
+        if (postDTO == null){
+            return new ModelAndView("redirect:/error/404");
+        }
+        String img = postDTO.getThumbnail();
+        mav.addObject("defaultImage", postDTO.getThumbnail());
+        String[] images = img.split(",", -1);
+        mav.addObject("images", images);
+        mav.addObject("product", postDTO);
+        mav.addObject("relatedProducts", postService.findAll("", new PageRequest(0, 20)));
+        /*SeoFriendlyUrlService seoFriendlyUrlSvc = new SeoFriendlyUrlService();
+        String ogTitle = productDTO.getOgTitle();
+        if (ogTitle == null || ogTitle.length() == 0) {
+            ogTitle = "Sản phẩm gạch - " + productDTO.getCode();
+        }
+        seoFriendlyUrlSvc.init(request, ogTitle, productDTO.getOgDesc(), "");
+        mav.addObject(SystemConstant.MODEL_SEO_PAGE, seoFriendlyUrlSvc.GetSeoPage());*/
+        return mav;
+    }
 
 //    @RequestMapping(value = "/tieu-thuyet", method = RequestMethod.GET)
 //    public ModelAndView productList(@ModelAttribute("searchModel") ProductCategoryDTO searchModel, HttpServletRequest request) {

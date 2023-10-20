@@ -40,17 +40,17 @@
                 <div class="col-lg-3">
                     <c:forEach var="img2" items="${images}">
                         <div class="mr-3 my-2 d-flex align-items-center smallProduct" data-img="'${img2}'">
-                            <img src="/repository/${img2}" alt="${img2}">
+                            <img src="/repository${img2}" alt="${img2}">
                         </div>
                     </c:forEach>
                 </div>
                 <div class="col-md-12 w-100 col-lg-9 ">
                     <div class=" zoom-image w-100 d-flex align-items-center contain">
-                        <c:if test="${not empty product.defaultImage}">
-                            <c:set var="defaultImg" value="/repository/${product.defaultImage}"/>
+                        <c:if test="${not empty product.thumbnail}">
+                            <c:set var="defaultImg" value="/repository${product.thumbnail}"/>
                         </c:if>
-                        <c:if test="${empty product.defaultImage}">
-                            <c:set var="defaultImg" value="/template/img/default.png"/>
+                        <c:if test="${empty product.thumbnail}">
+                            <c:set var="defaultImg" value="/template/image/default.png"/>
                         </c:if>
                         <div type="button" data-toggle="modal"
                              data-target="#basicExampleModal"
@@ -70,7 +70,7 @@
             <div class='justify-content-between d-flex'>
                 <div class="font-weight-bold">Mã sản phẩm</div>
             </div>
-            <div class=" code_Number">${product.code}</div>
+            <div class=" code_Number">${product.shortTitle}</div>
             <div class='py-3 justify-content-between d-flex group_value '>
                 <div class="font-weight-bold">NHÃN HIỆU</div>
                 <div class="">ITALIANHOME</div>
@@ -81,11 +81,11 @@
             </div>
             <div class='py-3 justify-content-between d-flex group_value'>
                 <div class="font-weight-bold">KÍCH THƯỚC</div>
-                <div class="">${product.sizeName} cm</div>
+                <div class="">${product.shortTitle} cm</div>
             </div>
             <div class='py-3 justify-content-between d-flex group_value'>
                 <div class="font-weight-bold">LOẠI</div>
-                <div class="">${product.productCategoryName}</div>
+                <div class="">${product.shortTitle}</div>
             </div>
             <div class="py-3 d-flex group_value">
                 <div class="col-md-12 text-right">
@@ -129,23 +129,23 @@
                 <c:forEach var="item" items="${relatedProducts}">
                     <li class=" position-relative">
                         <div class="seenItem py-2 flex-column justify-content-center  d-flex">
-                            <c:if test="${not empty item.image}">
-                                <c:set var="imageProduct" value="/repository/${item.defaultImage}"/>
+                            <c:if test="${not empty item.thumbnail}">
+                                <c:set var="imageProduct" value="/repository${item.thumbnail}"/>
                             </c:if>
-                            <c:if test="${empty item.image}">
-                                <c:set var="imageProduct" value="/template/img/default.png"/>
+                            <c:if test="${empty item.thumbnail}">
+                                <c:set var="imageProduct" value="/template/image/default.png"/>
                             </c:if>
                             <img src="${imageProduct}" alt="${imageProduct}"/>
-                            <div class="position-absolute mt-2 codeSeen">${item.code}</div>
+                            <div class="position-absolute mt-2 codeSeen">${item.shortTitle}</div>
                             <div class=" position-absolute hide1">
-                                <div class="text-left font-weight-bold" title="123.092121">${item.code}</div>
+                                <div class="text-left font-weight-bold" title="123.092121">${item.shortTitle}</div>
                                 <div class='d-flex justify-content-between'>
                                     <div class="mr-1">Kích thước</div>
-                                    <div class=" font-weight-bold value">${item.sizeName} cm</div>
+                                    <div class=" font-weight-bold value">${item.shortTitle} cm</div>
                                 </div>
-                                <div class="detail"><a
+                                <%--<div class="detail"><a
                                         href="<c:url value="/san-pham/${item.productCategoryCode}/${item.code}"/>">xem
-                                    chi tiết</a><i class="fas fa-long-arrow-alt-right"></i></div>
+                                    chi tiết</a><i class="fas fa-long-arrow-alt-right"></i></div>--%>
                             </div>
                         </div>
                     </li>
@@ -238,12 +238,12 @@
         }
     }
 
-    const productsImgStr = `${product.image}`;
+    const productsImgStr = `${product.thumbnail}`;
     let productsImg = productsImgStr.split(",");
-    var activeImage = "/repository/${defaultImage}";
+    var activeImage = "/repository${defaultImage}";
     if (productsImg != null) {
         for (let i = 0; i < productsImg.length; i++) {
-            productsImg[i] = `/repository/${productsImg[i]}`
+            productsImg[i] = `/repository${productsImg[i]}`
         }
     }
 
