@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
+<body><%--
 <div class="row banner-bg mx-0">
     <!-- left -->
     <div class="col-md-4 col-sm-12 row-left">
@@ -263,7 +263,7 @@
 </div>
 <div class="mt-5"></div>
 
-<%--<div class="support-bg">
+&lt;%&ndash;<div class="support-bg">
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
@@ -276,7 +276,7 @@
             </div>
         </div>
     </div>
-</div>--%>
+</div>&ndash;%&gt;
 <script type="text/javascript">
     // You can change global variables here:
     var radius = 290; // how big of the radius
@@ -464,6 +464,6 @@
         });
     });
 
-</script>
+</script>--%>
 </body>
 </html>
