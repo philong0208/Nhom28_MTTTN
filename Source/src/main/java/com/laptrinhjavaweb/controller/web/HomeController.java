@@ -6,6 +6,7 @@ import com.laptrinhjavaweb.dto.TemplateDTO;
 import com.laptrinhjavaweb.service.IPostService;
 import com.laptrinhjavaweb.service.ITemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
@@ -43,6 +45,8 @@ public class HomeController {
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("web/home");
+		List<PostDTO> all = postService.findAll("", PageRequest.of(0, 6));
+		mav.addObject("slides", all);
 		return mav;
 	}
 
