@@ -1,0 +1,29 @@
+.bread-link .breadcrumb{
+    padding: 7px 1rem; 
+    margin: 0;
+    font-size: 0.65em;
+    line-height: 16px;
+    font-weight: bolder;
+    color: #999999;
+}
+.bread-link{
+    background-color: #e9ecef;
+}
+.bread-link .breadcrumb a:hover {
+    color: #999999;
+    text-decoration: none;
+}
+.bread-link .breadcrumb a {
+    color: #999999;
+    text-decoration: none;
+    background-color: transparent;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #999999;
+    font-family: "Font Awesome 5 Free";
+    content: "\f105";
+    padding: 0 8px;
+}
+.breadcrumb-item + .breadcrumb-item.active{
+    color: #C0504E;
+}

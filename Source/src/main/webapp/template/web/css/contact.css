@@ -1,0 +1,120 @@
+@media (min-width: 768px){
+  
+    .contact .banner{
+        max-height: 450px;
+        margin-bottom: -215px
+    }
+    .contact .banner .container-img img{
+        width: 100%;
+        bottom: 0;
+    }
+    .contact .container .larger-text{
+        font-size: 2em;
+    }
+    .contact .container .small-text{
+        font-size: 0.95em;
+    }
+}
+@media (max-width: 767px){
+    .contact .container .larger-text{
+        font-size: 1.5em;
+    }
+    .contact .container .small-text{
+        font-size: 0.8em;
+    }
+    .contact .banner{
+        min-height: 150px;
+        margin-bottom: calc(-40% + 80px);
+    }
+    .contact .banner .container-img img{
+        top: 0;
+        left: 0;
+    }
+}
+@media (max-width: 991px){
+    .g-recaptcha {
+        transform:scale(0.77);
+        -webkit-transform:scale(0.77);
+        transform-origin:0 0;
+        -webkit-transform-origin:0 0;  
+    }
+}
+.contact{
+    background-color: #F6F8FD;
+    padding-top: 1px;
+}
+.contact .banner{
+    overflow: hidden;  
+}
+.contact .background-form .form-text{
+    border: solid 1px #CCCCCC;
+    font-size: 0.97em;
+    line-height: 18px;
+}
+.contact .background-form .form-text:focus{
+    border: solid 1px #C0504E;
+    background: #F6EAEA;
+}
+.contact .background-form .contact-info-map{
+    padding-left: 1em;
+    border-bottom: solid 2px #EAEAEA;
+}
+
+.contact .background-form .buttonCustomer{
+    background-color: #C0504E;
+    border-radius: 1.3em;
+    font-size: 1.15em;
+}
+.contact .background-form textarea.form-text{
+    min-height: 90px;
+}
+.contact .background-form textarea:focus, input:focus{
+    outline: none;
+}
+.contact .banner .container-img{
+    background-color: black;
+    padding-top: 50%;
+}
+.contact .banner .container-img img{
+    display: block;
+    opacity: 0.4
+}
+
+.contact .container .larger-text{
+    font-weight: 500;
+    z-index: 2;
+}
+.contact .container .small-text{
+    z-index: 2;
+}
+.contact .form-contact .telephone{
+    background-color: #EAEAEA;
+}
+.contact .form-contact{
+    background-color: #ffffff;
+    border-radius: 0.58em;
+    
+}
+.contact .container .inf-contact{
+    color:  #C0504E;
+}
+.contact .container .inf-contact ~ div{
+    font-size: 0.82em;
+}
+.contact .container .inf-contact + .border{
+    width: 7em;
+    color: #EAEAEA;
+}
+
+.contact-info-map {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+.contact-info-map iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

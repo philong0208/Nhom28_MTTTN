@@ -1,0 +1,29 @@
+.introduction {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.introduction .title p{
+    font-size: 2em;
+}
+
+.backdrop {
+    background-image: url(../images/BK_IH.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.introduction .description p{
+    font-size: 0.95em;
+}
+
+.introduction .description-link{
+    border-radius: 1.3em;
+}
+
+.introduction .description-link a{
+    color: white;
+}
+.introduction .description-link:hover a{
+    color: black;
+}

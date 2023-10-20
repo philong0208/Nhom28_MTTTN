@@ -1,0 +1,315 @@
+/*introduce*/
+.introduce .introduce-body {
+    background-image: url(../images/background-intro.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 50px 0px;
+    opacity: 0.85;
+}
+
+.introduce .title {
+    font-size: 1.5em;
+}
+
+.introduce .introduce-body .title-first {
+    color: #ffebcd;
+}
+
+.introduce .history .text{
+    margin-top: -50px;
+    width: 80%;
+}
+.introduce .history-list div.uk-visible-toggle{
+    width: 90%;
+}
+.introduce .certificate .cover{
+    background-image: url("../images/bg-certificates.jpg");
+    border-radius: 10px;
+}
+.introduce .community .communication{
+    font-size: 0.85em;
+}
+.introduce .button{
+    background-color: #C0504E;
+    border-radius: 20px;
+    color: #ffffff;
+}
+.introduce .community .communication .title{
+    font-size: 1.3em;
+}
+.introduce .title .title-second {
+    color: #C0504E;
+}
+.introduce .inf-history{
+    font-size: 0.82em;
+    color: #666666;
+}
+.introduce .years-history{
+    color: #ffffff;
+    background-color: #C0504E;
+}
+.introduce .title-history{
+    font-size: 1.1em;
+}
+.introduce .information-bussiness .image-IB{
+    border: solid 1px #dad7d7;
+    background-color: #ffffff;
+}
+.introduce .information-bussiness{
+    background-color: #f6f6f6;
+}
+.introduce .information-bussiness .text-IB{
+    font-size: 0.9em;
+}
+.introduce .information-bussiness .button{
+    font-size: 0.8em;
+}
+.introduce .introduce-body .description {
+    font-size: 0.82em;
+    color: #c0bbbb;
+}
+.information-introduce{
+    background-color: black;
+    opacity: 0.7;
+}
+.introduce .form-text{
+    border: solid 1px #CCCCCC;
+    font-size: 0.97em;
+    line-height: 18px;
+}
+.introduce .form-text:focus{
+    border: solid 1px #C0504E;
+    background: #F6EAEA;
+}
+.introduce textarea:focus, input:focus{
+    outline: none;
+}
+* + p{
+    margin-top: 0px;
+}
+
+.image-certificate{
+    max-width: 60vw;
+    max-height: 35vw;
+    margin-top: -33px !important;
+}
+
+@media (max-width: 575px){
+    .introduce .information-bussiness .image-IB img{
+        width: 180px;
+    }
+    .introduce .information-bussiness .button-IB{
+        width: 100%;
+    }
+    .introduce .history img{
+        width: 90%;
+        /* height: 200px; */
+    }
+}
+@media (min-width: 576px){
+    .introduce .history img{
+        width: 90%;
+        height: 200px;
+    }
+}
+
+
+.introduce .history-nav {
+    list-style: none;
+}
+
+.introduce .history-nav a {
+    border-radius: 20px;
+}
+
+.introduce .history-nav .uk-active i {
+    color: #dc3545;
+}
+
+.introduce .history-nav .uk-active a {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.introduce .history-nav i:hover {
+    color: #dc3545;
+}
+
+
+.introduce-body .page-title-top span{
+    border-bottom: 2px solid #C0504E;
+    width: 60px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.introduce-body .page-title-top {
+    color:#C0504E !important;
+    font-weight: 600;
+}
+
+.introduce-body .page-title-bottom {
+    font-size: 40px;
+    text-transform: uppercase;
+    color: #111;
+    font-family: MontsBold;
+    padding-left: 70px;
+    margin-top: 13px;
+}
+
+.introduce-body .des{
+    font-size: 15px;
+    color: #666;
+    padding: 0 70px;
+}
+
+.introduce .uk-position-center-right,.uk-position-center-left {
+    top: 85%;
+}
+
+.introduce .uk-position-center-right svg,.uk-position-center-left svg{
+    width: 30px;
+}
+
+.divider-title p{
+    color: #C0504E;
+}
+
+.divider-title span{
+    border-bottom: 2px solid #C0504E;
+    width: 60px;
+    display: inline-block;
+}
+
+.slick-history-nav .slick-list:before {
+    content: "";
+    height: 1px;
+    background: #dedede;
+    width: calc(100% - 280px);
+    position: absolute;
+    left: 140px;
+    top: 5px;
+    background: red;
+}
+
+.introduce .slick-history-nav .slick-arrow {
+    font-size: 60px;
+    position: absolute;
+    cursor: pointer;
+    color: #dedede;
+}
+
+.introduce .slick-history-nav .slick-arrow.prev {
+    bottom: 10px;
+    z-index: 1;
+}
+
+.introduce .slick-history-nav .slick-arrow.next {
+    right: 0;
+    top: -40px;
+}
+
+@media (max-width: 1200px){
+    .slick-history-nav .slick-list:before {
+        width: calc(100% - 240px);
+        left: 120px;
+    }
+}
+
+@media (max-width: 992px){
+    .slick-history-nav .slick-list:before {
+        width: calc(100% - 180px);
+        left: 90px;
+    }
+}
+
+@media (max-width: 768px){
+    .slick-history-nav .slick-list:before {
+        width: calc(100% - 140px);
+        left: 70px;
+    }
+    .introduce .slick-history-nav .slick-arrow {
+        font-size: 40px;
+    }
+
+    .introduce .slick-history-nav .slick-arrow.prev {
+        bottom: 30px;
+        z-index: 1;
+    }
+
+    .introduce .slick-history-nav .slick-arrow.next {
+        right: 0;
+        top: -30px;
+    }
+}
+
+@media (max-width: 575px){
+    .slick-history-nav .slick-list:before {
+        content: "";
+        height: 1px;
+        background: #dedede;
+        width: calc(100% - 100px);
+        position: absolute;
+        left: 50px;
+        top: 5px;
+        background: red;
+    }
+
+    .introduce .slick-history-nav .slick-arrow {
+        font-size: 40px;
+    }
+
+    .introduce .slick-history-nav .slick-arrow.prev {
+        bottom: 30px;
+        z-index: 1;
+    }
+
+    .introduce .slick-history-nav .slick-arrow.next {
+        right: 0;
+        top: -30px;
+    }
+}
+
+.introduce .slick-history-nav .cricel{
+    width: 11px;
+    height: 11px;
+    border: 2px solid #ed1c24;
+    border-radius: 100%;
+    margin: auto;
+    transition: .2s;
+}
+
+.introduce .slick-history-nav .year{
+    font-size: 14px;
+    color: #fff;
+    background: #dedede;
+    display: inline-block;
+    padding: 7px 20px;
+    border-radius: 100px;
+    margin-top: 12px;
+    transition: .3s;
+}
+
+.introduce .w-fit-content{
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
+}
+
+.introduce .w-fit-content:hover .cricel{
+    background: #111;
+    border: none;
+}
+
+.introduce .w-fit-content:hover .year{
+    background: #ed1c24;
+}
+
+.introduce .slick-current .w-fit-content .cricel{
+    background: #111;
+    border: none;
+}
+
+.introduce .slick-current .w-fit-content .year{
+    background: #ed1c24;
+}

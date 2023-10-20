@@ -1,0 +1,83 @@
+/*project-by-group*/
+.project-by-group .btn-customize{
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding: .375rem .75rem;
+    margin: 5px 15px;
+}
+
+.project-by-group .btn-customize:hover{
+    background-color: #C0504E;
+    color: #ffffff;
+}
+
+.project-by-group .btn-customize.active{
+    background-color: #C0504E;
+    color: #ffffff;
+}
+
+/*list*/
+.list .item .code {
+    background-color: white;
+    opacity: 0.6;
+    bottom: 0;
+}
+
+.list .item:hover .code {
+    animation: fadeInDown 0.5s ease-in both;
+}
+
+.list .item .description {
+    opacity: 0.6;
+    bottom: 0;
+    display: none;
+}
+
+.list .item:hover .description {
+    opacity: 0.6;
+    display: block;
+}
+.list .item .description .title {
+    color: #000000;
+}
+
+.list .item .description .content-des {
+    font-weight: 700;
+    text-align: right;
+}
+
+.list .item .description .description-link a{
+    color: black;
+}
+.list .item .description .description-link:hover a{
+    color: white;
+    text-decoration: none;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    from {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        opacity: 0.6;
+        -webkit-transform: none;
+        transform: none;
+    }
+}

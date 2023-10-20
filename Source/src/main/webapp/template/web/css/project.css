@@ -1,0 +1,33 @@
+/*project*/
+.project .title {
+    font-size: 2em;
+}
+
+.project .title .title-first {
+    color: #666666;
+}
+
+.project .title .title-second {
+    color: #a71e22;
+}
+
+.project .description {
+    color: #666666;
+    font-size: 0.8em;
+}
+
+.project .image .caption {
+    opacity: 0.8;
+    bottom: 0;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.project .image .caption {
+    display: block;
+    bottom: 0;
+}
+
+.project .image .caption p{
+    font-size: 1.5em;
+}

@@ -1,0 +1,118 @@
+.Search-catalogue .select-ratio{
+    background-color: #F1F1F1;
+    border: solid 1px #D7D7D7;
+}
+.Search-catalogue .select-ratio textarea:focus, input:focus{
+    outline: none;
+}
+.Search-catalogue .select-ratio .form-text{
+    border: solid 1px #CCCCCC;
+    font-size: 0.8em;
+    font-weight: 600;
+    line-height: 18px;
+}
+.Search-catalogue .select-ratio .form-text:focus{
+    border: solid 1px #C0504E;
+    background: #F6EAEA;
+}
+.Search-catalogue .select-ratio .position-relative i.position-absolute{
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.8em;
+}
+
+.Search-catalogue .check-box{
+    font-size: 0.82em;
+    font-weight: bolder;
+    color: #696969;
+    
+}
+.Search-catalogue .check-box b{
+    color: #ffffff;
+    background-color: #787878;
+    font-size: 0.7em;
+    border-radius: 10px;;
+}
+.Search-catalogue .search{
+    width: calc(100% - 30px);
+}
+.Search-catalogue .search div{
+    background-color: #C0504E;
+    color: #ffffff;
+    border-radius: 20px;
+    font-weight: 600;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 0.8em;
+}
+.Search-catalogue .group-image{
+    font-size: 0.88em;;
+}
+.Search-catalogue .group-image .search-web img + div{
+    color: #C0504E;
+    font-size: 1.2em;
+}
+/* input[type="checkbox"]{
+    height: 20px;
+    width: 20px; 
+    outline: solid 1px#CCCCCC;
+    outline-offset: -1px;
+    box-shadow: 0 0 3px 0 #ddd;
+} */
+.custom-checkbox .custom-control-input {
+    /* outline: none;
+    background-color: #ffffff; */
+}
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #C0504E; 
+}
+.custom-checkbox .custom-control-input ~ .custom-control-label::before {
+    background-color: #ffffff; 
+}
+.custom-control-label:focus +  b{
+    background-color: black;
+}
+.custom-control-label::before, .custom-control-label::after {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: solid 1px #ddd;
+    border-radius: 4px;
+}
+.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+    /* box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25) */
+   
+}
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem #F1F1F1
+
+}
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+    /* background-color: #C8FFC8;  */
+    
+}
+@media (min-width: 992px){
+    .Search-catalogue .select-ratio{
+        /* min-height: 450px; */
+        max-height: 650px;
+    }
+}
+@media (max-width: 991px){
+    .Search-catalogue .select-ratio{
+        max-height: 1100px;
+        min-height: 600px;
+    }
+}
+@media (min-width: 768px){
+    .Search-catalogue .search{
+        bottom: 30px;
+        position: absolute;
+    }
+}
+@media (max-width: 767px){
+    .Search-catalogue  .search{
+        bottom: 30px;
+    }
+    .Search-catalogue .select-ratio{
+        min-height: 350px;
+    }
+}

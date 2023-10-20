@@ -1,0 +1,88 @@
+/*body*/
+/*post-item*/
+.post-item .name {
+    color: #C0504E;
+}
+
+.post-item .day {
+    color: #c9c9c9;
+    font-size: 12px;
+}
+
+.post-item .title {
+    color: black;
+    font-size: 1.2em;
+}
+
+.post-item .title:hover {
+    color: #C0504E;
+    text-decoration: none;
+}
+
+.post-item .image .caption {
+    background-color: rgba(169, 49, 51, 0.5);
+    opacity: 0.8;
+    bottom: 0;
+}
+
+.post-item .image .caption .description-link{
+    opacity: 1;
+}
+
+.post-item .image .caption .description-link a{
+    color: white;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.post-item .image .caption .description-link:hover{
+    background-color: #ffffff;
+}
+
+.post-item .image .caption .description-link:hover a{
+    color: black;
+    text-decoration: none;
+}
+
+.post-item .image .caption {
+    display: none;
+    /*animation: fadeInDown 0.5s ease-in both;*/
+}
+
+.post-item .image:hover .caption {
+    display: block;
+    animation: fadeInUp 0.5s ease-in both;
+}
+
+.post-item .share .text {
+    color: #c9c9c9;
+    font-size: 12px;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    from {
+        opacity: 0.8;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        opacity: 0.8;
+        -webkit-transform: none;
+        transform: none;
+    }
+}

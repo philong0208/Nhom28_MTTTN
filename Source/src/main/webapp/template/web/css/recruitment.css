@@ -1,0 +1,63 @@
+/*recruitment*/
+/*filter*/
+.filter .search {
+    border-radius: 20px;
+    background-color: #C0504E;
+    color: #ffffff;
+}
+
+.filter .icon {
+    border-radius: 50%;
+}
+
+.filter .icon:hover {
+    background-color: #C0504E;
+    color: #ffffff;
+}
+
+/*list*/
+/*item*/
+.item .title {
+    font-size: 1.7rem;
+}
+
+.item .type {
+    color: #94999a;
+}
+
+.item .description {
+    color: #94999a;
+}
+
+.item .link {
+    color: #C0504E;
+}
+
+.item .location {
+    color: #94999a;
+}
+
+.item .date {
+    color: #94999a;
+}
+
+.item .icon {
+    color: #C0504E;
+}
+
+.item .work-type {
+    background-color: #C0504E;
+    color: #ffffff;
+}
+select.decorated option:hover {
+    box-shadow: 0 0 10px 100px #35a818 inset;
+}
+/* option:hover, option:active, option:checked{
+    background-color:#C0504E;
+    color: #ffffff;
+}
+select option:checked {
+    background: linear-gradient(#C0504E, #C0504E);
+    background-color: #C0504E !important; /* for IE */
+    /* color: #ffffff !important;
+} */

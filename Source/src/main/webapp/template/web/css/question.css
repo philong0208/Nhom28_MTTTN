@@ -1,0 +1,177 @@
+@media (min-width: 768px){
+  
+    .question .banner{
+        max-height: 450px;
+        /* margin-bottom: -215px */
+    }
+    .question .banner .container-img img{
+        width: 100%;
+        bottom: 0;
+    }
+    .question .container .larger-text{
+        font-size: 2.5em;
+    }
+    /* .question .container .small-text{
+        font-size: 0.95em;
+    } */
+    .question .banner .container-img{
+        padding-top: calc(10% + 200px);
+    }
+    .question .container .title-question{
+        max-width: 800px;
+    }
+    .question  .tab-select{
+        padding: 15px 10px;
+        font-size: 0.75em;
+    }
+}
+@media (max-width: 767px){
+    .question .container .larger-text{
+        font-size: 1.5em;
+    }
+    /* .question .container .small-text{
+        font-size: 0.8em;
+    } */
+    .question .banner{
+        min-height: 150px;
+        /* margin-bottom: calc(-40% + 80px); */
+    }
+    .question .banner .container-img img{
+        top: 0;
+        left: 0;
+    }
+    .question .banner .container-img{
+        padding-top: calc( 30% + 260px);
+    }
+    .question .container .title-question{
+        max-width: auto;
+    }
+    .question  .tab-select{
+        padding: 10px 0px;
+        max-height: 100px;
+        font-size: 0.54em;
+    }
+    .question  .tab-select img{
+        width: 45px;
+        /* height: 50px; */
+    }
+}
+@media (max-width: 991px){
+    .g-recaptcha {
+        transform:scale(0.77);
+        -webkit-transform:scale(0.77);
+        transform-origin:0 0;
+        -webkit-transform-origin:0 0;  
+    }
+}
+.question{
+    background-color: #F6F8FD;
+}
+.question .banner{
+    overflow: hidden;  
+}
+.question .background-form .form-text{
+    border: solid 1px #CCCCCC;
+    font-size: 0.97em;
+    line-height: 18px;
+}
+.question .background-form .form-text:focus{
+    border: solid 1px #C0504E;
+    background: #F6EAEA;
+}
+.question .background-form .question-info-map{
+    padding-left: 1em;
+    border-bottom: solid 2px #EAEAEA;
+}
+
+.question .background-form .buttonCustomer{
+    background-color: #C0504E;
+    border-radius: 1.3em;
+    font-size: 1.15em;
+}
+.question .background-form textarea.form-text{
+    min-height: 90px;
+}
+.question .background-form textarea:focus, input:focus{
+    outline: none;
+}
+.question .banner .container-img{
+    background-color: black;
+    /* padding-top: 25%; */
+}
+.question .banner .container-img img{
+    display: block;
+    opacity: 0.4
+}
+.question .container .title-question{
+    z-index: 2;
+}
+.question .container .title-question .envelope{
+    background-color: #3A98C7;
+}
+.question .container .title-question .telephone{
+    background-color: #E02D6D;
+}
+.question .container .title-question .comment{
+    background-color: #75BC50;
+}
+.question .container .larger-text{
+    font-weight: 500;
+}
+.question .title-question .group_input{
+    /* border-radius: 10px; */
+    /* background-color: blue; */
+    height: 50px;;
+}
+.question .title-question .group_input span{
+    background-color: #EEEEEE;
+    width: 60px;
+    /* margin-top: 1px; */
+    height: 50px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: solid 1px #CCCCCC;
+}
+.question .title-question .group_input input{
+    height: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+}
+.question .background-form textarea:focus, input:focus{
+    outline: none;
+}
+.question .tab-select{
+  
+    
+    width: 100%;
+}
+.question a.nav-item{
+    border: solid 1px #dddddd;
+    border-radius: 4px;
+    color: black;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border: solid 1px #C0504E;
+    border-radius: 4px;
+    color: #C0504E;
+}
+.question .nav.nav-tabs{
+    border: none;
+}
+.question .nav{
+    font-size: 0.6em;
+}
+.question .content{
+    background-color: #ffffff;
+    border: solid 1px #dddddd;
+    border-radius: 8px;
+}
+.question .control-collapse{
+    border-bottom: solid 1px #dddddd;
+    color: gray;
+    font-size: 0.9em;
+}
+.question .control{
+    color: #C0504E;
+}

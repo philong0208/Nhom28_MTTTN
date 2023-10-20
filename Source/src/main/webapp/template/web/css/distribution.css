@@ -1,0 +1,177 @@
+.distribution{
+    height: 1000px;
+    background-color: blueviolet;
+}
+.distribution .region{
+    max-width: 400px;
+    /* height: 100vh; */
+    /* bottom: 0; */
+}
+.distribution .region .group-region{
+    width: 100%;
+}
+.distribution .region .check-region{
+    background-color: #C0504E;
+}
+.distribution textarea:focus, input:focus{
+    outline: none;
+}
+.distribution .region .check-region .group-input input{
+    background-color: #C0504E;
+    border: none;
+    color: #b8b3b3;
+    font-size: 0.85em;
+    border-bottom: solid 1px #b8b3b3;
+    width: 80%;
+}
+.distribution .region .check-region .group-input .circle-img{
+    background-color: #812022;
+}
+.distribution .region .list-region{
+    background-color: #ffffff;
+    /* height: 800px; */
+    overflow: auto;
+    width: 100%;
+}
+.distribution .show-hide-btn{
+    cursor: pointer;
+    background-color: #cec2c2;
+}
+.distribution .region .list-region .search-region div{
+    color: #ffffff;
+    font-size: 0.85em;
+    width: 20%;
+    border-radius: 20px;
+    background-color: #C0504E;
+}
+.distribution .nav-tabs .nav-link {
+    border: none;
+
+}
+.distribution .nav-tabs{
+    border-bottom: none;
+}
+
+.distribution .list-store li{
+    border-radius: 5px;
+    padding: 5px 14px;
+    margin: 12px 0;
+    list-style: none;
+    cursor: pointer;
+}
+
+.list-region .tab-content .list-store li.item.active {
+    background: #ebebeb;
+}
+
+.distribution .list-store li.item:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.distribution .list-store a {
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.province{
+    cursor: pointer;
+}
+
+.distribution .region .list-region .form-text{
+    border: solid 1px #CCCCCC;
+    font-size: 0.85em;
+    width: 70%;
+    border-radius: 20px;;
+    line-height: 18px;
+}
+.distribution .region .list-region .form-text:focus{
+    border: solid 1px #C0504E;
+    background: #F6EAEA;
+}
+.distribution .region .check-region .group-input .img{
+    width: 29px;
+    height: 29px;
+    background-image: url("../images/map-directions-1x.png");
+    background-position: 75px 147px;
+}
+.map-container{
+    overflow:hidden;
+    position:relative;
+    height:0;
+}
+.show-search{
+    animation: fadeInLeft 0.5s ease-in both;
+    /* display: inline; */
+}
+.hide-search{
+    animation: fadeInRightHide 0.5s ease-in both;
+    /* display: inline; */
+}
+.map-container iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+::placeholder {
+    color: #b8b3b3;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #b8b3b3;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #b8b3b3;
+}
+@keyframes fadeInLeft {
+    from {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+    to {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes fadeInRightHide {
+    from {
+        -webkit-transform: none;
+        transform: none;
+    }
+    to {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+
+    }
+}
+@media (max-width: 400px){
+    .distribution .region .list-region{
+        margin-top: 50vh;
+    }
+    .distribution .show-hide-btn{
+        visibility: hidden;
+    }
+    /* body{
+        overflow: hidden;
+    } */
+    .map-container{
+        padding-bottom: 1151px;
+    }
+    .distribution .region .list-region{
+        height: 800px;
+    }
+}
+@media (min-width: 401px)
+{
+    .map-container{
+        padding-bottom: calc(1300px - 30% );
+    }
+    .distribution .region .list-region{
+        height: 895px;
+    }
+}
