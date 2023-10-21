@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <c:choose>
         <c:when test="${meta== null || empty meta}">
-    <title><dec:title default="Gạch men - italianhome" /></title>
+    <title><dec:title default="Light novel" /></title>
         </c:when>
         <c:otherwise>
      <title>${meta.ogTitle}</title>
