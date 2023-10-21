@@ -76,6 +76,20 @@
                 </div>
             </c:forEach>
         </div>
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-9">
+                <form action="your_comment_post_url" method="post">
+                    <div>
+                        <label for="content">Nội dung bình luận:</label>
+                    </div>
+                    <textarea id="content" name="content" rows="4" cols="50"></textarea><br>
+                    </br>
+                    <input type="submit" value="Gửi bình luận">
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </body>
