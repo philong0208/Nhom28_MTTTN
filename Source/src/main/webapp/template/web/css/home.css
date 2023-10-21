@@ -601,3 +601,8 @@ a:not([href]):not([tabindex]), .text-decoration-non {
     max-height: 250px;
     max-width: 250px;
 }
+.comment {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+}

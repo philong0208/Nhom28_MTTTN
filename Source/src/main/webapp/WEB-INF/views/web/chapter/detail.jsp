@@ -68,6 +68,14 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <c:forEach items="${comments}" var="comment">
+                <div class="comment">
+                    <p><strong>${comment.userFullName}</strong> - ${comment.createdDate}</p>
+                    <p>${comment.content}</p>
+                </div>
+            </c:forEach>
+        </div>
     </div>
 </div>
 </body>
