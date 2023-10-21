@@ -30,6 +30,14 @@ public class UserEntity extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false))
     private List<RoleEntity> roles = new ArrayList<>();
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CommentEntity> comments = new ArrayList<>();
+    public List<CommentEntity> getComments() {
+        return comments;
+    }
+    public void setComments(List<CommentEntity> comments) {
+        this.comments = comments;
+    }
 
     public String getUserName() {
         return userName;

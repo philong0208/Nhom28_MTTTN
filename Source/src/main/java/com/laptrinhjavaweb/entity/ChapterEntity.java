@@ -7,6 +7,17 @@ import java.util.List;
 @Entity
 @Table(name = "chapter")
 public class ChapterEntity extends BaseEntity {
+    @OneToMany(mappedBy="chapter", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CommentEntity> comments = new ArrayList<>();
+
+    public List<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentEntity> comments) {
+        this.comments = comments;
+    }
+
     @Column(nullable = false)
     private boolean approved;
     public boolean isApproved() {
