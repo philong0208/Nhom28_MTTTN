@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 @Controller(value = "chapterControllerOfWeb")
 public class ChapterController {
     @Autowired
     private IChapterService chapterService;
+    @Autowired
+    private IPostService postService;
     @RequestMapping(value = "/chuong/{id}", method = RequestMethod.GET)
     public ModelAndView post(@PathVariable("id") Long postId) {
         ModelAndView mav = new ModelAndView("web/post/detail");
@@ -27,19 +31,20 @@ public class ChapterController {
         mav.addObject(SystemConstant.MODEL, model);
         return mav;
     }
-    @RequestMapping(value = "/tin-tuc/{categorycode}/{seourl}-{id}", method = RequestMethod.GET)
-    public ModelAndView getDetail(@ModelAttribute(SystemConstant.MODEL) NewDTO model, @PathVariable("id") long id) {
-        NewDTO dto = newsService.findById(id);
-        if (dto == null) {
+    @RequestMapping(value = "/{shortTitle}/{chapterCode}-{id}", method = RequestMethod.GET)
+    public ModelAndView getDetail(@ModelAttribute(SystemConstant.MODEL) ChapterDTO model,
+                                  @PathVariable("shortTitle") String shortTitle,
+                                  @PathVariable("id") long id) {
+        ChapterDTO chapterDTO = chapterService.findById(id);
+        if (chapterDTO == null) {
             return new ModelAndView("redirect:/" + "notfound");
         }
-        ModelAndView mav = new ModelAndView("web/blog/detail");
-        mav.addObject("categories", newsCategoryService.getCategoriesByCode());
-        NewCategoryDTO modelCategory = newsCategoryService.findById(dto.getNewCategoryId());
-        if (modelCategory != null) {
-            mav.addObject("categoryCode", modelCategory.getCode());
-        }
-        mav.addObject(SystemConstant.MODEL, dto);
+        ModelAndView mav = new ModelAndView("web/chapter/detail");
+        PostDTO postDTO = postService.findById(109L);
+        List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitle(postDTO.getShortTitle());
+        mav.addObject("chapterList", chapterList);
+        mav.addObject("thisChapter", chapterDTO.getShortTitle());
+        mav.addObject(SystemConstant.MODEL, chapterDTO);
         return mav;
     }
 }

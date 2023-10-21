@@ -15,4 +15,5 @@ public interface IChapterService {
     ChapterDTO findById(long id);
     ChapterDTO update(ChapterDTO chapterDTO);
     void deleteChapter(long[] ids);
+    List<ChapterDTO> findByPost_ShortTitle(String shortTitle);
 }

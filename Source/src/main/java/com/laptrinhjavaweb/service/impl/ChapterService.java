@@ -121,6 +121,10 @@ public class ChapterService implements IChapterService {
             chapterRepository.deleteById(item);
         }
     }
+    @Override
+    public List<ChapterDTO> findByPost_ShortTitle(String shortTitle) {
+        return chapterRepository.findByPost_ShortTitle(shortTitle).stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
+    }
 
     @Override
     public ChapterDTO findById(long id) {
