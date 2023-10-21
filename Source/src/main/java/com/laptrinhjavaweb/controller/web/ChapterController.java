@@ -27,4 +27,19 @@ public class ChapterController {
         mav.addObject(SystemConstant.MODEL, model);
         return mav;
     }
+    @RequestMapping(value = "/tin-tuc/{categorycode}/{seourl}-{id}", method = RequestMethod.GET)
+    public ModelAndView getDetail(@ModelAttribute(SystemConstant.MODEL) NewDTO model, @PathVariable("id") long id) {
+        NewDTO dto = newsService.findById(id);
+        if (dto == null) {
+            return new ModelAndView("redirect:/" + "notfound");
+        }
+        ModelAndView mav = new ModelAndView("web/blog/detail");
+        mav.addObject("categories", newsCategoryService.getCategoriesByCode());
+        NewCategoryDTO modelCategory = newsCategoryService.findById(dto.getNewCategoryId());
+        if (modelCategory != null) {
+            mav.addObject("categoryCode", modelCategory.getCode());
+        }
+        mav.addObject(SystemConstant.MODEL, dto);
+        return mav;
+    }
 }
