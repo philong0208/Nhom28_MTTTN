@@ -66,7 +66,10 @@ public class PostController {
         mav.addObject(SystemConstant.MODEL_SEO_PAGE, seoFriendlyUrlSvc.GetSeoPage());*/
         return mav;
     }
-
+    @RequestMapping(value = "/error/404", method = RequestMethod.GET)
+    public ModelAndView errorNotFoundPage() {
+        return new ModelAndView("web/errors/404");
+    }
 //    @RequestMapping(value = "/tieu-thuyet", method = RequestMethod.GET)
 //    public ModelAndView productList(@ModelAttribute("searchModel") ProductCategoryDTO searchModel, HttpServletRequest request) {
 //        ModelAndView mav = new ModelAndView("web/product/list");
