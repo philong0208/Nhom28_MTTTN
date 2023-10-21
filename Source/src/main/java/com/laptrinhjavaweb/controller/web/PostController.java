@@ -2,9 +2,11 @@ package com.laptrinhjavaweb.controller.web;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.CategoryDTO;
+import com.laptrinhjavaweb.dto.ChapterDTO;
 import com.laptrinhjavaweb.dto.PostDTO;
 import com.laptrinhjavaweb.entity.PostEntity;
 import com.laptrinhjavaweb.repository.PostRepository;
+import com.laptrinhjavaweb.service.IChapterService;
 import com.laptrinhjavaweb.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -17,12 +19,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
 
 @Controller(value = "postControllerOfWeb")
 public class PostController {
     @Autowired
     private IPostService postService;
+    @Autowired
+    private IChapterService chapterService;
 
     @RequestMapping(value = "/tieu-thuyet/{id}", method = RequestMethod.GET)
     public ModelAndView post(@PathVariable("id") Long postId) {
@@ -57,6 +62,8 @@ public class PostController {
         mav.addObject("images", images);
         mav.addObject("product", postDTO);
         mav.addObject("relatedProducts", postService.findAll("", new PageRequest(0, 20)));
+        List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitle(postDTO.getShortTitle());
+        mav.addObject("chapterList", chapterList);
         /*SeoFriendlyUrlService seoFriendlyUrlSvc = new SeoFriendlyUrlService();
         String ogTitle = productDTO.getOgTitle();
         if (ogTitle == null || ogTitle.length() == 0) {

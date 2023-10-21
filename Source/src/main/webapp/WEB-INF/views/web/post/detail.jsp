@@ -110,7 +110,29 @@
 
     </div>
 </div>
+<div class="container py-4">
+    <div class="list-group">
+        <c:forEach var="item" items="${chapterList}">
+            <%--<c:if test="${thisChapter == item.shortTitle}">
+                <a href="<c:url value='/tin-tuc/${item.shortTitle}'/>"
+                   class="list-group-item list-group-item-action list-group-item-light active">
+                        &lt;%&ndash;                                <i class="fas fa-home"></i>&ndash;%&gt;
+                        ${item.shortTitle}
+                        &lt;%&ndash;                                <span class="badge badge-primary badge-pill"></span>&ndash;%&gt;
+                </a>
+            </c:if>--%>
+            <%--<c:if test="${thisChapter != item.shortTitle}">--%>
+                <a href="<c:url value='/tin-tuc/${item.shortTitle}'/>"
+                   class="list-group-item list-group-item-action list-group-item-light">
+                        <%--                                <i class="fas fa-home"></i>--%>
+                        ${item.shortTitle}
+                        <%--                                <span class="badge badge-primary badge-pill"></span>--%>
+                </a>
+            <%--</c:if>--%>
 
+        </c:forEach>
+    </div>
+</div>
 <!-- Related product -->
 <div class="py-4 px-1 w-100 seenGroup">
     <div class="container">
