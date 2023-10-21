@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--menu--%>
-<%--    <div id="backdrop" onclick="closeNav()"></div>
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="<c:url value="/trang-chu"/>">Trang chủ</a>
-        <a href="<c:url value="/gioi-thieu"/>">Giới thiệu</a>
-        <div class="d-flex align-items-center justify-content-between pr-3 cursor-pointer item" data-toggle="collapse" data-target="#collapseOne"
-             aria-expanded="false" aria-controls="collapseOne"><a href="/san-pham" >Sản Phẩm </a><i id="icon-collapseOne" class="fas fa-plus"></i></div>
-        <div id="collapseOne" class="collapse ml-2 categories">
-        </div>
-        <a href="<c:url value="/tuyen-dung"/>">Tuyển dụng</a>
-        <a href="<c:url value="/tin-tuc"/>"> Tin Tức</a>
-        <a href="<c:url value="/lien-he"/>"> Liên hệ</a>
-    </div>--%>
+<div id="backdrop" onclick="closeNav()"></div>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="<c:url value="/trang-chu"/>">Trang chủ</a>
+    <a href="<c:url value="/gioi-thieu"/>">Giới thiệu</a>
+    <div class="d-flex align-items-center justify-content-between pr-3 cursor-pointer item" data-toggle="collapse" data-target="#collapseOne"
+         aria-expanded="false" aria-controls="collapseOne"><a href="/san-pham" >Tiểu thuyết </a><i id="icon-collapseOne" class="fas fa-plus"></i></div>
+    <div id="collapseOne" class="collapse ml-2 categories">
+    </div>
+    <a href="<c:url value="/tuyen-dung"/>">Thể loại</a>
+    <a href="<c:url value="/tin-tuc"/>">Tác giả</a>
+    <a href="<c:url value="/lien-he"/>">Nhóm dịch</a>
+</div>
 <%--menu--%>
 <div class="top-header d-none d-lg-block">
     <div class="container h-100">
         <div class="row justify-content-end h-100">
             <div class="col-4 h-100">
                 <div class="row h-100 align-items-center">
-                    <a href="tel:02838639377" class="m-0 px-4 px-2 ml-auto text-white"><i class="fa-solid fa-phone"></i> Hotline: 028 - 38639377</a>
+                    <a href="tel:02838639377" class="m-0 px-4 px-2 ml-auto text-white"><i class="fa-solid fa-phone"></i> Hotline: 028 - 999999</a>
                 </div>
             </div>
             <div class="col-2 h-100">
@@ -48,7 +48,7 @@
             <a class="navbar-logo m-auto" href="<c:url value="/"/>">
                 <c:set var="logo" value="/repository/logo.png"/>
                 <img src="${logo}" class="w-100">
-                <p class="text-center mb-0 text-dark" style="font-size: 8px;font-weight: bold;">Since 2003</p>
+                <p class="text-center mb-0 text-dark" style="font-size: 8px;font-weight: bold;">Light novel</p>
             </a>
         </nav>
     </div>
