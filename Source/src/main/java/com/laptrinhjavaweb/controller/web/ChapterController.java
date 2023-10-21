@@ -2,8 +2,10 @@ package com.laptrinhjavaweb.controller.web;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.ChapterDTO;
+import com.laptrinhjavaweb.dto.CommentDTO;
 import com.laptrinhjavaweb.dto.PostDTO;
 import com.laptrinhjavaweb.service.IChapterService;
+import com.laptrinhjavaweb.service.ICommentService;
 import com.laptrinhjavaweb.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,8 @@ public class ChapterController {
     private IChapterService chapterService;
     @Autowired
     private IPostService postService;
+    @Autowired
+    private ICommentService commentService;
     @RequestMapping(value = "/chuong/{id}", method = RequestMethod.GET)
     public ModelAndView post(@PathVariable("id") Long postId) {
         ModelAndView mav = new ModelAndView("web/post/detail");
@@ -45,6 +49,7 @@ public class ChapterController {
         mav.addObject("chapterList", chapterList);
         mav.addObject("thisChapter", chapterDTO.getShortTitle());
         mav.addObject(SystemConstant.MODEL, chapterDTO);
+        List<CommentDTO> comments = commentService.findByChapter_Id(id);
         return mav;
     }
 }

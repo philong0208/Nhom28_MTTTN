@@ -13,4 +13,28 @@ public class CommentEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public ChapterEntity getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(ChapterEntity chapter) {
+        this.chapter = chapter;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 }
