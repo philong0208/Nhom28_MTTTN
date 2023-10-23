@@ -9,6 +9,16 @@ import java.util.Map;
 
 public interface IPostService {
     List<PostDTO> findAll(String shortTitle, Pageable pageable);
+
+    List<PostDTO> filter(String shortTitle,
+                         String tagCode,
+                         String authorCode,
+                         Pageable pageable);
+
+    int getTotalFilterItems(String shortTitle,
+                            String tagCode,
+                            String authorCode);
+
     int getTotalItems(String shortTitle);
     PostDTO insert(PostDTO postDTO);
     PostDTO findById(long id);

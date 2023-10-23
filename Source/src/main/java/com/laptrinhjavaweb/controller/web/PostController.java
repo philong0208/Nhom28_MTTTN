@@ -59,12 +59,21 @@ public class PostController {
     @RequestMapping(value = "/tieu-thuyet", method = RequestMethod.GET)
     public ModelAndView productList(@ModelAttribute("model") PostDTO model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("web/post/list");
-        model.setMaxPageItems(16);
+        model.setMaxPageItems(40);
 
         Pageable pageable = new PageRequest(model.getPage() - 1, model.getMaxPageItems());
-        model.setListResult(postService.findAll(Optional.ofNullable(model.getShortTitle()).orElse(""), pageable));
-        model.setTotalItems(postService.getTotalItems(Optional.ofNullable(model.getShortTitle()).orElse("")));
-        model.setTotalPages((int) Math.ceil((double) model.getTotalItems() / model.getMaxPageItems()));
+        List<PostDTO> filter = postService.filter(
+                Optional.ofNullable(model.getShortTitle()).orElse(""),
+                Optional.ofNullable(model.getTagNameStr()).orElse(""),
+                Optional.ofNullable(model.getAuthorNameStr()).orElse(""),
+                pageable);
+        model.setListResult(filter);
+        int totalFilterItems = postService.getTotalFilterItems(
+                Optional.ofNullable(model.getShortTitle()).orElse(""),
+                Optional.ofNullable(model.getTagNameStr()).orElse(""),
+                Optional.ofNullable(model.getAuthorNameStr()).orElse(""));
+        model.setTotalItems(totalFilterItems);
+        model.setTotalPages((int) Math.ceil((double) totalFilterItems / model.getMaxPageItems()));
 
         // combo box
         mav.addObject("tags", tagService.getTags());

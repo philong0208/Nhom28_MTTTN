@@ -14,6 +14,12 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByMenuConfigurationOrderByMenuConfigurationNumber(String value);
     PostEntity findBySeoUrl(String seoUrl);
     Page<PostEntity> findByShortTitleContainingIgnoreCase(String shortTitle, Pageable pageable);
+    Page<PostEntity> findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains
+            (String shortTitle, String tagCode, String authorCode, Pageable pageable);
+
+    Page<PostEntity> findByShortTitleContainsIgnoreCaseAndTags_CodeContains(String shortTitle, String code, Pageable pageable);
+    long countByShortTitleContainingIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains
+            (String shortTitle, String tagCode, String authorCode);
     Page<PostEntity> findByShortTitleContainingIgnoreCaseAndCreatedBy(String shortTitle, String createdBy, Pageable pageable);
     long countByShortTitleContainingIgnoreCase(String shortTitle);
     long countByShortTitleContainingIgnoreCaseAndCreatedBy(String shortTitle, String createdBy);

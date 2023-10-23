@@ -57,6 +57,40 @@ public class PostService implements IPostService {
                 .getContent().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
     @Override
+    public List<PostDTO> filter(String shortTitle,
+                                String tagCode,
+                                String authorCode,
+                                Pageable pageable) {
+        PageRequest sort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by("modifiedDate").descending());
+        /*Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains(
+                shortTitle, tagCode, authorCode, sort);*/
+        List<PostEntity> uniqueContent = new ArrayList<>(postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains(
+                        shortTitle, tagCode, authorCode, sort).getContent().stream()
+                .collect(Collectors.toMap(PostEntity::getId, post -> post, (existing, replacement) -> existing))
+                .values());
+        setTotals(uniqueContent.size());
+        return uniqueContent.stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+    }
+    private static int totals = 0;
+
+    public static int getTotals() {
+        return totals;
+    }
+
+    public static void setTotals(int totals) {
+        PostService.totals = totals;
+    }
+
+    @Override
+    public int getTotalFilterItems(String shortTitle,
+                                   String tagCode,
+                                   String authorCode) {
+        /*int result = (int) postRepository.countByShortTitleContainingIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains(
+                shortTitle, tagCode, authorCode);*/
+        return getTotals();
+    }
+    @Override
     public int getTotalItems(String shortTitle) {
         return SecurityUtils.isAdmin() ? (int) postRepository.countByShortTitleContainingIgnoreCase(shortTitle)
                 : (int) postRepository.countByShortTitleContainingIgnoreCaseAndCreatedBy(shortTitle,
