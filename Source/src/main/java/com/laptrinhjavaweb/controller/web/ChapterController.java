@@ -28,16 +28,18 @@ public class ChapterController {
     private IPostService postService;
     @Autowired
     private ICommentService commentService;
-    @RequestMapping(value = "/chuong/{id}", method = RequestMethod.GET)
-    public ModelAndView post(@PathVariable("id") Long postId) {
-        ModelAndView mav = new ModelAndView("web/post/detail");
-        ChapterDTO model = chapterService.findById(postId);
-        mav.addObject(SystemConstant.MODEL, model);
-        return mav;
-    }
-    @RequestMapping(value = "/{shortTitle}/{chapterCode}-{id}", method = RequestMethod.GET)
+//    @RequestMapping(value = "/chuong/{id}", method = RequestMethod.GET)
+//    public ModelAndView post(@PathVariable("id") Long postId) {
+//        ModelAndView mav = new ModelAndView("web/post/detail");
+//        ChapterDTO model = chapterService.findById(postId);
+//        mav.addObject(SystemConstant.MODEL, model);
+//        return mav;
+//    }
+    @RequestMapping(value = "/tieu-thuyet/{shortTitle}-{pId}/{chapterCode}-{id}", method = RequestMethod.GET)
     public ModelAndView getDetail(@ModelAttribute(SystemConstant.MODEL) ChapterDTO model,
                                   @PathVariable("shortTitle") String shortTitle,
+                                  @PathVariable("pId") Long pId,
+                                  @PathVariable("chapterCode") String chapterCode,
                                   @PathVariable("id") long id) {
         ChapterDTO chapterDTO = chapterService.findById(id);
         if (chapterDTO == null) {

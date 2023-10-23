@@ -117,7 +117,7 @@
                 </a>
             </c:if>--%>
             <%--<c:if test="${thisChapter != item.shortTitle}">--%>
-                <a href="<c:url value='/tin-tuc/${item.shortTitle}'/>"
+                <a href="<c:url value='/tieu-thuyet/${product.shortTitle}-${product.id}/${item.shortTitle}-${item.id}'/>"
                    class="list-group-item list-group-item-action list-group-item-light">
                         <%--                                <i class="fas fa-home"></i>--%>
                         ${item.shortTitle}
