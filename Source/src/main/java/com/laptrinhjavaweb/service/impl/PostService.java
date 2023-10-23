@@ -263,16 +263,16 @@ public class PostService implements IPostService {
 
     @Override
     public List<PostDTO> top6Latest() {
-        return new ArrayList<>();
+        return postRepository.findTop6ByOrderByCreatedDateDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
 
     @Override
     public List<PostDTO> top6MostView() {
-        return new ArrayList<>();
+        return postRepository.findTop6ByOrderByViewDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
 
     @Override
     public List<PostDTO> top6MostRate() {
-        return new ArrayList<>();
+        return postRepository.findTop6ByOrderByScoreDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
 }

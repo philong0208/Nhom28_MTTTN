@@ -47,13 +47,13 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("web/home");
 		// Top 6 mới nhất
 		List<PostDTO> top6Latest = postService.top6Latest();
-		mav.addObject("latest", postService.findAll("", PageRequest.of(0, 6)));
+		mav.addObject("latest", top6Latest);
 		// Top 6 xem nhiều nhất
 		List<PostDTO> top6MostView = postService.top6MostView();
-		mav.addObject("mostView", postService.findAll("", PageRequest.of(0, 6)));
+		mav.addObject("mostView", top6MostView);
 		// Top 6 đánh giá cao
 		List<PostDTO> top6MostRate = postService.top6MostRate();
-		mav.addObject("mostRate", postService.findAll("", PageRequest.of(0, 6)));
+		mav.addObject("mostRate", top6MostRate);
 		return mav;
 	}
 
