@@ -63,10 +63,23 @@ public class PostService implements IPostService {
                                 Pageable pageable) {
         PageRequest sort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
                 Sort.by("modifiedDate").descending());
-        /*Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains(
-                shortTitle, tagCode, authorCode, sort);*/
-        List<PostEntity> uniqueContent = new ArrayList<>(postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains(
-                        shortTitle, tagCode, authorCode, sort).getContent().stream()
+        Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeAndAuthors_Code(
+                shortTitle, tagCode, authorCode, sort);
+        if (tagCode.isEmpty() && authorCode.isEmpty()) {
+            result = postRepository.findByShortTitleContainingIgnoreCase(shortTitle, sort);
+        } else if (!authorCode.isEmpty() && !tagCode.isEmpty()) {
+            result = postRepository.findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCase(tagCode, authorCode, shortTitle, sort);
+        } else
+        if (authorCode.isEmpty()) {
+            result = postRepository.findByTags_CodeAndShortTitleContainingIgnoreCase(tagCode, shortTitle, sort);
+        } else
+        if (tagCode.isEmpty()) {
+            result = postRepository.findByAuthors_CodeAndShortTitleContainingIgnoreCase(authorCode, shortTitle, sort);
+        }
+
+//        Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains(
+//                shortTitle, tagCode, authorCode, sort);
+        List<PostEntity> uniqueContent = new ArrayList<>(result.getContent().stream()
                 .collect(Collectors.toMap(PostEntity::getId, post -> post, (existing, replacement) -> existing))
                 .values());
         setTotals(uniqueContent.size());
