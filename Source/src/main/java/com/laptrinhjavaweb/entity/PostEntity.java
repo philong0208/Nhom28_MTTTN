@@ -7,6 +7,22 @@ import java.util.List;
 @Entity
 @Table(name = "post")
 public class PostEntity extends BaseEntity {
+    @Column
+    private Float score;
+    public Float getScore() {
+        return score;
+    }
+    public void setScore(Float score) {
+        this.score = score;
+    }
+    @OneToMany(mappedBy="post", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<ReviewEntity> reviews = new ArrayList<>();
+    public List<ReviewEntity> getReviews() {
+        return reviews;
+    }
+    public void setReviews(List<ReviewEntity> reviews) {
+        this.reviews = reviews;
+    }
     @Column(nullable = false)
     private boolean approved;
     public boolean isApproved() {

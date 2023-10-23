@@ -32,6 +32,14 @@ public class UserEntity extends BaseEntity {
     private List<RoleEntity> roles = new ArrayList<>();
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<CommentEntity> comments = new ArrayList<>();
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<ReviewEntity> reviews = new ArrayList<>();
+    public List<ReviewEntity> getReviews() {
+        return reviews;
+    }
+    public void setReviews(List<ReviewEntity> reviews) {
+        this.reviews = reviews;
+    }
     public List<CommentEntity> getComments() {
         return comments;
     }
