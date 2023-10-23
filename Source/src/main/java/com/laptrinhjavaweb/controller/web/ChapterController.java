@@ -53,6 +53,8 @@ public class ChapterController {
         mav.addObject(SystemConstant.MODEL, chapterDTO);
         List<CommentDTO> comments = commentService.findByChapter_Id(id);
         mav.addObject("comments", comments);
+        mav.addObject("postShortTitle", postDTO.getShortTitle());
+        mav.addObject("postId", postDTO.getId());
         return mav;
     }
 }

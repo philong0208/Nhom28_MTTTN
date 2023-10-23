@@ -28,7 +28,7 @@
                 <div class="list-group">
                     <c:forEach var="item" items="${chapterList}">
                         <c:if test="${thisChapter == item.shortTitle}">
-                            <a href="<c:url value='/tin-tuc/${item.shortTitle}'/>"
+                            <a href="<c:url value='/tieu-thuyet/${postShortTitle}-${postId}/${item.shortTitle}-${item.id}'/>"
                                class="list-group-item list-group-item-action list-group-item-light active">
                                     <%--                                <i class="fas fa-home"></i>--%>
                                     ${item.shortTitle}
@@ -36,7 +36,7 @@
                             </a>
                         </c:if>
                         <c:if test="${thisChapter != item.shortTitle}">
-                            <a href="<c:url value='/tin-tuc/${item.shortTitle}'/>"
+                            <a href="<c:url value='/tieu-thuyet/${postShortTitle}-${postId}/${item.shortTitle}-${item.id}'/>"
                                class="list-group-item list-group-item-action list-group-item-light">
                                     <%--                                <i class="fas fa-home"></i>--%>
                                     ${item.shortTitle}
@@ -46,8 +46,8 @@
 
                     </c:forEach>
                 </div>
-                <iframe class="w-100 mt-3" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtygachmennhay&tabs=timeline&width=300&height=250&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"  style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                <iframe class="w-100 mt-3" src="https://www.youtube.com/embed/LagT0M5CbZE">
+                <%--<iframe class="w-100 mt-3" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtygachmennhay&tabs=timeline&width=300&height=250&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"  style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <iframe class="w-100 mt-3" src="https://www.youtube.com/embed/LagT0M5CbZE">--%>
                 </iframe>
             </div>
             <div class="col-md-9">
