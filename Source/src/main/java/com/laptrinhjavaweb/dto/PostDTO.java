@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostDTO extends AbstractDTO<PostDTO> {
+    private float score;
+    public float getScore() {
+        return score;
+    }
+    public void setScore(float score) {
+        this.score = score;
+    }
     private boolean approved;
     public boolean isApproved() {
         return approved;

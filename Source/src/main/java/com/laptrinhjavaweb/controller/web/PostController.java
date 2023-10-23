@@ -64,6 +64,7 @@ public class PostController {
         mav.addObject("relatedProducts", postService.findAll("", new PageRequest(0, 20)));
         List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitle(postDTO.getShortTitle());
         mav.addObject("chapterList", chapterList);
+
         /*SeoFriendlyUrlService seoFriendlyUrlSvc = new SeoFriendlyUrlService();
         String ogTitle = productDTO.getOgTitle();
         if (ogTitle == null || ogTitle.length() == 0) {

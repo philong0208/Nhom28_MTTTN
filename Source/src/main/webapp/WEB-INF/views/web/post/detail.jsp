@@ -133,6 +133,24 @@
         </c:forEach>
     </div>
 </div>
+<div class="container py-4">
+    <c:forEach items="${comments}" var="comment">
+        <div class="comment">
+            <p><strong>${comment.userFullName}</strong> - ${comment.createdDate}</p>
+            <p>${comment.content}</p>
+        </div>
+    </c:forEach>
+</div>
+<div class="container py-4">
+    <form action="your_comment_post_url" method="post">
+        <div>
+            <label for="content">Nội dung bình luận:</label>
+        </div>
+        <textarea id="content" name="content" rows="4" cols="50"></textarea><br>
+    </br>
+        <input type="submit" value="Gửi bình luận">
+    </form>
+</div>
 <!-- Related product -->
 <div class="py-4 px-1 w-100 seenGroup">
     <div class="container">
