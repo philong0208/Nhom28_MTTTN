@@ -8,6 +8,14 @@ import java.util.List;
 @Table(name = "post")
 public class PostEntity extends BaseEntity {
     @Column
+    private Long view;
+    public Long getView() {
+        return view;
+    }
+    public void setView(Long view) {
+        this.view = view;
+    }
+    @Column
     private Float score;
     public Float getScore() {
         return score;

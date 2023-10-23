@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostDTO extends AbstractDTO<PostDTO> {
+    private Long view;
+    public Long getView() {
+        return view;
+    }
+    public void setView(Long view) {
+        this.view = view;
+    }
     private float score;
     public float getScore() {
         return score;
