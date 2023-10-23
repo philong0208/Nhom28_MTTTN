@@ -59,9 +59,9 @@
                 <div class="col-md-6 pull-left">
                     <h2 style="font-weight: bold">Tiểu thuyết xem nhiều</h2>
                 </div>
-                <div class="col-md-6">
+                <%--<div class="col-md-6">
                     <a href="/san-pham-gach-moi" class="float-right" style="color: black">Xem thêm <i class="fas fa-arrow-right"></i></a>
-                </div>
+                </div>--%>
             </div>
         </div>
 
@@ -100,9 +100,9 @@
                     <div class="col-md-6 pull-left">
                         <h2 style="font-weight: bold">Tiểu thuyết hay nhất</h2>
                     </div>
-                    <div class="col-md-6">
+                    <%--<div class="col-md-6">
                         <a href="/san-pham-gach-moi" class="float-right" style="color: black">Xem thêm <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
 
