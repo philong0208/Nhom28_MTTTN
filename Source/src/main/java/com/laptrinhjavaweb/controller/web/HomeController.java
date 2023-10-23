@@ -45,8 +45,13 @@ public class HomeController {
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("web/home");
-		List<PostDTO> all = postService.findAll("", PageRequest.of(0, 6));
-		mav.addObject("slides", all);
+		// Top 6 mới nhất
+		List<PostDTO> latest = postService.findAll("", PageRequest.of(0, 6));
+		mav.addObject("latest", latest);
+		// Top 6 xem nhiều nhất
+		mav.addObject("mostView", latest);
+		// Top 6 đánh giá cao
+		mav.addObject("mostRate", latest);
 		return mav;
 	}
 

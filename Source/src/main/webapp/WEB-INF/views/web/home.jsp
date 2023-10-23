@@ -30,13 +30,13 @@
         <div class="cover">
             <div class="cover-carousel" id="drag-container">
                 <div id="spin-container">
-                    <c:forEach var="item" items="${slides}">
+                    <c:forEach var="item" items="${latest}">
                         <c:if test="${not empty item.thumbnail}">
                             <c:set var="image" value="/repository${item.thumbnail}"/>
-                            <%--<img src="${image}" style="cursor: pointer;" onclick="window.open('<c:url
-                                    value="/san-pham/${item.productCategoryCode}/${item.code}"/>', '_blank');">--%>
                             <img src="${image}" style="cursor: pointer;" onclick="window.open('<c:url
-                                    value="#"/>', '_blank');">
+                                    value="/tieu-thuyet/${item.shortTitle}-${item.id}"/>', '_blank');">
+                            <%--<img src="${image}" style="cursor: pointer;" onclick="window.open('<c:url
+                                    value="#"/>', '_blank');">--%>
                         </c:if>
                         <c:if test="${empty item.thumbnail}">
                             <img src="<c:url value='/template/image/default.png'/>">
@@ -57,7 +57,7 @@
         <div class="discover-header container">
             <div class="row">
                 <div class="col-md-6 pull-left">
-                    <h2 style="font-weight: bold">Bộ sưu tập mới</h2>
+                    <h2 style="font-weight: bold">Tiểu thuyết xem nhiều</h2>
                 </div>
                 <div class="col-md-6">
                     <a href="/san-pham-gach-moi" class="float-right" style="color: black">Xem thêm <i class="fas fa-arrow-right"></i></a>
@@ -67,28 +67,10 @@
 
         <div class="new-collection">
             <!-- collection item -->
-            <c:forEach var="item" items="${slides}">
-                <c:set var="imageStr" value="${item.thumbnail}"/>
-                <%--<c:set var="imageArray" value="${fn:split(imageStr, ',')}"/>--%>
-                <c:set var="imageArray" value="${fn:split(imageStr, ',')}"/>
+            <c:forEach var="item" items="${mostView}">
                 <div>
                     <div class="item w-100 position-relative" id="${item.shortTitle}">
-                        <%--<a href="<c:url value="/san-pham/${item.productCategoryCode}/${item.code}"/>"
-                           class="image-container w-100 h-100">
-                            <c:if test="${not empty item.defaultImage}">
-                                <c:set var="image" value="/repository/${item.defaultImage}"/>
-                            </c:if>
-                            <c:if test="${empty item.defaultImage}">
-                                <c:set var="image" value="/template/img/default.png"/>
-                            </c:if>
-
-                            <img class="card-img-top h-100 img-target" src="${image}" alt="">
-
-                            <c:if test="${not empty item.image && fn:length(imageArray) > 1}">
-                                <img class="card-img-top h-100 img-lv2" src="/repository/${imageArray[1]}" alt="">
-                            </c:if>
-                        </a>--%>
-                        <a href="<c:url value="#"/>"
+                        <a href="<c:url value="/tieu-thuyet/${item.shortTitle}-${item.id}"/>"
                            class="image-container w-100 h-100">
                             <c:if test="${not empty item.thumbnail}">
                                 <c:set var="image" value="/repository${item.thumbnail}"/>
@@ -100,7 +82,7 @@
                         </a>
                         <div>
                             <p class="mb-0"><strong>${item.shortTitle}</strong></p>
-                            <p class="mb-0"><small>${item.shortTitle}</small></p>
+                            <%--<p class="mb-0"><small>${item.shortTitle}</small></p>--%>
                         </div>
                     </div>
                 </div>
@@ -109,57 +91,28 @@
         </div>
     </div>
 </div>
-<c:if test="${not empty slides}">
-    <c:set var="image" value="/repository/${item.thumbnail}"/>
+<c:if test="${not empty mostRate}">
     <!-- best seller -->
     <div class="discover">
         <div class="container py-3  shadow p-3  rounded">
-            <div class="discover-header">
+            <div class="discover-header container">
                 <div class="row">
                     <div class="col-md-6 pull-left">
-                        <h2 style="font-weight: bold">Sản phẩm bán chạy</h2>
+                        <h2 style="font-weight: bold">Tiểu thuyết hay nhất</h2>
                     </div>
                     <div class="col-md-6">
-                        <a href="/top-mau-gach-ban-chay" class="float-right" style="color: black">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                        <a href="/san-pham-gach-moi" class="float-right" style="color: black">Xem thêm <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="new-collection-selling">
+            <div class="new-collection">
                 <!-- collection item -->
-                <%--<c:forEach var="item" items="${bestSeller}">
-                    <c:set var="imageStr" value="${item.image}"/>
-                    <c:set var="imageArray" value="${fn:split(imageStr, ',')}"/>
+                <c:forEach var="item" items="${mostRate}">
                     <div>
-                        <div class="item w-100 position-relative" id="item-1">
-                            <a href="<c:url value="/san-pham/${item.productCategoryCode}/${item.code}"/>"
-                               class="w-100 h-100">
-                                <c:if test="${not empty item.defaultImage}">
-                                    <c:set var="image" value="/repository/${item.defaultImage}"/>
-                                </c:if>
-                                <c:if test="${empty item.defaultImage}">
-                                    <c:set var="image" value="/template/img/default.png"/>
-                                </c:if>
-
-                                <img class="card-img-top h-100 img-target" src="${image}" alt="">
-
-                                <c:if test="${not empty item.image && fn:length(imageArray) > 1}">
-                                    <img class="card-img-top h-100 img-lv2" src="/repository/${imageArray[1]}" alt="">
-                                </c:if>
-                            </a>
-                            <div>
-                                <p class="mb-0"><strong>${item.code}</strong></p>
-                                <p><small>${item.content}</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>--%>
-                <c:forEach var="item" items="${slides}">
-                    <c:set var="imageStr" value="${item.thumbnail}"/>
-                    <div>
-                        <div class="item w-100 position-relative" id="item-1">
-                            <a href="#"
-                               class="w-100 h-100">
+                        <div class="item w-100 position-relative" id="${item.shortTitle}">
+                            <a href="<c:url value="/tieu-thuyet/${item.shortTitle}-${item.id}"/>"
+                               class="image-container w-100 h-100">
                                 <c:if test="${not empty item.thumbnail}">
                                     <c:set var="image" value="/repository${item.thumbnail}"/>
                                 </c:if>
@@ -170,7 +123,7 @@
                             </a>
                             <div>
                                 <p class="mb-0"><strong>${item.shortTitle}</strong></p>
-                                <p><small>${item.shortTitle}</small></p>
+                                    <%--<p class="mb-0"><small>${item.shortTitle}</small></p>--%>
                             </div>
                         </div>
                     </div>
