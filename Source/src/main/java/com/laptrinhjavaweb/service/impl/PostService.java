@@ -25,10 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -90,6 +87,8 @@ public class PostService implements IPostService {
             saveThumbnail(postDTO, postEntity);
             saveOgImage(postDTO, postEntity);
             postEntity.setApproved(false);
+            postEntity.setScore(0f);
+            postEntity.setView(0L);
             postEntity = postRepository.save(postEntity);
             return postConverter.convertToDto(postEntity);
         } catch (Exception e) {
@@ -105,6 +104,8 @@ public class PostService implements IPostService {
             PostEntity updatePost = postConverter.convertToEntity(postDTO);
             updatePost.setCreatedBy(existsPost.getCreatedBy());
             updatePost.setCreatedDate(existsPost.getCreatedDate());
+            updatePost.setScore(existsPost.getScore());
+            updatePost.setView(existsPost.getView());
             if (existsPost.getModifiedBy() != null) {
                 updatePost.setModifiedBy(existsPost.getModifiedBy());
             }
@@ -258,5 +259,20 @@ public class PostService implements IPostService {
                 .anyMatch(id -> postRepository.findById(id)
                         .map(postEntity -> !postEntity.getChapters().isEmpty())
                         .orElse(false));
+    }
+
+    @Override
+    public List<PostDTO> top6Latest() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<PostDTO> top6MostView() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<PostDTO> top6MostRate() {
+        return new ArrayList<>();
     }
 }
