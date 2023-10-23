@@ -134,10 +134,10 @@
     </div>
 </div>
 <div class="container py-4">
-    <c:forEach items="${comments}" var="comment">
+    <c:forEach items="${reviews}" var="review">
         <div class="comment">
-            <p><strong>${comment.userFullName}</strong> - ${comment.createdDate}</p>
-            <p>${comment.content}</p>
+            <p><strong>${review.userFullName}</strong> - ${review.createdDate}</p>
+            <p>${review.content}</p>
         </div>
     </c:forEach>
 </div>

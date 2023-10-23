@@ -4,10 +4,12 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.CategoryDTO;
 import com.laptrinhjavaweb.dto.ChapterDTO;
 import com.laptrinhjavaweb.dto.PostDTO;
+import com.laptrinhjavaweb.dto.ReviewDTO;
 import com.laptrinhjavaweb.entity.PostEntity;
 import com.laptrinhjavaweb.repository.PostRepository;
 import com.laptrinhjavaweb.service.IChapterService;
 import com.laptrinhjavaweb.service.IPostService;
+import com.laptrinhjavaweb.service.IReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +30,9 @@ public class PostController {
     private IPostService postService;
     @Autowired
     private IChapterService chapterService;
+
+    @Autowired
+    private IReviewService reviewService;
 
     @RequestMapping(value = "/tieu-thuyet/{id}", method = RequestMethod.GET)
     public ModelAndView post(@PathVariable("id") Long postId) {
@@ -64,7 +69,8 @@ public class PostController {
         mav.addObject("relatedProducts", postService.findAll("", new PageRequest(0, 20)));
         List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitle(postDTO.getShortTitle());
         mav.addObject("chapterList", chapterList);
-
+        List<ReviewDTO> reviews = reviewService.findByPost_Id(postDTO.getId());
+        mav.addObject("reviews", reviews);
         /*SeoFriendlyUrlService seoFriendlyUrlSvc = new SeoFriendlyUrlService();
         String ogTitle = productDTO.getOgTitle();
         if (ogTitle == null || ogTitle.length() == 0) {
