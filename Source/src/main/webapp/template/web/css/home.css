@@ -371,7 +371,7 @@ a:not([href]):not([tabindex]), .text-decoration-non {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background-image: url(../images/BK_IH.png);
+    background-image: url(../images/background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     -webkit-perspective: 1000px;
@@ -527,7 +527,7 @@ a:not([href]):not([tabindex]), .text-decoration-non {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background-image: url(../images/BK_IH.png);
+    background-image: url(../images/background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     -webkit-perspective: 1000px;
