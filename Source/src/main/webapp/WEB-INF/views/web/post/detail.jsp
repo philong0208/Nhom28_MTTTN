@@ -15,8 +15,7 @@
         <div class="py-2 uk-position-relative uk-visible-toggle"
              uk-slider="center: true; index: 0;"
              id="preview-product-uk">
-            <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-1@s uk-child-width-1-1@m uk-grid-medium"
-            >
+            <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-1@s uk-child-width-1-1@m uk-grid-medium">
                 <c:forEach var="img1" items="${images}">
                     <li class="d-flex ustify-content-center align-items-center">
                         <div class="w-100 d-flex justify-content-center ">
@@ -62,32 +61,28 @@
                 </div>
                 <div id="myresult" class="img-zoom-result"></div>
             </div>
-            <div class="ml-auto mr-5 font-italic font-weight-bolder py-4 clickPicture" style="font-size: 0.7em;">Nhấp
+            <%--<div class="ml-auto mr-5 font-italic font-weight-bolder py-4 clickPicture" style="font-size: 0.7em;">Nhấp
                 chuột để xem ảnh rộng và tải ảnh
-            </div>
+            </div>--%>
         </div>
         <div class="col-md-12 col-lg-5">
             <div class='justify-content-between d-flex'>
-                <div class="font-weight-bold">Mã sản phẩm</div>
+                <div class="font-weight-bold">Tên tiểu thuyết</div>
             </div>
             <div class=" code_Number">${product.shortTitle}</div>
             <div class='py-3 justify-content-between d-flex group_value '>
-                <div class="font-weight-bold">NHÃN HIỆU</div>
-                <div class="">ITALIANHOME</div>
+                <div class="font-weight-bold">Thể loại</div>
+                <div class="">${product.tagNameStr}</div>
             </div>
             <div class='py-3 justify-content-between d-flex group_value '>
-                <div class="font-weight-bold">NHÀ SẢN XUẤT</div>
-                <div class="">ITALIANHOME</div>
+                <div class="font-weight-bold">Tác giả</div>
+                <div class="">${product.authorNameStr}</div>
             </div>
             <div class='py-3 justify-content-between d-flex group_value'>
-                <div class="font-weight-bold">KÍCH THƯỚC</div>
-                <div class="">${product.shortTitle} cm</div>
+                <div class="font-weight-bold">Người đăng</div>
+                <div class="">${product.createdByFullName}</div>
             </div>
-            <div class='py-3 justify-content-between d-flex group_value'>
-                <div class="font-weight-bold">LOẠI</div>
-                <div class="">${product.shortTitle}</div>
-            </div>
-            <div class="py-3 d-flex group_value">
+            <%--<div class="py-3 d-flex group_value">
                 <div class="col-md-12 text-right">
                     <a target="_blank" class="btn btn-success" href="https://zalo.me/0903197896">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32px" height="32px">
@@ -105,7 +100,7 @@
                         </svg>
                         Liên hệ báo giá zalo </a>
                 </div>
-            </div>
+            </div>--%>
         </div>
 
     </div>

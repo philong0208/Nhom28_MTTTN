@@ -36,7 +36,7 @@ public class PostController {
     @Autowired
     private IAuthorService authorService;
 
-    @RequestMapping(value = "/tieu-thuyet/{id}", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/tieu-thuyet/{id}", method = RequestMethod.GET)
     public ModelAndView post(@PathVariable("id") Long postId) {
         ModelAndView mav = new ModelAndView("web/post/detail");
         PostDTO model = postService.findById(postId);
@@ -44,7 +44,7 @@ public class PostController {
         model.setOgUrl(model.getSeoUrl() + "-" + model.getId());
         mav.addObject(SystemConstant.MODEL, model);
         return mav;
-    }
+    }*/
     @RequestMapping(value = "/tieu-thuyet2", method = RequestMethod.GET)
     public ModelAndView getAll(@ModelAttribute(SystemConstant.MODEL) PostDTO model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("web/post/list");
@@ -76,10 +76,11 @@ public class PostController {
         mav.addObject(SystemConstant.MODEL, model);
         return mav;
     }
-    @RequestMapping(value = "/san-pham/{shortTitle}", method = RequestMethod.GET)
-    public ModelAndView productDetail(@PathVariable("shortTitle") String shortTitle, HttpServletRequest request) {
+    @RequestMapping(value = "/tieu-thuyet/{shortTitle}-{id}", method = RequestMethod.GET)
+    public ModelAndView productDetail(@PathVariable("shortTitle") String shortTitle,
+                                      @PathVariable("id") Long id, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("web/post/detail");
-        PostDTO postDTO = postService.findById(109L);
+        PostDTO postDTO = postService.findById(id);
         if (postDTO == null){
             return new ModelAndView("redirect:/error/404");
         }
@@ -93,13 +94,6 @@ public class PostController {
         mav.addObject("chapterList", chapterList);
         List<ReviewDTO> reviews = reviewService.findByPost_Id(postDTO.getId());
         mav.addObject("reviews", reviews);
-        /*SeoFriendlyUrlService seoFriendlyUrlSvc = new SeoFriendlyUrlService();
-        String ogTitle = productDTO.getOgTitle();
-        if (ogTitle == null || ogTitle.length() == 0) {
-            ogTitle = "Sản phẩm gạch - " + productDTO.getCode();
-        }
-        seoFriendlyUrlSvc.init(request, ogTitle, productDTO.getOgDesc(), "");
-        mav.addObject(SystemConstant.MODEL_SEO_PAGE, seoFriendlyUrlSvc.GetSeoPage());*/
         return mav;
     }
     @RequestMapping(value = "/error/404", method = RequestMethod.GET)
