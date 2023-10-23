@@ -4,7 +4,8 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="<c:url value="/trang-chu"/>">Trang chủ</a>
-    <a href="<c:url value="/gioi-thieu"/>">Giới thiệu</a>
+    <a href="<c:url value="/tieu-thuyet"/>">Tiểu thuyết</a>
+    <a href="<c:url value="/tieu-thuyet"/>">Giới thiệu</a>
     <div class="d-flex align-items-center justify-content-between pr-3 cursor-pointer item" data-toggle="collapse" data-target="#collapseOne"
          aria-expanded="false" aria-controls="collapseOne"><a href="/san-pham" >Tiểu thuyết </a><i id="icon-collapseOne" class="fas fa-plus"></i></div>
     <div id="collapseOne" class="collapse ml-2 categories">
