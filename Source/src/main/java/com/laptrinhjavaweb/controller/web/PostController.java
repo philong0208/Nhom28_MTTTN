@@ -7,9 +7,7 @@ import com.laptrinhjavaweb.dto.PostDTO;
 import com.laptrinhjavaweb.dto.ReviewDTO;
 import com.laptrinhjavaweb.entity.PostEntity;
 import com.laptrinhjavaweb.repository.PostRepository;
-import com.laptrinhjavaweb.service.IChapterService;
-import com.laptrinhjavaweb.service.IPostService;
-import com.laptrinhjavaweb.service.IReviewService;
+import com.laptrinhjavaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +31,10 @@ public class PostController {
 
     @Autowired
     private IReviewService reviewService;
+    @Autowired
+    private ITagService tagService;
+    @Autowired
+    private IAuthorService authorService;
 
     @RequestMapping(value = "/tieu-thuyet/{id}", method = RequestMethod.GET)
     public ModelAndView post(@PathVariable("id") Long postId) {
@@ -43,7 +45,7 @@ public class PostController {
         mav.addObject(SystemConstant.MODEL, model);
         return mav;
     }
-    @RequestMapping(value = "/tieu-thuyet", method = RequestMethod.GET)
+    @RequestMapping(value = "/tieu-thuyet2", method = RequestMethod.GET)
     public ModelAndView getAll(@ModelAttribute(SystemConstant.MODEL) PostDTO model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("web/post/list");
         model.setMaxPageItems(16);
@@ -51,6 +53,26 @@ public class PostController {
         model.setListResult(postService.findAll(Optional.ofNullable(model.getShortTitle()).orElse(""), pageable));
         model.setTotalItems(postService.getTotalItems(Optional.ofNullable(model.getShortTitle()).orElse("")));
         model.setTotalPages((int) Math.ceil((double) model.getTotalItems() / model.getMaxPageItems()));
+        mav.addObject(SystemConstant.MODEL, model);
+        return mav;
+    }
+    @RequestMapping(value = "/tieu-thuyet", method = RequestMethod.GET)
+    public ModelAndView productList(@ModelAttribute("model") PostDTO model, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("web/post/list");
+        model.setMaxPageItems(16);
+
+        Pageable pageable = new PageRequest(model.getPage() - 1, model.getMaxPageItems());
+        model.setListResult(postService.findAll(Optional.ofNullable(model.getShortTitle()).orElse(""), pageable));
+        model.setTotalItems(postService.getTotalItems(Optional.ofNullable(model.getShortTitle()).orElse("")));
+        model.setTotalPages((int) Math.ceil((double) model.getTotalItems() / model.getMaxPageItems()));
+
+        // combo box
+        mav.addObject("tags", tagService.getTags());
+        mav.addObject("authors", authorService.getAuthors());
+
+        // hiển thị giới thiệu
+        /*mav.addObject("category", productCategoryService.findByCode(getCategoryCode(searchModel)));*/
+
         mav.addObject(SystemConstant.MODEL, model);
         return mav;
     }
@@ -84,33 +106,4 @@ public class PostController {
     public ModelAndView errorNotFoundPage() {
         return new ModelAndView("web/errors/404");
     }
-//    @RequestMapping(value = "/tieu-thuyet", method = RequestMethod.GET)
-//    public ModelAndView productList(@ModelAttribute("searchModel") ProductCategoryDTO searchModel, HttpServletRequest request) {
-//        ModelAndView mav = new ModelAndView("web/product/list");
-//        searchModel.setMaxPageItems(20);
-//        ProductDTO model = new ProductDTO();
-//        Pageable pageable = new PageRequest(searchModel.getPage() - 1, searchModel.getMaxPageItems());
-//        model.setListResult(productService.findAll(searchModel, pageable));
-//        model.setTotalItems(productService.getTotalItems(searchModel));
-//        model.setTotalPages((int) Math.ceil((double) model.getTotalItems() / model.getMaxPageItems()));
-//        mav.addObject("categories", productCategoryService.getProductCategories());
-//        mav.addObject("sizes", productService.getSizeProduct());
-//        String categoryCode = getCategoryCode(searchModel);
-//        ProductCategoryDTO productCategoryDTO = productCategoryService.findByCode(categoryCode);
-//        mav.addObject("category", productCategoryDTO);
-//        mav.addObject(SystemConstant.SEARCH_MODEL, searchModel);
-//        mav.addObject(SystemConstant.MODEL, model);
-//        String title = "Tìm kiếm";
-//        if (categoryCode != null && categoryCode.length() > 0) {
-//            if (productCategoryDTO.getCode() == null) {
-//                title = "Không tìm thấy - Gạch men italianhome";
-//            } else {
-//                title = productCategoryDTO.getName() + "- Gạch men italianhome";
-//            }
-//        }
-//        SeoFriendlyUrlService seoFriendlyUrlSvc = new SeoFriendlyUrlService();
-//        seoFriendlyUrlSvc.init(request, title, productCategoryDTO.getShortDescription(), "");
-//        mav.addObject(SystemConstant.MODEL_SEO_PAGE, seoFriendlyUrlSvc.GetSeoPage());
-//        return mav;
-//    }
 }

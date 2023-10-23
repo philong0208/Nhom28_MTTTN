@@ -16,7 +16,6 @@
                 <li class="text-uppercase breadcrumb-item"><a href="/">TRANG CHỦ</a></li>
                 <li class="text-uppercase breadcrumb-item"><a href="/san-pham">SẢN PHẨM</a></li>
                 <%--<li class="text-uppercase breadcrumb-item active" aria-current="page">${category.name}</li>--%>
-                <li class="text-uppercase breadcrumb-item active" aria-current="page">Trinh thám</li>
             </ol>
         </nav>
     </div>
@@ -31,11 +30,10 @@
                 <div class="row h-100">
                     <div class="col-md-4 col-sm-12 d-flex align-items-center title pl-md-5">
                         <%--<p class="text-white font-weight-bold ml-md-5">${category.name}</p>--%>
-                        <p class="text-white font-weight-bold ml-md-5">Trinh thám</p>
                     </div>
                     <div class="col-md-8 col-sm-12 d-flex align-items-center description text-white">
                         <div>
-                            <p>Trinh thám là thể loại liên quan đến phá án</p>
+                            <%--<p>${category.shortDescription}</p>--%>
                         </div>
                     </div>
                 </div>
@@ -48,26 +46,26 @@
         <div class="row mw-100 m-auto">
             <div class="col-md col-sm-3 item">
                 <div class="form-group">
-                    <label for="productCode">Mã sản phẩm</label>
-                    <%--<form:input path="productCode" cssClass="form-control" id="productCode"/>--%>
+                    <label for="productCode">Tên tiểu thuyết</label>
+                    <form:input path="shortTitle" cssClass="form-control" id="productCode"/>
                 </div>
             </div>
             <div class="col-md col-sm-3 item">
                 <div class="form-group">
-                    <label for="productCategoryCode">Loại sản phẩm</label>
-                    <%--<form:select path="productCategoryCode" id="productCategoryCode" cssClass="form-control">
+                    <label for="tagNameStr">Thể loại</label>
+                    <form:select path="tagNameStr" id="tagNameStr" cssClass="form-control">
                         <form:option value="" label="--- Chọn thể loại ---"/>
-                        <form:options items="${categories}"/>
-                    </form:select>--%>
+                        <form:options items="${tags}"/>
+                    </form:select>
                 </div>
             </div>
             <div class="col-md col-sm-3 item">
                 <div class="form-group">
-                    <label for="sizeCode">Kích thước sản phẩm</label>
-                    <%--<form:select path="sizeCode" id="sizeCode" cssClass="form-control">
+                    <label for="authorNameStr">Tác giả</label>
+                    <form:select path="authorNameStr" id="authorNameStr" cssClass="form-control">
                         <form:option value="" label="--- Chọn kích thước ---"/>
-                        <form:options items="${sizes}"/>
-                    </form:select>--%>
+                        <form:options items="${authors}"/>
+                    </form:select>
                 </div>
             </div>
             <div class="col-md col-sm-3 item d-flex align-items-center">
@@ -84,8 +82,6 @@
             </c:if>
             <c:if test="${not empty model.listResult}">
                 <c:forEach var="item" items="${model.listResult}">
-                    <c:set var="imageStr" value="${item.thumbnail}" />
-                    <%--<c:set var="imageArray" value="${fn:split(imageStr, ',')}" />--%>
                     <div class="col-md-3 col-sm-6 py-5">
                         <div class="item w-100 position-relative" id="item-1">
                             <c:if test="${not empty item.thumbnail}">
@@ -94,17 +90,13 @@
                             <c:if test="${empty item.thumbnail}">
                                 <c:set var="image" value="/template/image/default.png"/>
                             </c:if>
-                            <%--<a href="<c:url value="/san-pham/${item.productCategoryCode}/${item.code}"/>" class="w-100 h-100">--%>
-                            <a href="<c:url value="#"/>" class="w-100 h-100">
+                            <a href="<c:url value="/tieu-thuyet/${item.shortTitle}-${item.id}"/>" class="w-100 h-100">
                                 <img src="${image}" class="w-100 h-100  img-target">
-                                <%--<c:if test="${not empty item.image && fn:length(imageArray) > 1}">
-                                    <img class="card-img-top h-100 img-lv2" src="/repository/${imageArray[1]}" alt="">
-                                </c:if>--%>
                             </a>
                             <div>
                                 <p class="mb-0"><strong>${item.shortTitle}</strong></p>
-                                <p class="mb-0"><strong>Kích thước</strong> <small>${item.shortTitle} cm</small></p>
-                                <p class="mb-0"><strong>Nhãn hiệu</strong> <small>ITALIANHOME</small></p>
+                                <%--<p class="mb-0"><strong>Kích thước</strong> <small>${item.sizeName} cm</small></p>
+                                <p class="mb-0"><strong>Nhãn hiệu</strong> <small>ITALIANHOME</small></p>--%>
                             </div>
                         </div>
                     </div>
