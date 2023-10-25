@@ -66,15 +66,15 @@ public class PostService implements IPostService {
         Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeAndAuthors_Code(
                 shortTitle, tagCode, authorCode, sort);
         if (tagCode.isEmpty() && authorCode.isEmpty()) {
-            result = postRepository.findByShortTitleContainingIgnoreCase(shortTitle, sort);
+            result = postRepository.findByShortTitleContainingIgnoreCaseAndApprovedIsTrue(shortTitle, sort);
         } else if (!authorCode.isEmpty() && !tagCode.isEmpty()) {
-            result = postRepository.findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCase(tagCode, authorCode, shortTitle, sort);
+            result = postRepository.findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(tagCode, authorCode, shortTitle, sort);
         } else
         if (authorCode.isEmpty()) {
-            result = postRepository.findByTags_CodeAndShortTitleContainingIgnoreCase(tagCode, shortTitle, sort);
+            result = postRepository.findByTags_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(tagCode, shortTitle, sort);
         } else
         if (tagCode.isEmpty()) {
-            result = postRepository.findByAuthors_CodeAndShortTitleContainingIgnoreCase(authorCode, shortTitle, sort);
+            result = postRepository.findByAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(authorCode, shortTitle, sort);
         }
 
 //        Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains(

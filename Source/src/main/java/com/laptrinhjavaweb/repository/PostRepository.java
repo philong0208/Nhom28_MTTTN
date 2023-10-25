@@ -17,16 +17,17 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByMenuConfigurationOrderByMenuConfigurationNumber(String value);
     PostEntity findBySeoUrl(String seoUrl);
     Page<PostEntity> findByShortTitleContainingIgnoreCase(String shortTitle, Pageable pageable);
+    Page<PostEntity> findByShortTitleContainingIgnoreCaseAndApprovedIsTrue(String shortTitle, Pageable pageable);
     Page<PostEntity> findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains
             (String shortTitle, String tagCode, String authorCode, Pageable pageable);
 
     Page<PostEntity> findByShortTitleContainsIgnoreCaseAndTags_CodeAndAuthors_Code(@NonNull String shortTitle, @Nullable String code, @Nullable String code1, Pageable pageable);
 
-    Page<PostEntity> findByTags_CodeAndShortTitleContainingIgnoreCase(String code, String shortTitle, Pageable pageable);
+    Page<PostEntity> findByTags_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(String code, String shortTitle, Pageable pageable);
 
-    Page<PostEntity> findByAuthors_CodeAndShortTitleContainingIgnoreCase(String code, String shortTitle, Pageable pageable);
+    Page<PostEntity> findByAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(String code, String shortTitle, Pageable pageable);
 
-    Page<PostEntity> findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCase(String code, String code1, String shortTitle, Pageable pageable);
+    Page<PostEntity> findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(String code, String code1, String shortTitle, Pageable pageable);
 
 
     Page<PostEntity> findByShortTitleContainsIgnoreCaseAndTags_CodeContains(String shortTitle, String code, Pageable pageable);
