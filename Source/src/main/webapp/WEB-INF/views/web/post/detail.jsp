@@ -151,8 +151,8 @@
     <div class="container">
         <div class="mx-auto d-flex" id="footer">
             <div class="w-100">
-                <div class='w-100 justify-content-center relatedProduct d-flex'><span class="mr-3">Sản Phẩm </span>
-                    <div> Liên Quan</div>
+                <div class='w-100 justify-content-center relatedProduct d-flex'><span class="mr-3">Tiểu thuyết</span>
+                    <div> tương tự</div>
                 </div>
                 <div class="mb-5 w-100 justify-content-center d-flex">
                     <div class="border"></div>
