@@ -49,7 +49,7 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     boolean existsByShortTitleIgnoreCase(String shortTitle);
     boolean existsByShortTitleIgnoreCaseAndIdNot(String shortTitle, long id);
     void deleteAllByIdIn(long[] ids);
-    List<PostEntity> findTop6ByOrderByViewDesc();
-    List<PostEntity> findTop6ByOrderByCreatedDateDesc();
-    List<PostEntity> findTop6ByOrderByScoreDesc();
+    List<PostEntity> findTop6ByApprovedTrueOrderByViewDesc();
+    List<PostEntity> findTop6ByApprovedTrueOrderByCreatedDateDesc();
+    List<PostEntity> findTop6ByApprovedTrueOrderByScoreDesc();
 }

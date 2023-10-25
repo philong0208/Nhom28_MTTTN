@@ -309,21 +309,21 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public List<PostDTO> top6Latest() {
-        return postRepository.findTop6ByOrderByCreatedDateDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+    public List<PostDTO> top6LatestApproved() {
+        return postRepository.findTop6ByApprovedTrueOrderByCreatedDateDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
 
     @Override
-    public List<PostDTO> top6MostView() {
-        return postRepository.findTop6ByOrderByViewDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+    public List<PostDTO> top6MostViewApproved() {
+        return postRepository.findTop6ByApprovedTrueOrderByViewDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
 
     @Override
-    public List<PostDTO> top6MostRate() {
-        return postRepository.findTop6ByOrderByScoreDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+    public List<PostDTO> top6MostRateApproved() {
+        return postRepository.findTop6ByApprovedTrueOrderByScoreDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
     @Override
-    public List<PostDTO> top6RelatedPost(String[] tagCodeArray) {
+    public List<PostDTO> top6RelatedPostApproved(String[] tagCodeArray) {
         List<PostDTO> result = new ArrayList<>();
         for (String tagCode : tagCodeArray) {
             postRepository.findByTags_Code(tagCode).forEach(item -> result.add(postConverter.convertToDto(item)));

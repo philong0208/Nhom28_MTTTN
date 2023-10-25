@@ -1,12 +1,9 @@
 package com.laptrinhjavaweb.controller.web;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.dto.CategoryDTO;
 import com.laptrinhjavaweb.dto.ChapterDTO;
 import com.laptrinhjavaweb.dto.PostDTO;
 import com.laptrinhjavaweb.dto.ReviewDTO;
-import com.laptrinhjavaweb.entity.PostEntity;
-import com.laptrinhjavaweb.repository.PostRepository;
 import com.laptrinhjavaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -68,10 +65,7 @@ public class PostController {
                 Optional.ofNullable(model.getAuthorNameStr()).orElse(""),
                 pageable);
         model.setListResult(filter);
-        int totalFilterItems = postService.getTotalFilterItems(
-                Optional.ofNullable(model.getShortTitle()).orElse(""),
-                Optional.ofNullable(model.getTagNameStr()).orElse(""),
-                Optional.ofNullable(model.getAuthorNameStr()).orElse(""));
+        int totalFilterItems = postService.getTotalFilterItems(null,null,null);
         model.setTotalItems(totalFilterItems);
         model.setTotalPages((int) Math.ceil((double) totalFilterItems / model.getMaxPageItems()));
 
@@ -98,7 +92,7 @@ public class PostController {
         String[] images = img.split(",", -1);
         mav.addObject("images", images);
         mav.addObject("product", postDTO);
-        mav.addObject("relatedProducts", postService.top6RelatedPost(postDTO.getTagCodeArray()));
+        mav.addObject("relatedProducts", postService.top6RelatedPostApproved(postDTO.getTagCodeArray()));
         List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitle(postDTO.getShortTitle());
         mav.addObject("chapterList", chapterList);
         List<ReviewDTO> reviews = reviewService.findByPost_Id(postDTO.getId());

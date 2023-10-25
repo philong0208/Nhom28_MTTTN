@@ -37,8 +37,8 @@ public interface IPostService {
     @Transactional
     String deletePostWithoutChapter(long[] ids);
     boolean hasChapter(long[] ids);
-    List<PostDTO> top6Latest();
-    List<PostDTO> top6MostView();
-    List<PostDTO> top6MostRate();
-    List<PostDTO> top6RelatedPost(String[] tagCodeArray);
+    List<PostDTO> top6LatestApproved();
+    List<PostDTO> top6MostViewApproved();
+    List<PostDTO> top6MostRateApproved();
+    List<PostDTO> top6RelatedPostApproved(String[] tagCodeArray);
 }
