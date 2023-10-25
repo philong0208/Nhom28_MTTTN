@@ -98,7 +98,7 @@ public class PostController {
         String[] images = img.split(",", -1);
         mav.addObject("images", images);
         mav.addObject("product", postDTO);
-        mav.addObject("relatedProducts", postService.findAll("", new PageRequest(0, 20)));
+        mav.addObject("relatedProducts", postService.top6RelatedPost(postDTO.getTagCodeArray()));
         List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitle(postDTO.getShortTitle());
         mav.addObject("chapterList", chapterList);
         List<ReviewDTO> reviews = reviewService.findByPost_Id(postDTO.getId());

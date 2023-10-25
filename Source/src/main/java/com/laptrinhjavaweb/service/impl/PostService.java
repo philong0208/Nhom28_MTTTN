@@ -322,4 +322,15 @@ public class PostService implements IPostService {
     public List<PostDTO> top6MostRate() {
         return postRepository.findTop6ByOrderByScoreDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
+    @Override
+    public List<PostDTO> top6RelatedPost(String[] tagCodeArray) {
+        List<PostDTO> result = new ArrayList<>();
+        for (String tagCode : tagCodeArray) {
+            postRepository.findByTags_Code(tagCode).forEach(item -> result.add(postConverter.convertToDto(item)));
+            if (result.size() >= 6) {
+                break;
+            }
+        }
+        return result.subList(0, result.size() >= 6 ? 6 : result.size());
+    }
 }

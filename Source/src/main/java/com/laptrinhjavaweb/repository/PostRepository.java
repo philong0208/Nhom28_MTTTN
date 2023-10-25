@@ -10,6 +10,7 @@ import org.springframework.lang.Nullable;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
+    List<PostEntity> findByTags_Code(String code);
     List<PostEntity> findByCreatedBy(String createdBy);
     List<PostEntity> findTop4ByHotPostOrderByCreatedDateDesc(String hotPost);
     List<PostEntity> findBySlideConfigurationOrderBySlideConfigurationNumberAsc(String value);

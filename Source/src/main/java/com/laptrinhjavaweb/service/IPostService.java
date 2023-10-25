@@ -40,4 +40,5 @@ public interface IPostService {
     List<PostDTO> top6Latest();
     List<PostDTO> top6MostView();
     List<PostDTO> top6MostRate();
+    List<PostDTO> top6RelatedPost(String[] tagCodeArray);
 }
