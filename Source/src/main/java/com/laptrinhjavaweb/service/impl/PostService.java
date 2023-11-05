@@ -184,6 +184,12 @@ public class PostService implements IPostService {
             return postDTO;
         }
     }
+    @Override
+    public void increaseView(long id) {
+        PostEntity postEntity = postRepository.findById(id).get();
+        postEntity.setView(postEntity.getView() + 1);
+        postRepository.save(postEntity);
+    }
 
     @Override
     @Transactional

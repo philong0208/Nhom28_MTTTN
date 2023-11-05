@@ -55,6 +55,7 @@ public class ChapterController {
         mav.addObject("comments", comments);
         mav.addObject("postShortTitle", postDTO.getShortTitle());
         mav.addObject("postId", postDTO.getId());
+        postService.increaseView(pId);
         return mav;
     }
 }

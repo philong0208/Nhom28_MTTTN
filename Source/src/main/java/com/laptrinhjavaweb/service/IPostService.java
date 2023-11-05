@@ -23,6 +23,7 @@ public interface IPostService {
     PostDTO insert(PostDTO postDTO);
     PostDTO findById(long id);
     PostDTO update(PostDTO postDTO);
+    void increaseView(long id);
     void deletePost(long[] ids);
     List<PostDTO> findByHotPost(String value);
     List<PostDTO> findBySlidePost(String value);
