@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -124,6 +123,10 @@ public class ChapterService implements IChapterService {
     @Override
     public List<ChapterDTO> findByPost_ShortTitle(String shortTitle) {
         return chapterRepository.findByPost_ShortTitle(shortTitle).stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
+    }
+    @Override
+    public List<ChapterDTO> findByPost_ShortTitleAndAndApprovedIsTrue(String shortTitle) {
+        return chapterRepository.findByPost_ShortTitleAndAndApprovedIsTrue(shortTitle).stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
     }
 
     @Override
