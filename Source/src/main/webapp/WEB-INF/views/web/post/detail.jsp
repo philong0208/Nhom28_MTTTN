@@ -138,36 +138,47 @@
     </c:forEach>
 </div>
 <div class="container py-4">
-    <%--<form action="your_comment_post_url" method="post">
-        <div>
-            <label for="content">Nội dung bình luận:</label>
-        </div>
-        <textarea id="content" name="content" rows="4" cols="50"></textarea><br>
-    </br>
-        <input type="submit" value="Gửi bình luận">
-    </form>--%>
-
     <form:form id="formMail">
-        <%--<div class="mt-md-5 mr-md-4 px-md-3">
-            <label for="fullName">Tên của bạn</label>
-            <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="fullName" placeholder="Tên*" required/>
-        </div>
         <div class="mt-3 mr-md-4 px-md-3">
-            <label for="email"></label>
-            <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="email" placeholder="Email*" required/>
-        </div>
-        <div class="mt-3 mr-md-4 px-md-3">
-            <label for="phone"></label>
-            <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="phone" placeholder="Số Điện Thoại*" required/>
-        </div>--%>
-        <div class="mt-3 mr-md-4 px-md-3">
-            <label for="content"></label>
+            <label for="content">Nội dung bình luận</label>
             <textarea class="w-100 mx-md-4 py-2 px-2 form-text" id="content"
-                      placeholder="Nội Dung Tin Nhắn"></textarea>
+                      placeholder="Nội dung bình luận"></textarea>
+        </div>
+        <div class="rating">
+            <label>
+                <input type="radio" name="score" value="1" checked />
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="score" value="2" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="score" value="3" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="score" value="4" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="score" value="5" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
         </div>
         <div class="mt-3 pt-4  mr-md-4 px-md-3">
             <button id="btnSend" type="button"
-                    class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Gửi</button>
+                    class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Gửi đánh giá</button>
         </div>
     </form:form>
 
@@ -227,8 +238,8 @@
             event.preventDefault();
             var formData = {}
             /*formData['fullName'] =  $("#fullName").val()
-            formData['email'] =  $("#email").val()
-            formData['phone'] =  $("#phone").val()*/
+            formData['email'] =  $("#email").val()*/
+            formData['score'] = $("input[name='score']:checked").val();
             formData['content'] =  $("#content").val()
             addMail(formData);
         });
