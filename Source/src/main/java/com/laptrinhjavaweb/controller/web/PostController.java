@@ -83,7 +83,7 @@ public class PostController {
     public ModelAndView productDetail(@PathVariable("shortTitle") String shortTitle,
                                       @PathVariable("id") Long id, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("web/post/detail");
-        PostDTO postDTO = postService.findById(id);
+        PostDTO postDTO = postService.findByIdApproved(id);
         if (postDTO == null){
             return new ModelAndView("redirect:/error/404");
         }

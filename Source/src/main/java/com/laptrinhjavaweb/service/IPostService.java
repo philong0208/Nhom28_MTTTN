@@ -25,6 +25,7 @@ public interface IPostService {
     PostDTO update(PostDTO postDTO);
     void increaseView(long id);
     void deletePost(long[] ids);
+    PostDTO findByIdApproved(long id);
     List<PostDTO> findByHotPost(String value);
     List<PostDTO> findBySlidePost(String value);
     List<PostDTO> findByMenuConfiguration(String value);

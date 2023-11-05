@@ -200,6 +200,11 @@ public class PostService implements IPostService {
         PostEntity postEntity = postRepository.findById(id).get();
         return postConverter.convertToDto(postEntity);
     }
+    @Override
+    public PostDTO findByIdApproved(long id) {
+        PostEntity postEntity = postRepository.findByIdAndApprovedTrue(id);
+        return postConverter.convertToDto(postEntity);
+    }
 
     @Override
     public List<PostDTO> findByHotPost(String value) {
@@ -328,11 +333,11 @@ public class PostService implements IPostService {
     public List<PostDTO> top6RelatedPostApproved(String[] tagCodeArray) {
         List<PostDTO> result = new ArrayList<>();
         for (String tagCode : tagCodeArray) {
-            postRepository.findByTags_Code(tagCode).forEach(item -> result.add(postConverter.convertToDto(item)));
+            postRepository.findByTags_CodeAndApprovedIsTrue(tagCode).forEach(item -> result.add(postConverter.convertToDto(item)));
             if (result.size() >= 6) {
                 break;
             }
         }
-        return result.subList(0, result.size() >= 6 ? 6 : result.size());
+        return result.subList(0, Math.min(result.size(), 6));
     }
 }
