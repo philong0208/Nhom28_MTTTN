@@ -133,6 +133,38 @@
     <c:forEach items="${reviews}" var="review">
         <div class="comment">
             <p><strong>${review.userFullName}</strong> - ${review.createdDate}</p>
+            <div class="rating">
+                <label>
+                    <input type="radio"  value="1" ${review.score == 1 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" value="2" ${review.score == 2 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio"  value="3" ${review.score == 3 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" value="4" ${review.score == 4 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio"  value="5" ${review.score == 5 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+            </div>
             <p>${review.content}</p>
         </div>
     </c:forEach>
