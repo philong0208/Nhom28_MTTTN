@@ -63,20 +63,16 @@ public class PostService implements IPostService {
                                 Pageable pageable) {
         PageRequest sort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
                 Sort.by("modifiedDate").descending());
-        Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeAndAuthors_Code(
-                shortTitle, tagCode, authorCode, sort);
+        Page<PostEntity> result;
         if (tagCode.isEmpty() && authorCode.isEmpty()) {
             result = postRepository.findByShortTitleContainingIgnoreCaseAndApprovedIsTrue(shortTitle, sort);
         } else if (!authorCode.isEmpty() && !tagCode.isEmpty()) {
             result = postRepository.findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(tagCode, authorCode, shortTitle, sort);
-        } else
-        if (authorCode.isEmpty()) {
+        } else if (authorCode.isEmpty()) {
             result = postRepository.findByTags_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(tagCode, shortTitle, sort);
-        } else
-        if (tagCode.isEmpty()) {
+        } else {
             result = postRepository.findByAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(authorCode, shortTitle, sort);
         }
-
 //        Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains(
 //                shortTitle, tagCode, authorCode, sort);
         List<PostEntity> uniqueContent = new ArrayList<>(result.getContent().stream()
