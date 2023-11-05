@@ -269,14 +269,13 @@
         $('#btnSend').click(function (event) {
             event.preventDefault();
             var formData = {}
-            /*formData['fullName'] =  $("#fullName").val()
-            formData['email'] =  $("#email").val()*/
             formData['score'] = $("input[name='score']:checked").val();
             formData['content'] =  $("#content").val()
-            addMail(formData);
+            formData['postId'] =  ${product.id}
+            review(formData);
         });
 
-        function addMail(data) {
+        function review(data) {
             $.ajax({
                 url: '${formUrl}',
                 type: 'POST',
