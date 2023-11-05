@@ -24,4 +24,8 @@ public class ReviewService implements IReviewService {
         return reviewRepository.findByPost_Id(id).stream().map(
                 item -> reviewConverter.convertToDto(item)).collect(Collectors.toList());
     }
+    @Override
+    public ReviewDTO insert(ReviewDTO reviewDTO) {
+        return reviewConverter.convertToDto(reviewRepository.save(reviewConverter.convertToEntity(reviewDTO)));
+    }
 }
