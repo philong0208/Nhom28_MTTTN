@@ -213,7 +213,10 @@
                     class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Gửi đánh giá</button>
         </div>
     </form:form>
-
+    <br/>
+    <div class="alert alert-success" id="messageAlert">
+        <div id="messageContent"></div>
+    </div>
 </div>
 <!-- Related product -->
 <div class="py-4 px-1 w-100 seenGroup">
@@ -265,7 +268,7 @@
 <script type="text/javascript">
 
     $( document ).ready(function() {
-        /*$('#messageAlert').hide();*/
+        $('#messageAlert').hide();
         $('#btnSend').click(function (event) {
             event.preventDefault();
             var formData = {}
@@ -284,7 +287,10 @@
                 data: JSON.stringify(data),
                 success: function (res) {
                     $("#messageAlert").show()
-                    $('#messageContent').html("Liên hệ thành công")
+                    $('#messageContent').html("Đánh giá thành công")
+                    setTimeout(function() {
+                        location.reload();
+                    }, 2000);
                 },
                 error: function (res) {
                     $("#messageAlert").hide()
