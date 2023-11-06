@@ -63,20 +63,16 @@ public class PostService implements IPostService {
                                 Pageable pageable) {
         PageRequest sort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
                 Sort.by("modifiedDate").descending());
-        Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeAndAuthors_Code(
-                shortTitle, tagCode, authorCode, sort);
+        Page<PostEntity> result;
         if (tagCode.isEmpty() && authorCode.isEmpty()) {
-            result = postRepository.findByShortTitleContainingIgnoreCase(shortTitle, sort);
+            result = postRepository.findByShortTitleContainingIgnoreCaseAndApprovedIsTrue(shortTitle, sort);
         } else if (!authorCode.isEmpty() && !tagCode.isEmpty()) {
-            result = postRepository.findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCase(tagCode, authorCode, shortTitle, sort);
-        } else
-        if (authorCode.isEmpty()) {
-            result = postRepository.findByTags_CodeAndShortTitleContainingIgnoreCase(tagCode, shortTitle, sort);
-        } else
-        if (tagCode.isEmpty()) {
-            result = postRepository.findByAuthors_CodeAndShortTitleContainingIgnoreCase(authorCode, shortTitle, sort);
+            result = postRepository.findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(tagCode, authorCode, shortTitle, sort);
+        } else if (authorCode.isEmpty()) {
+            result = postRepository.findByTags_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(tagCode, shortTitle, sort);
+        } else {
+            result = postRepository.findByAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(authorCode, shortTitle, sort);
         }
-
 //        Page<PostEntity> result = postRepository.findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains(
 //                shortTitle, tagCode, authorCode, sort);
         List<PostEntity> uniqueContent = new ArrayList<>(result.getContent().stream()
@@ -184,6 +180,12 @@ public class PostService implements IPostService {
             return postDTO;
         }
     }
+    @Override
+    public void increaseView(long id) {
+        PostEntity postEntity = postRepository.findById(id).get();
+        postEntity.setView(postEntity.getView() + 1);
+        postRepository.save(postEntity);
+    }
 
     @Override
     @Transactional
@@ -196,6 +198,11 @@ public class PostService implements IPostService {
     @Override
     public PostDTO findById(long id) {
         PostEntity postEntity = postRepository.findById(id).get();
+        return postConverter.convertToDto(postEntity);
+    }
+    @Override
+    public PostDTO findByIdApproved(long id) {
+        PostEntity postEntity = postRepository.findByIdAndApprovedTrue(id);
         return postConverter.convertToDto(postEntity);
     }
 
@@ -309,17 +316,28 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public List<PostDTO> top6Latest() {
-        return postRepository.findTop6ByOrderByCreatedDateDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+    public List<PostDTO> top6LatestApproved() {
+        return postRepository.findTop6ByApprovedTrueOrderByCreatedDateDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
 
     @Override
-    public List<PostDTO> top6MostView() {
-        return postRepository.findTop6ByOrderByViewDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+    public List<PostDTO> top6MostViewApproved() {
+        return postRepository.findTop6ByApprovedTrueOrderByViewDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
     }
 
     @Override
-    public List<PostDTO> top6MostRate() {
-        return postRepository.findTop6ByOrderByScoreDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+    public List<PostDTO> top6MostRateApproved() {
+        return postRepository.findTop6ByApprovedTrueOrderByScoreDesc().stream().map(item -> postConverter.convertToDto(item)).collect(Collectors.toList());
+    }
+    @Override
+    public List<PostDTO> top6RelatedPostApproved(String[] tagCodeArray) {
+        List<PostDTO> result = new ArrayList<>();
+        for (String tagCode : tagCodeArray) {
+            postRepository.findByTags_CodeAndApprovedIsTrue(tagCode).forEach(item -> result.add(postConverter.convertToDto(item)));
+            if (result.size() >= 6) {
+                break;
+            }
+        }
+        return result.subList(0, Math.min(result.size(), 6));
     }
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
+<c:url var="formUrl" value="/api/admin/review"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -132,27 +133,98 @@
     <c:forEach items="${reviews}" var="review">
         <div class="comment">
             <p><strong>${review.userFullName}</strong> - ${review.createdDate}</p>
+            <div class="rating">
+                <label>
+                    <input type="radio"  value="1" ${review.score == 1 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" value="2" ${review.score == 2 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio"  value="3" ${review.score == 3 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" value="4" ${review.score == 4 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio"  value="5" ${review.score == 5 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+            </div>
             <p>${review.content}</p>
         </div>
     </c:forEach>
 </div>
 <div class="container py-4">
-    <form action="your_comment_post_url" method="post">
-        <div>
-            <label for="content">Nội dung bình luận:</label>
+    <form:form id="formMail">
+        <div class="mt-3 mr-md-4 px-md-3">
+            <label for="content">Nội dung bình luận</label>
+            <textarea class="w-100 mx-md-4 py-2 px-2 form-text" id="content"
+                      placeholder="Nội dung bình luận"></textarea>
         </div>
-        <textarea id="content" name="content" rows="4" cols="50"></textarea><br>
-    </br>
-        <input type="submit" value="Gửi bình luận">
-    </form>
+        <div class="rating">
+            <label>
+                <input type="radio" name="score" value="1" checked />
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="score" value="2" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="score" value="3" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="score" value="4" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="score" value="5" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+        </div>
+        <div class="mt-3 pt-4  mr-md-4 px-md-3">
+            <button id="btnSend" type="button"
+                    class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Gửi đánh giá</button>
+        </div>
+    </form:form>
+    <br/>
+    <div class="alert alert-success" id="messageAlert">
+        <div id="messageContent"></div>
+    </div>
 </div>
 <!-- Related product -->
 <div class="py-4 px-1 w-100 seenGroup">
     <div class="container">
         <div class="mx-auto d-flex" id="footer">
             <div class="w-100">
-                <div class='w-100 justify-content-center relatedProduct d-flex'><span class="mr-3">Sản Phẩm </span>
-                    <div> Liên Quan</div>
+                <div class='w-100 justify-content-center relatedProduct d-flex'><span class="mr-3">Tiểu thuyết</span>
+                    <div> tương tự</div>
                 </div>
                 <div class="mb-5 w-100 justify-content-center d-flex">
                     <div class="border"></div>
@@ -194,6 +266,39 @@
 </div>
 
 <script type="text/javascript">
+
+    $( document ).ready(function() {
+        $('#messageAlert').hide();
+        $('#btnSend').click(function (event) {
+            event.preventDefault();
+            var formData = {}
+            formData['score'] = $("input[name='score']:checked").val();
+            formData['content'] =  $("#content").val()
+            formData['postId'] =  ${product.id}
+            review(formData);
+        });
+
+        function review(data) {
+            $.ajax({
+                url: '${formUrl}',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (res) {
+                    $("#messageAlert").show()
+                    $('#messageContent').html("Đánh giá thành công")
+                    setTimeout(function() {
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (res) {
+                    $("#messageAlert").hide()
+                    $('#messageContent').html("Liên hệ thất bại")
+                }
+            });
+        }
+    });
 
     // imageZoom
     window.addEventListener('scroll', () => {

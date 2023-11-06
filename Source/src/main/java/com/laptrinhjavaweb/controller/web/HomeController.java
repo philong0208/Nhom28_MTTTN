@@ -6,7 +6,6 @@ import com.laptrinhjavaweb.dto.TemplateDTO;
 import com.laptrinhjavaweb.service.IPostService;
 import com.laptrinhjavaweb.service.ITemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -46,13 +45,13 @@ public class HomeController {
 	public ModelAndView homePage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("web/home");
 		// Top 6 mới nhất
-		List<PostDTO> top6Latest = postService.top6Latest();
+		List<PostDTO> top6Latest = postService.top6LatestApproved();
 		mav.addObject("latest", top6Latest);
 		// Top 6 xem nhiều nhất
-		List<PostDTO> top6MostView = postService.top6MostView();
+		List<PostDTO> top6MostView = postService.top6MostViewApproved();
 		mav.addObject("mostView", top6MostView);
 		// Top 6 đánh giá cao
-		List<PostDTO> top6MostRate = postService.top6MostRate();
+		List<PostDTO> top6MostRate = postService.top6MostRateApproved();
 		mav.addObject("mostRate", top6MostRate);
 		return mav;
 	}

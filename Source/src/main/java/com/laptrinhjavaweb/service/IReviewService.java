@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IReviewService {
     List<ReviewDTO> findByPost_Id(Long id);
+    ReviewDTO insert(ReviewDTO reviewDTO);
 }

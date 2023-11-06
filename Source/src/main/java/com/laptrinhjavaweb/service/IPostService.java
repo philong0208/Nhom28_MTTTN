@@ -23,7 +23,9 @@ public interface IPostService {
     PostDTO insert(PostDTO postDTO);
     PostDTO findById(long id);
     PostDTO update(PostDTO postDTO);
+    void increaseView(long id);
     void deletePost(long[] ids);
+    PostDTO findByIdApproved(long id);
     List<PostDTO> findByHotPost(String value);
     List<PostDTO> findBySlidePost(String value);
     List<PostDTO> findByMenuConfiguration(String value);
@@ -37,7 +39,8 @@ public interface IPostService {
     @Transactional
     String deletePostWithoutChapter(long[] ids);
     boolean hasChapter(long[] ids);
-    List<PostDTO> top6Latest();
-    List<PostDTO> top6MostView();
-    List<PostDTO> top6MostRate();
+    List<PostDTO> top6LatestApproved();
+    List<PostDTO> top6MostViewApproved();
+    List<PostDTO> top6MostRateApproved();
+    List<PostDTO> top6RelatedPostApproved(String[] tagCodeArray);
 }

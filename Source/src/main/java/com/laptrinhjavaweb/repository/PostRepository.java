@@ -10,22 +10,24 @@ import org.springframework.lang.Nullable;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
+    List<PostEntity> findByTags_CodeAndApprovedIsTrue(String code);
     List<PostEntity> findByCreatedBy(String createdBy);
     List<PostEntity> findTop4ByHotPostOrderByCreatedDateDesc(String hotPost);
     List<PostEntity> findBySlideConfigurationOrderBySlideConfigurationNumberAsc(String value);
     List<PostEntity> findByMenuConfigurationOrderByMenuConfigurationNumber(String value);
     PostEntity findBySeoUrl(String seoUrl);
     Page<PostEntity> findByShortTitleContainingIgnoreCase(String shortTitle, Pageable pageable);
+    Page<PostEntity> findByShortTitleContainingIgnoreCaseAndApprovedIsTrue(String shortTitle, Pageable pageable);
     Page<PostEntity> findByShortTitleContainsIgnoreCaseAndTags_CodeContainsAndAuthors_CodeContains
             (String shortTitle, String tagCode, String authorCode, Pageable pageable);
 
     Page<PostEntity> findByShortTitleContainsIgnoreCaseAndTags_CodeAndAuthors_Code(@NonNull String shortTitle, @Nullable String code, @Nullable String code1, Pageable pageable);
 
-    Page<PostEntity> findByTags_CodeAndShortTitleContainingIgnoreCase(String code, String shortTitle, Pageable pageable);
+    Page<PostEntity> findByTags_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(String code, String shortTitle, Pageable pageable);
 
-    Page<PostEntity> findByAuthors_CodeAndShortTitleContainingIgnoreCase(String code, String shortTitle, Pageable pageable);
+    Page<PostEntity> findByAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(String code, String shortTitle, Pageable pageable);
 
-    Page<PostEntity> findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCase(String code, String code1, String shortTitle, Pageable pageable);
+    Page<PostEntity> findByTags_CodeAndAuthors_CodeAndShortTitleContainingIgnoreCaseAndApprovedIsTrue(String code, String code1, String shortTitle, Pageable pageable);
 
 
     Page<PostEntity> findByShortTitleContainsIgnoreCaseAndTags_CodeContains(String shortTitle, String code, Pageable pageable);
@@ -48,7 +50,8 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     boolean existsByShortTitleIgnoreCase(String shortTitle);
     boolean existsByShortTitleIgnoreCaseAndIdNot(String shortTitle, long id);
     void deleteAllByIdIn(long[] ids);
-    List<PostEntity> findTop6ByOrderByViewDesc();
-    List<PostEntity> findTop6ByOrderByCreatedDateDesc();
-    List<PostEntity> findTop6ByOrderByScoreDesc();
+    List<PostEntity> findTop6ByApprovedTrueOrderByViewDesc();
+    List<PostEntity> findTop6ByApprovedTrueOrderByCreatedDateDesc();
+    List<PostEntity> findTop6ByApprovedTrueOrderByScoreDesc();
+    PostEntity findByIdAndApprovedTrue(long id);
 }
