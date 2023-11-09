@@ -29,4 +29,8 @@ public class SecurityUtils {
     public static boolean isUser() {
         return getAuthorities().contains(SystemConstant.USER_ROLE);
     }
+    public static boolean notLoginYet() {
+        List<String> authorities = getAuthorities();
+        return authorities.contains(SystemConstant.ANONYMOUS_ROLE);
+    }
 }

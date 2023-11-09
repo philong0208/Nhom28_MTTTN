@@ -1,3 +1,4 @@
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <c:url var="formUrl" value="/api/admin/review"/>
@@ -170,53 +171,63 @@
     </c:forEach>
 </div>
 <div class="container py-4">
-    <form:form id="formMail">
-        <div class="mt-3 mr-md-4 px-md-3">
-            <label for="content">Nội dung bình luận</label>
-            <textarea class="w-100 mx-md-4 py-2 px-2 form-text" id="content"
-                      placeholder="Nội dung bình luận"></textarea>
-        </div>
-        <div class="rating">
-            <label>
-                <input type="radio" name="score" value="1" checked />
-                <span class="icon">★</span>
-            </label>
-            <label>
-                <input type="radio" name="score" value="2" />
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-            </label>
-            <label>
-                <input type="radio" name="score" value="3" />
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-            </label>
-            <label>
-                <input type="radio" name="score" value="4" />
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-            </label>
-            <label>
-                <input type="radio" name="score" value="5" />
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-            </label>
-        </div>
+    <c:if test="${SecurityUtils.notLoginYet()}">
         <div class="mt-3 pt-4  mr-md-4 px-md-3">
-            <button id="btnSend" type="button"
-                    class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Gửi đánh giá</button>
+            <form action="/trang-chu" method="get">
+                <button id="login" type="button"
+                        class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Để lại đánh giá</button>
+            </form>
         </div>
-    </form:form>
-    <br/>
-    <div class="alert alert-success" id="messageAlert">
-        <div id="messageContent"></div>
-    </div>
+    </c:if>
+    <c:if test="${not SecurityUtils.notLoginYet()}">
+        <form:form id="formMail">
+            <div class="mt-3 mr-md-4 px-md-3">
+                <label for="content">Nội dung bình luận</label>
+                <textarea class="w-100 mx-md-4 py-2 px-2 form-text" id="content"
+                          placeholder="Nội dung bình luận"></textarea>
+            </div>
+            <div class="rating">
+                <label>
+                    <input type="radio" name="score" value="1" checked />
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="score" value="2" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="score" value="3" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="score" value="4" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="score" value="5" />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+            </div>
+            <div class="mt-3 pt-4  mr-md-4 px-md-3">
+                <button id="btnSend" type="button"
+                        class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Gửi đánh giá</button>
+            </div>
+        </form:form>
+        <br/>
+        <div class="alert alert-success" id="messageAlert">
+            <div id="messageContent"></div>
+        </div>
+    </c:if>
 </div>
 <!-- Related product -->
 <div class="py-4 px-1 w-100 seenGroup">
