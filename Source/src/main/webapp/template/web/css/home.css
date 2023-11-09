@@ -671,3 +671,6 @@ a:not([href]):not([tabindex]), .text-decoration-non {
     color: #000;
     text-shadow: 0 0 5px #09f;
 }
+.readonly {
+    pointer-events: none;
+}

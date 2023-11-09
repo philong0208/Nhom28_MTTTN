@@ -134,7 +134,7 @@
     <c:forEach items="${reviews}" var="review">
         <div class="comment">
             <p><strong>${review.userFullName}</strong> - ${review.createdDate}</p>
-            <div class="rating">
+            <div class="rating readonly">
                 <label>
                     <input type="radio"  value="1" ${review.score == 1 ? 'checked' : ''} />
                     <span class="icon">★</span>
