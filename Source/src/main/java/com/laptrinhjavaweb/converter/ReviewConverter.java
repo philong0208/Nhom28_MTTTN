@@ -4,6 +4,8 @@ import com.laptrinhjavaweb.dto.CommentDTO;
 import com.laptrinhjavaweb.dto.ReviewDTO;
 import com.laptrinhjavaweb.entity.CommentEntity;
 import com.laptrinhjavaweb.entity.ReviewEntity;
+import com.laptrinhjavaweb.repository.UserRepository;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.IUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +17,16 @@ public class ReviewConverter {
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
-    private IUserService iUserService;
+    private UserRepository userRepository;
 
     public ReviewDTO convertToDto(ReviewEntity entity){
-        ReviewDTO result = modelMapper.map(entity, ReviewDTO.class);
-        return result;
+        ReviewDTO dto = modelMapper.map(entity, ReviewDTO.class);
+        return dto;
     }
 
     public ReviewEntity convertToEntity(ReviewDTO dto) {
-        ReviewEntity result = modelMapper.map(dto, ReviewEntity.class);
-        return result;
+        ReviewEntity entity = modelMapper.map(dto, ReviewEntity.class);
+        entity.setUser(userRepository.findOneByUserName(SecurityUtils.getPrincipal().getUsername()));
+        return entity;
     }
 }

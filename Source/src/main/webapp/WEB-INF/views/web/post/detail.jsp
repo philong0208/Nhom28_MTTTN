@@ -301,7 +301,7 @@
                     $('#messageContent').html("Đánh giá thành công")
                     setTimeout(function() {
                         location.reload();
-                    }, 2000);
+                    }, 1000);
                 },
                 error: function (res) {
                     $("#messageAlert").hide()
