@@ -173,10 +173,10 @@
 <div class="container py-4">
     <c:if test="${SecurityUtils.notLoginYet()}">
         <div class="mt-3 pt-4  mr-md-4 px-md-3">
-            <form action="/trang-chu" method="get">
+            <a href="<c:url value='/loginAdmin'/>">
                 <button id="login" type="button"
                         class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Để lại đánh giá</button>
-            </form>
+            </a>
         </div>
     </c:if>
     <c:if test="${not SecurityUtils.notLoginYet()}">
