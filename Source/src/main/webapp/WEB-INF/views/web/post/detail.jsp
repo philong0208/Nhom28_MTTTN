@@ -84,6 +84,10 @@
                 <div class="font-weight-bold">Người đăng</div>
                 <div class="">${product.createdByFullName}</div>
             </div>
+            <div class='py-3 justify-content-between d-flex group_value'>
+                <div class="font-weight-bold">Đánh giá</div>
+                <div class="">${product.score}</div>
+            </div>
             <%--<div class="py-3 d-flex group_value">
                 <div class="col-md-12 text-right">
                     <a target="_blank" class="btn btn-success" href="https://zalo.me/0903197896">
