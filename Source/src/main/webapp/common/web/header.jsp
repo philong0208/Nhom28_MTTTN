@@ -1,3 +1,4 @@
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--menu--%>
 <div id="backdrop" onclick="closeNav()"></div>
@@ -20,19 +21,32 @@
         <div class="row justify-content-end h-100">
             <div class="col-4 h-100">
                 <div class="row h-100 align-items-center">
-                    <a href="tel:02838639377" class="m-0 px-4 px-2 ml-auto text-white"><i class="fa-solid fa-phone"></i> Hotline: 028 - 999999</a>
+                    <div class="m-0 px-4 px-2 ml-auto text-white">
+                        <c:if test="${SecurityUtils.notLoginYet()}">
+                            <a href="<c:url value="/loginAdmin"/>" class="text-white">
+                                <strong>Đăng nhập</strong>
+                            </a>
+                            &nbsp;|&nbsp;
+                            <a href="<c:url value="/dang-ky"/>" class="text-white">
+                                <strong>Đăng ký</strong>
+                            </a>
+                        </c:if>
+                        <c:if test="${not SecurityUtils.notLoginYet()}">
+                            Xin chào, <%=SecurityUtils.getPrincipal().getFullName()%>
+                        </c:if>
+                    </div>
                 </div>
             </div>
             <div class="col-2 h-100">
                 <div class="row h-100 align-items-center">
-                    <div class="list-icon ml-auto h-100">
+                    <%--<div class="list-icon ml-auto h-100">
                         <a href="https://www.facebook.com/congtygachmennhay/" target="_blank">
                             <img src="<c:url value="/template/web/images/icons8-facebook.svg"/>" alt="facebook" class="h-100 cursor-pointer"/>
                         </a>
                         <a href="https://zalo.me/0903197896" target="_blank">
                             <img src="<c:url value="/template/web/images/icons8-zalo.svg"/>" alt="zalo" class="h-100 cursor-pointer"/>
                         </a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
         </div>
