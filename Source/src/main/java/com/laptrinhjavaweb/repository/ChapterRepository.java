@@ -23,4 +23,5 @@ public interface ChapterRepository extends JpaRepository<ChapterEntity, Long> {
     long countByShortTitleContainingIgnoreCaseAndCreatedBy(String shortTitle, String createdBy);
     List<ChapterEntity> findByPost_ShortTitle(String shortTitle);
     List<ChapterEntity> findByPost_ShortTitleAndAndApprovedIsTrue(String shortTitle);
+    ChapterEntity findByIdAndApprovedTrue(long id);
 }

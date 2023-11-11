@@ -14,6 +14,7 @@ public interface IChapterService {
     ChapterDTO insert(ChapterDTO chapterDTO);
     List<ChapterDTO> findByPost_ShortTitleAndAndApprovedIsTrue(String shortTitle);
     ChapterDTO findById(long id);
+    ChapterDTO findByIdApproved(long id);
     ChapterDTO update(ChapterDTO chapterDTO);
     void deleteChapter(long[] ids);
     List<ChapterDTO> findByPost_ShortTitle(String shortTitle);

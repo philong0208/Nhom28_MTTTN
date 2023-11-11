@@ -41,12 +41,12 @@ public class ChapterController {
                                   @PathVariable("pId") Long pId,
                                   @PathVariable("chapterCode") String chapterCode,
                                   @PathVariable("id") long id) {
-        ChapterDTO chapterDTO = chapterService.findById(id);
+        ChapterDTO chapterDTO = chapterService.findByIdApproved(id);
         if (chapterDTO == null) {
             return new ModelAndView("redirect:/" + "notfound");
         }
         ModelAndView mav = new ModelAndView("web/chapter/detail");
-        List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitle(shortTitle);
+        List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitleAndAndApprovedIsTrue(shortTitle);
         mav.addObject("chapterList", chapterList);
         mav.addObject("thisChapter", chapterDTO.getShortTitle());
         mav.addObject(SystemConstant.MODEL, chapterDTO);

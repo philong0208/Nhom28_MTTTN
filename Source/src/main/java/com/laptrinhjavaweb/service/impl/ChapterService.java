@@ -136,6 +136,11 @@ public class ChapterService implements IChapterService {
         ChapterEntity chapterEntity = chapterRepository.findById(id).get();
         return chapterConverter.convertToDto(chapterEntity);
     }
+    @Override
+    public ChapterDTO findByIdApproved(long id) {
+        ChapterEntity chapterEntity = chapterRepository.findByIdAndApprovedTrue(id);
+        return chapterConverter.convertToDto(chapterEntity);
+    }
 
     private void saveThumbnail(ChapterDTO chapterDTO, ChapterEntity chapterEntity) {
         String path = SystemConstant.CHAPTER_IMAGE + "/" + chapterDTO.getThumbnailImageName();
