@@ -46,15 +46,14 @@ public class ChapterController {
             return new ModelAndView("redirect:/" + "notfound");
         }
         ModelAndView mav = new ModelAndView("web/chapter/detail");
-        PostDTO postDTO = postService.findById(109L);
-        List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitle(postDTO.getShortTitle());
+        List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitle(shortTitle);
         mav.addObject("chapterList", chapterList);
         mav.addObject("thisChapter", chapterDTO.getShortTitle());
         mav.addObject(SystemConstant.MODEL, chapterDTO);
         List<CommentDTO> comments = commentService.findByChapter_Id(id);
         mav.addObject("comments", comments);
-        mav.addObject("postShortTitle", postDTO.getShortTitle());
-        mav.addObject("postId", postDTO.getId());
+        mav.addObject("postShortTitle", shortTitle);
+        mav.addObject("postId", pId);
         postService.increaseView(pId);
         return mav;
     }
