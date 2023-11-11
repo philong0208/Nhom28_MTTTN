@@ -10,6 +10,7 @@ import com.laptrinhjavaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -97,7 +98,9 @@ public class PostController {
         mav.addObject("images", images);
         mav.addObject("product", postDTO);
         mav.addObject("relatedProducts", postService.top6RelatedPostApproved(postDTO.getTagCodeArray()));
-        List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitleAndAndApprovedIsTrue(postDTO.getShortTitle());
+        List<ChapterDTO> chapterList =
+                chapterService.findByPost_ShortTitleAndAndApprovedIsTrue(postDTO.getShortTitle(),
+                        Sort.by("shortTitle").ascending());
         mav.addObject("chapterList", chapterList);
         List<ReviewDTO> reviews = reviewService.findByPost_Id(postDTO.getId());
         mav.addObject("reviews", reviews);

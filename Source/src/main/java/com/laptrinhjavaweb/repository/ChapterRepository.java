@@ -1,10 +1,9 @@
 package com.laptrinhjavaweb.repository;
 
-import com.laptrinhjavaweb.entity.AuthorEntity;
 import com.laptrinhjavaweb.entity.ChapterEntity;
-import com.laptrinhjavaweb.entity.PostEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -22,6 +21,6 @@ public interface ChapterRepository extends JpaRepository<ChapterEntity, Long> {
     Page<ChapterEntity> findByShortTitleContainingIgnoreCaseAndCreatedBy(String shortTitle, String createdBy, Pageable pageable);
     long countByShortTitleContainingIgnoreCaseAndCreatedBy(String shortTitle, String createdBy);
     List<ChapterEntity> findByPost_ShortTitle(String shortTitle);
-    List<ChapterEntity> findByPost_ShortTitleAndAndApprovedIsTrue(String shortTitle);
+    List<ChapterEntity> findByPost_ShortTitleAndAndApprovedIsTrue(String shortTitle, Sort sort);
     ChapterEntity findByIdAndApprovedTrue(long id);
 }

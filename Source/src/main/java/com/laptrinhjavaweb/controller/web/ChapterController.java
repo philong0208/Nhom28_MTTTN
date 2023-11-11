@@ -10,6 +10,7 @@ import com.laptrinhjavaweb.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +47,9 @@ public class ChapterController {
             return new ModelAndView("redirect:/" + "notfound");
         }
         ModelAndView mav = new ModelAndView("web/chapter/detail");
-        List<ChapterDTO> chapterList = chapterService.findByPost_ShortTitleAndAndApprovedIsTrue(shortTitle);
+        List<ChapterDTO> chapterList =
+                chapterService.findByPost_ShortTitleAndAndApprovedIsTrue(shortTitle,
+                        Sort.by("shortTitle").ascending());
         mav.addObject("chapterList", chapterList);
         mav.addObject("thisChapter", chapterDTO.getShortTitle());
         mav.addObject(SystemConstant.MODEL, chapterDTO);

@@ -127,8 +127,8 @@ public class ChapterService implements IChapterService {
         return chapterRepository.findByPost_ShortTitle(shortTitle).stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
     }
     @Override
-    public List<ChapterDTO> findByPost_ShortTitleAndAndApprovedIsTrue(String shortTitle) {
-        return chapterRepository.findByPost_ShortTitleAndAndApprovedIsTrue(shortTitle).stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
+    public List<ChapterDTO> findByPost_ShortTitleAndAndApprovedIsTrue(String shortTitle, Sort sort) {
+        return chapterRepository.findByPost_ShortTitleAndAndApprovedIsTrue(shortTitle, sort).stream().map(item -> chapterConverter.convertToDto(item)).collect(Collectors.toList());
     }
 
     @Override
