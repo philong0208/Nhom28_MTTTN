@@ -86,7 +86,38 @@
             </div>
             <div class='py-3 justify-content-between d-flex group_value'>
                 <div class="font-weight-bold">Đánh giá</div>
-                <div class="">${product.score}</div>
+                <div class="rating readonly">
+                    <label>
+                        <input type="radio"  value="1" ${product.score == 1 ? 'checked' : ''} />
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" value="2" ${product.score == 2 ? 'checked' : ''} />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio"  value="3" ${product.score == 3 ? 'checked' : ''} />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" value="4" ${product.score == 4 ? 'checked' : ''} />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio"  value="5" ${product.score == 5 ? 'checked' : ''} />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                </div>
             </div>
             <%--<div class="py-3 d-flex group_value">
                 <div class="col-md-12 text-right">

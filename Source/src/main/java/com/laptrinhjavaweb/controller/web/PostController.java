@@ -92,6 +92,8 @@ public class PostController {
         if (postDTO == null){
             return new ModelAndView("redirect:/error/404");
         }
+        // Round score to Integer
+        postDTO.setScore(Math.round(postDTO.getScore()));
         String img = postDTO.getThumbnail();
         mav.addObject("defaultImage", postDTO.getThumbnail());
         String[] images = img.split(",", -1);
