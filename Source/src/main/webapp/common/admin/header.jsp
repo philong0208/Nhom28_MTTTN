@@ -34,6 +34,11 @@
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
                 <li class="light-blue dropdown-modal">
+                    <a href="<c:url value="/trang-chu"/>" class="dropdown-toggle">
+                        Trở về trang chủ website
+                    </a>
+                </li>
+                <li class="light-blue dropdown-modal">
                     <a href="/admin/profile/<%=SecurityUtils.getPrincipal().getUsername()%>" class="dropdown-toggle">
                         Xin chào, <%=SecurityUtils.getPrincipal().getFullName()%>
                     </a>

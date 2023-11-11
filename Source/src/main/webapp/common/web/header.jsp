@@ -32,7 +32,9 @@
                             </a>
                         </c:if>
                         <c:if test="${not SecurityUtils.notLoginYet()}">
-                            Xin chào, <%=SecurityUtils.getPrincipal().getFullName()%>
+                            <a href="<c:url value="/admin/post/list"/>" class="text-white">
+                                Xin chào, <%=SecurityUtils.getPrincipal().getFullName()%>
+                            </a>
                         </c:if>
                     </div>
                 </div>
