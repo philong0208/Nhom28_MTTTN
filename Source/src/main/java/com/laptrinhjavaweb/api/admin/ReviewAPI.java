@@ -17,7 +17,7 @@ public class ReviewAPI {
     private ReviewRepository reviewRepository;
 
     @PostMapping
-    public ResponseEntity<ReviewDTO> createReview(@RequestBody ReviewDTO reviewDTO) {
-        return ResponseEntity.ok(reviewService.insert(reviewDTO));
+    public ResponseEntity<ReviewDTO> insertOrUpdateReview(@RequestBody ReviewDTO reviewDTO) {
+        return ResponseEntity.ok(reviewService.insertOrUpdateReview(reviewDTO));
     }
 }

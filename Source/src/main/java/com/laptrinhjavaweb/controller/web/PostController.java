@@ -4,6 +4,8 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.ChapterDTO;
 import com.laptrinhjavaweb.dto.PostDTO;
 import com.laptrinhjavaweb.dto.ReviewDTO;
+import com.laptrinhjavaweb.entity.ReviewEntity;
+import com.laptrinhjavaweb.repository.ReviewRepository;
 import com.laptrinhjavaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -32,6 +34,8 @@ public class PostController {
     private ITagService tagService;
     @Autowired
     private IAuthorService authorService;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     /*@RequestMapping(value = "/tieu-thuyet/{id}", method = RequestMethod.GET)
     public ModelAndView post(@PathVariable("id") Long postId) {
@@ -97,6 +101,13 @@ public class PostController {
         mav.addObject("chapterList", chapterList);
         List<ReviewDTO> reviews = reviewService.findByPost_Id(postDTO.getId());
         mav.addObject("reviews", reviews);
+        ReviewDTO yourReview = reviewService.alreadyHaveReview(id);
+        mav.addObject("alreadyHaveReview", yourReview != null);
+        if (yourReview != null) {
+            reviews.removeIf(review -> review.getId().equals(yourReview.getId()));
+            mav.addObject("yourReview", yourReview);
+        }
+        mav.addObject("yourUserId", yourReview != null ? yourReview.getUserId() : null);
         return mav;
     }
     @RequestMapping(value = "/error/404", method = RequestMethod.GET)

@@ -169,6 +169,47 @@
             <p>${review.content}</p>
         </div>
     </c:forEach>
+    <c:if test="${alreadyHaveReview}">
+        <hr/>
+        <strong>Đánh giá của bạn:</strong>
+
+        <div class="comment">
+            <p><strong>${yourReview.userFullName}</strong> - ${yourReview.createdDate}</p>
+            <div class="rating readonly">
+                <label>
+                    <input type="radio"  value="1" ${yourReview.score == 1 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" value="2" ${yourReview.score == 2 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio"  value="3" ${yourReview.score == 3 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" value="4" ${yourReview.score == 4 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio"  value="5" ${yourReview.score == 5 ? 'checked' : ''} />
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+            </div>
+            <p>${yourReview.content}</p>
+        </div>
+    </c:if>
 </div>
 <div class="container py-4">
     <c:if test="${SecurityUtils.notLoginYet()}">
@@ -219,8 +260,10 @@
                 </label>
             </div>
             <div class="mt-3 pt-4  mr-md-4 px-md-3">
-                <button id="btnSend" type="button"
-                        class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Gửi đánh giá</button>
+                <button id="btnSend" type="button" class='button d-flex mx-md-4 w-100 justify-content-center
+                        text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>
+                        ${alreadyHaveReview ? 'Đánh giá lại tiểu thuyết này' : 'Gửi đánh giá'}
+                </button>
             </div>
         </form:form>
         <br/>
@@ -286,6 +329,7 @@
             formData['score'] = $("input[name='score']:checked").val();
             formData['content'] =  $("#content").val()
             formData['postId'] =  ${product.id}
+            formData['userId'] =  ${yourUserId}
             review(formData);
         });
 

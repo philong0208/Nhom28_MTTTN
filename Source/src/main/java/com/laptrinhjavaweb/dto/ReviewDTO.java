@@ -2,7 +2,7 @@ package com.laptrinhjavaweb.dto;
 public class ReviewDTO extends AbstractDTO<ReviewDTO> {
     private Integer score;
     private String content;
-    private String postId;
+    private Long postId;
     private Long userId;
     private String userFullName;
 
@@ -22,11 +22,11 @@ public class ReviewDTO extends AbstractDTO<ReviewDTO> {
         this.content = content;
     }
 
-    public String getPostId() {
+    public Long getPostId() {
         return postId;
     }
 
-    public void setPostId(String postId) {
+    public void setPostId(Long postId) {
         this.postId = postId;
     }
 

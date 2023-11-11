@@ -1,11 +1,10 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.converter.CommentConverter;
 import com.laptrinhjavaweb.converter.ReviewConverter;
-import com.laptrinhjavaweb.dto.CommentDTO;
 import com.laptrinhjavaweb.dto.ReviewDTO;
-import com.laptrinhjavaweb.repository.CommentRepository;
+import com.laptrinhjavaweb.entity.ReviewEntity;
 import com.laptrinhjavaweb.repository.ReviewRepository;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.IReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,24 @@ public class ReviewService implements IReviewService {
                 item -> reviewConverter.convertToDto(item)).collect(Collectors.toList());
     }
     @Override
-    public ReviewDTO insert(ReviewDTO reviewDTO) {
-        return reviewConverter.convertToDto(reviewRepository.save(reviewConverter.convertToEntity(reviewDTO)));
+    public ReviewDTO insertOrUpdateReview(ReviewDTO reviewDTO) {
+        ReviewEntity reviewEntity = reviewRepository.findByPost_IdAndUser_Id(reviewDTO.getPostId(), reviewDTO.getUserId());
+        if (reviewEntity != null) {
+            reviewEntity.setContent(reviewDTO.getContent());
+            reviewEntity.setScore(reviewDTO.getScore());
+        } else {
+            reviewEntity = reviewConverter.convertToEntity(reviewDTO);
+        }
+        return reviewConverter.convertToDto(reviewRepository.save(reviewEntity));
+    }
+    @Override
+    public ReviewDTO alreadyHaveReview(Long postId) {
+        if (SecurityUtils.notLoginYet()) {
+            return null;
+        }
+        Long reviewUserId = SecurityUtils.getPrincipal().getId();
+        return reviewRepository.findByPost_IdAndUser_Id(postId, reviewUserId) != null
+                ? reviewConverter.convertToDto(reviewRepository.findByPost_IdAndUser_Id(postId, reviewUserId))
+                : null;
     }
 }
