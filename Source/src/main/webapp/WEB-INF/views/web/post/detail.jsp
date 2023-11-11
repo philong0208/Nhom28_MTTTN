@@ -172,7 +172,6 @@
     <c:if test="${alreadyHaveReview}">
         <hr/>
         <strong>Đánh giá của bạn:</strong>
-
         <div class="comment">
             <p><strong>${yourReview.userFullName}</strong> - ${yourReview.createdDate}</p>
             <div class="rating readonly">

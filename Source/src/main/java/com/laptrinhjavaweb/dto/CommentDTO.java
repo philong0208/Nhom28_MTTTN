@@ -1,7 +1,7 @@
 package com.laptrinhjavaweb.dto;
 public class CommentDTO extends AbstractDTO<CommentDTO> {
     private String content;
-    private String chapterId;
+    private Long chapterId;
     private Long userId;
     private String userFullName;
 
@@ -13,11 +13,11 @@ public class CommentDTO extends AbstractDTO<CommentDTO> {
         this.content = content;
     }
 
-    public String getChapterId() {
+    public Long getChapterId() {
         return chapterId;
     }
 
-    public void setChapterId(String chapterId) {
+    public void setChapterId(Long chapterId) {
         this.chapterId = chapterId;
     }
 

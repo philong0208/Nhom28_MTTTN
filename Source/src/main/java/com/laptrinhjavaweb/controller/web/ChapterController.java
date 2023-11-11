@@ -3,13 +3,10 @@ package com.laptrinhjavaweb.controller.web;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.ChapterDTO;
 import com.laptrinhjavaweb.dto.CommentDTO;
-import com.laptrinhjavaweb.dto.PostDTO;
 import com.laptrinhjavaweb.service.IChapterService;
 import com.laptrinhjavaweb.service.ICommentService;
 import com.laptrinhjavaweb.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller(value = "chapterControllerOfWeb")
@@ -58,6 +54,13 @@ public class ChapterController {
         mav.addObject("postShortTitle", shortTitle);
         mav.addObject("postId", pId);
         postService.increaseView(pId);
+        CommentDTO yourComment = commentService.alreadyHaveComment(id);
+        mav.addObject("alreadyHaveComment", yourComment != null);
+        if (yourComment != null) {
+            comments.removeIf(comment -> comment.getId().equals(yourComment.getId()));
+            mav.addObject("yourComment", yourComment);
+        }
+        mav.addObject("yourUserId", yourComment != null ? yourComment.getUserId() : null);
         return mav;
     }
 }

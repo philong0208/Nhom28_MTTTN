@@ -1,5 +1,7 @@
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
+<c:url var="formUrl" value="/api/admin/comment"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,22 +78,86 @@
                 </div>
             </c:forEach>
         </div>
+        <c:if test="${alreadyHaveComment}">
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>Đánh giá của bạn:</strong>
+                </div>
+                <div class="col-md-9">
+                        <div class="comment">
+                            <p><strong>${yourComment.userFullName}</strong> - ${yourComment.createdDate}</p>
+                            <p>${yourComment.content}</p>
+                        </div>
+                </div>
+            </div>
+        </c:if>
         <div class="row">
             <div class="col-md-3">
             </div>
             <div class="col-md-9">
-                <form action="your_comment_post_url" method="post">
-                    <div>
-                        <label for="content">Nội dung bình luận:</label>
+                <c:if test="${SecurityUtils.notLoginYet()}">
+                    <div class="mt-3 pt-4  mr-md-4 px-md-3">
+                        <a href="<c:url value='/loginAdmin'/>">
+                            <button id="login" type="button"
+                                    class='button d-flex mx-md-4 w-100 justify-content-center text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Để lại đánh giá</button>
+                        </a>
                     </div>
-                    <textarea id="content" name="content" rows="4" cols="50"></textarea><br>
-                    </br>
-                    <input type="submit" value="Gửi bình luận">
-                </form>
+                </c:if>
+                <c:if test="${not SecurityUtils.notLoginYet()}">
+                    <form:form id="formMail">
+                        <div class="mt-3 mr-md-4 px-md-3">
+                            <label for="content">Nội dung bình luận</label>
+                            <textarea class="w-100 mx-md-4 py-2 px-2 form-text" id="content"
+                                      placeholder="Nội dung bình luận"></textarea>
+                        </div>
+                        <div class="mt-3 pt-4  mr-md-4 px-md-3">
+                            <button id="btnSend" type="button" class='button d-flex mx-md-4 w-100 justify-content-center
+                        text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>
+                                    ${alreadyHaveComment ? 'Đánh giá lại chương này' : 'Gửi đánh giá'}
+                            </button>
+                        </div>
+                    </form:form>
+                    <br/>
+                    <div class="alert alert-success" id="messageAlert">
+                        <div id="messageContent"></div>
+                    </div>
+                </c:if>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $('#messageAlert').hide();
+        $('#btnSend').click(function (event) {
+            event.preventDefault();
+            var formData = {}
+            formData['content'] =  $("#content").val()
+            formData['chapterId'] =  ${model.id}
+            formData['userId'] =  ${yourUserId}
+            comment(formData);
+        });
+        function comment(data) {
+            $.ajax({
+                url: '${formUrl}',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (res) {
+                    $("#messageAlert").show()
+                    $('#messageContent').html("Đánh giá thành công")
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                },
+                error: function (res) {
+                    $("#messageAlert").hide()
+                    $('#messageContent').html("Liên hệ thất bại")
+                }
+            });
+        }
+    });
+</script>
 </body>
-
 </html>
