@@ -129,7 +129,9 @@ public class PostService implements IPostService {
                             .collect(Collectors.toList()));
             saveThumbnail(postDTO, postEntity);
             saveOgImage(postDTO, postEntity);
-            postEntity.setApproved(false);
+            if (SecurityUtils.isUser()) {
+                postEntity.setApproved(false);
+            }
             postEntity.setScore(0f);
             postEntity.setView(0L);
             postEntity = postRepository.save(postEntity);
