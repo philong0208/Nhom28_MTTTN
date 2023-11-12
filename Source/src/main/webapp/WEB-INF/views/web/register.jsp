@@ -218,8 +218,7 @@
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function (res) {
-                $("#messageAlert").show()
-                $('#messageContent').html("Tạo tài khoản thành công")
+                window.location.href = "<c:url value='/dang-ky?message=register_success'/>";
             },
             error: function (res) {
                 window.location.href = "<c:url value='/dang-ky?message=register_failed'/>";
