@@ -2,7 +2,7 @@
 <%@include file="/common/taglib.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/taglib.jsp" %>
-<c:url var="formUrl" value="/api/contact/send-email"/>
+<c:url var="formUrl" value="/api/user/register"/>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -124,9 +124,10 @@
             event.preventDefault();
             var formData = {}
             formData['fullName'] =  $("#fullName").val()
+            formData['username'] =  $("#username").val()
             formData['email'] =  $("#email").val()
             formData['phone'] =  $("#phone").val()
-            formData['content'] =  $("#content").val()
+            formData['password'] =  $("#password").val()
             addMail(formData);
         });
 

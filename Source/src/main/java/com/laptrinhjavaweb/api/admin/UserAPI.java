@@ -62,4 +62,8 @@ public class UserAPI {
         }
         return ResponseEntity.noContent().build();
     }
+    @PostMapping("/register")
+    public ResponseEntity<UserDTO> register(@RequestBody UserDTO newUser) {
+        return ResponseEntity.ok(userService.insert(newUser));
+    }
 }
