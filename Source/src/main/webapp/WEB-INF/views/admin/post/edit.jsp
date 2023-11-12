@@ -208,7 +208,7 @@
         } else {
             setTimeout(function () {
                 $('#nameVal').css('display', 'none');
-            }, 5000);
+            }, 1500);
         }
     });
 

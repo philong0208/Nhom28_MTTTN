@@ -4,20 +4,26 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.dto.PasswordDTO;
 import com.laptrinhjavaweb.dto.UserDTO;
 import com.laptrinhjavaweb.dto.UserInfoDTO;
+import com.laptrinhjavaweb.repository.UserRepository;
 import com.laptrinhjavaweb.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
+@Validated
 public class UserAPI {
 
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/")
     public ResponseEntity<List<UserInfoDTO>> getAll() {
@@ -63,7 +69,9 @@ public class UserAPI {
         return ResponseEntity.noContent().build();
     }
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> register(@RequestBody UserDTO newUser) {
-        return ResponseEntity.ok(userService.insert(newUser));
+    public ResponseEntity<UserDTO> register(@Valid @RequestBody UserDTO newUser) {
+        return userRepository.existsByUserName(newUser.getUserName())
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(userService.insert(newUser));
     }
 }
