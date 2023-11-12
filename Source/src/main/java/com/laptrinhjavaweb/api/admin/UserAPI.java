@@ -70,6 +70,7 @@ public class UserAPI {
     }
     @PostMapping("/register")
     public ResponseEntity<UserDTO> register(@Valid @RequestBody UserDTO newUser) {
+        newUser.setRoleCode("USER");
         return userRepository.existsByUserName(newUser.getUserName()) || userRepository.existsByEmail(newUser.getEmail())
                 ? ResponseEntity.badRequest().build()
                 : ResponseEntity.ok(userService.insert(newUser));
