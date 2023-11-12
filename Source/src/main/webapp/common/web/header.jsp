@@ -35,6 +35,12 @@
                             <a href="<c:url value="/admin/post/list"/>" class="text-white">
                                 Xin chào, <%=SecurityUtils.getPrincipal().getFullName()%>
                             </a>
+                            |
+                                <a href="<c:url value='/logout'/>" class="text-white">
+                                    <i class="ace-icon fa fa-power-off"></i>
+                                    Thoát
+                                </a>
+
                         </c:if>
                     </div>
                 </div>
