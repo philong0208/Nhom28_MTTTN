@@ -47,11 +47,17 @@
                                 <li><span style="font-size:16px">Không dùng những lời lẽ...</span></li>
                                 <li><span style="font-size:16px">Không tiết lộ nội dung...</span></li>
                             </ul>
-                            <p dir="ltr"><strong><span style="font-size:16px">Về việc đăng truyện</span></strong></p>
+                            <p dir="ltr"><strong><span style="font-size:16px">Nội dung truyện</span></strong></p>
                             <ul dir="ltr">
                                 <li><span style="font-size:16px">Không đăng truyện có nội dung không phù hợp...</span></li>
                                 <li><span style="font-size:16px">Không đăng lại truyện của người khác...</span></li>
                                 <li><span style="font-size:16px">Tôn trọng quyền tác giả, xin phép ý kiến...</span></li>
+                            </ul>
+                            <p dir="ltr"><strong><span style="font-size:16px">Giới hạn quyền</span></strong></p>
+                            <ul dir="ltr">
+                                <li><span style="font-size:16px">Chỉ được đăng truyện + chương + tác giả</span></li>
+                                <li><span style="font-size:16px; color: red; font-weight: bold">Chỉ được đăng truyện thuộc thể loại cho phép</span></li>
+                                <li><span style="font-size:16px;">Trường hợp cần thể loại mới, liên hệ trực tiếp admin</span></li>
                             </ul>
                             <p dir="ltr"><strong><span style="font-size:16px">Mọi yêu cầu phê duyệt sớm liên hệ trực tiếp qua</span></strong></p>
                             <ul dir="ltr">
@@ -67,16 +73,28 @@
                         </div>
                         <form:form id="formMail">
                             <div class="mt-md-5 mr-md-4 px-md-3">
-                                <label for="fullName">Tên của bạn</label>
-                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="fullName" placeholder="Tên*" required/>
+                                <label for="fullName">Tên đăng nhập</label>
+                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="username" placeholder="Tên đăng nhập*" required/>
+                            </div>
+                            <div class="mt-md-5 mr-md-4 px-md-3">
+                                <label for="fullName">Tên hiển thị</label>
+                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="fullName" placeholder="Tên hiển thị*" required/>
                             </div>
                             <div class="mt-3 mr-md-4 px-md-3">
-                                <label for="email"></label>
+                                <label for="email">Email</label>
                                 <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="email" placeholder="Email*" required/>
                             </div>
                             <div class="mt-3 mr-md-4 px-md-3">
-                                <label for="phone"></label>
-                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="phone" placeholder="Số Điện Thoại*" required/>
+                                <label for="phone">Số điện thoại</label>
+                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="phone" placeholder="Số điện thoại*" required/>
+                            </div>
+                            <div class="mt-3 mr-md-4 px-md-3">
+                                <label for="phone">Mật khẩu</label>
+                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="password" placeholder="Mật khẩu*" required/>
+                            </div>
+                            <div class="mt-3 mr-md-4 px-md-3">
+                                <label for="phone">Xác nhận mật khẩu</label>
+                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="confirmPassword" placeholder="Xác nhận mật khẩu*" required/>
                             </div>
                             <div class="mt-3 pt-4  mr-md-4 px-md-3">
                                 <button id="btnSend" type="button"
