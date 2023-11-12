@@ -21,6 +21,7 @@ public class CommentAPI {
 
     @PostMapping
     public ResponseEntity<CommentDTO> insertOrUpdateComment(@RequestBody CommentDTO commentDTO) {
-        return ResponseEntity.ok(commentService.insertOrUpdateComment(commentDTO));
+        /*return ResponseEntity.ok(commentService.insertOrUpdateComment(commentDTO));*/
+        return ResponseEntity.ok(commentService.insertComment(commentDTO));
     }
 }

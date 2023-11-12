@@ -7,5 +7,8 @@ import java.util.List;
 public interface ICommentService {
     List<CommentDTO> findByChapter_Id(Long id);
     CommentDTO insertOrUpdateComment(CommentDTO commentDTO);
+
+    CommentDTO insertComment(CommentDTO commentDTO);
+
     CommentDTO alreadyHaveComment(Long chapterId);
 }

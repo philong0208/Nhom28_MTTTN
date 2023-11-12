@@ -25,13 +25,6 @@ public class ChapterController {
     private IPostService postService;
     @Autowired
     private ICommentService commentService;
-//    @RequestMapping(value = "/chuong/{id}", method = RequestMethod.GET)
-//    public ModelAndView post(@PathVariable("id") Long postId) {
-//        ModelAndView mav = new ModelAndView("web/post/detail");
-//        ChapterDTO model = chapterService.findById(postId);
-//        mav.addObject(SystemConstant.MODEL, model);
-//        return mav;
-//    }
     @RequestMapping(value = "/tieu-thuyet/{shortTitle}-{pId}/{chapterCode}-{id}", method = RequestMethod.GET)
     public ModelAndView getDetail(@ModelAttribute(SystemConstant.MODEL) ChapterDTO model,
                                   @PathVariable("shortTitle") String shortTitle,
@@ -54,13 +47,6 @@ public class ChapterController {
         mav.addObject("postShortTitle", shortTitle);
         mav.addObject("postId", pId);
         postService.increaseView(pId);
-        CommentDTO yourComment = commentService.alreadyHaveComment(id);
-        mav.addObject("alreadyHaveComment", yourComment != null);
-        if (yourComment != null) {
-            comments.removeIf(comment -> comment.getId().equals(yourComment.getId()));
-            mav.addObject("yourComment", yourComment);
-        }
-        mav.addObject("yourUserId", yourComment != null ? yourComment.getUserId() : null);
         return mav;
     }
 }

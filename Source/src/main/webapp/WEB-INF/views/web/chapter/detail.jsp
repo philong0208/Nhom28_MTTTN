@@ -78,19 +78,6 @@
                 </div>
             </c:forEach>
         </div>
-        <c:if test="${alreadyHaveComment}">
-            <div class="row">
-                <div class="col-md-3">
-                    <strong>Đánh giá của bạn:</strong>
-                </div>
-                <div class="col-md-9">
-                        <div class="comment">
-                            <p><strong>${yourComment.userFullName}</strong> - ${yourComment.createdDate}</p>
-                            <p>${yourComment.content}</p>
-                        </div>
-                </div>
-            </div>
-        </c:if>
         <div class="row">
             <div class="col-md-3">
             </div>
@@ -112,8 +99,7 @@
                         </div>
                         <div class="mt-3 pt-4  mr-md-4 px-md-3">
                             <button id="btnSend" type="button" class='button d-flex mx-md-4 w-100 justify-content-center
-                        text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>
-                                    ${alreadyHaveComment ? 'Đánh giá lại chương này' : 'Gửi đánh giá'}
+                        text-white font-weight-bold ml-auto px-5 py-2 buttonCustomer'>Gửi đánh giá
                             </button>
                         </div>
                     </form:form>
@@ -134,7 +120,6 @@
             var formData = {}
             formData['content'] =  $("#content").val()
             formData['chapterId'] =  ${model.id}
-            formData['userId'] =  ${yourUserId}
             comment(formData);
         });
         function comment(data) {

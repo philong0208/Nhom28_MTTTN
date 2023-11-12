@@ -34,6 +34,11 @@ public class CommentService implements ICommentService {
         return commentConverter.convertToDto(commentRepository.save(commentEntity));
     }
     @Override
+    public CommentDTO insertComment(CommentDTO commentDTO) {
+        CommentEntity commentEntity = commentConverter.convertToEntity(commentDTO);
+        return commentConverter.convertToDto(commentRepository.save(commentEntity));
+    }
+    @Override
     public CommentDTO alreadyHaveComment(Long chapterId) {
         if (SecurityUtils.notLoginYet()) {
             return null;
