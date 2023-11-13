@@ -1,0 +1,13 @@
+body {
+  background-image: url(../image/dark-texture-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* login-form */
+.login {
+  margin-top: 100px;
+}
+.login .form-style {
+  background-color: whitesmoke;
+}

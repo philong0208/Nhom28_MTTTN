@@ -69,6 +69,7 @@
                                 <li><span style="font-size:16px; color: red; font-weight: bold">Chỉ được đăng truyện thuộc thể loại cho phép</span></li>
                                 <li><span style="font-size:16px;">Trường hợp cần thể loại mới, liên hệ trực tiếp admin</span></li>
                             </ul>
+                            <p dir="ltr"><strong><span style="font-size:16px; color: red">Quên mật khẩu - liên hệ trực tiếp admin</span></strong></p>
                             <p dir="ltr"><strong><span style="font-size:16px">Mọi yêu cầu phê duyệt sớm liên hệ trực tiếp qua</span></strong></p>
                             <ul dir="ltr">
                                 <li><span style="font-size:16px">Admin 1: Bùi Phi Minh - 0123.456.789</span></li>
