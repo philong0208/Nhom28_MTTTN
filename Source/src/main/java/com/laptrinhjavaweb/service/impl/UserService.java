@@ -100,7 +100,7 @@ public class UserService implements IUserService {
         UserEntity userEntity = userConverter.convertToEntity(newUser);
         userEntity.setRoles(Stream.of(role).collect(Collectors.toList()));
         userEntity.setStatus(1);
-        userEntity.setPassword(passwordEncoder.encode(SystemConstant.PASSWORD_DEFAULT));
+        userEntity.setPassword(passwordEncoder.encode("123456789"));
         return userConverter.convertToDto(userRepository.save(userEntity));
     }
 

@@ -1,0 +1,233 @@
+.wrap {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.wrap-detail-page {
+  max-width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.wrap-header {
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.logo-header {
+  align-self: center;
+  height: fit-content;
+}
+/* Header */
+.header-bg {
+  background-color: white;
+}
+.header .left-header .fas{
+  padding-right: 5px;
+}
+.header .left-header .fa-youtube-square{
+  font-size: 25px;
+  color: #e62117;
+}
+.header .left-header .fa-facebook-square{
+  font-size: 25px;
+  color: #3a5795;
+}
+
+/* navbar-items */
+.navbar-items {
+  background-color: white;
+}
+.navbar-items .nav-item:hover {
+  background-color: #3498db;
+}
+.navbar-items .nav-item:hover .nav-link{
+  color: #FFF !important;
+}
+.nav-link{
+  color: #000 !important;
+}
+
+/* breadcrumb */
+.breadcrumb {
+  background-color: white;
+}
+.breadcrumb-bg {
+  background-color: white;
+}
+/* banner */
+.banner {
+  /*background-image: url(../img/background-bee.png);*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: black; */
+}
+.banner .slick-prev:before, .slick-next:before {
+  color: lightslategrey;
+  font-size: 30px;
+}
+.banner .slick-dotted.slick-slider {
+  margin-bottom: 0px;
+}
+.banner .slick-prev {
+  left: -1px;
+  z-index: 1;
+}
+.banner .slick-next {
+  right: 8px;
+  z-index: 1;
+}
+.banner .slick-dots{
+  bottom: 0px;
+}
+.slider-for img{
+  width: 100%;
+  height: 550px;
+}
+.slider-for img:focus {
+  outline: none;
+}
+.slider-for a:focus {
+  outline: none;
+}
+.hot-news {
+  background: white;
+}
+.hot-news ul {
+  list-style: none;
+  margin-bottom: 0px;
+  padding-left: 0px;
+}
+.hot-news li {
+  height: 100px;
+  border-bottom: 1px dashed #000;
+}
+.hot-news .thumbnail .thumbnail-image{
+  height: 80px;
+  width: 80px;
+}
+.hot-news li:last-child {
+  border-bottom: none;
+}
+.hot-news .news-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-height: 70px;
+}
+/* course */
+.course {
+  background-color: white;
+}
+.course .course-border {
+  border-radius: 30px;
+  background: gainsboro;
+}
+.course .course-icon {
+  font-size: 45px;
+}
+/* tech-news */
+.tech-news {
+  /*background-image: url(../image/background-bee.png);*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: black; */
+}
+
+/* footer */
+.footer {
+  background-color: white;
+  border-top: 2px solid black !important;
+}
+.footer .item{
+  font-size: 13px;
+}
+.social .fa-youtube-square{
+  font-size: 35px;
+  color: #e62117;
+}
+.social .fa-facebook-square{
+  font-size: 35px;
+  color: #3a5795;
+}
+.main-page{
+  min-height: 69vh;
+}
+/* detail-page */
+.banner-intro{
+  width: 17%;
+  background-color: transparent;
+}
+.banner-intro-item{
+  max-height: 600px;
+  background-color: transparent;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 0 !important;
+}
+.banner-intro-item-1{
+  top: 10px;
+}
+.banner-intro-item-2{
+  margin-top: 10px;
+  top: 25%;
+}
+@media (min-width: 1200px){
+  .navbar-desktop {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .navbar-mobile .wrap {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  .navbar-mobile {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .header-bg {
+    display: none;
+  }
+  .wrap-detail-page {
+    width: 100vw;
+  }
+  /*.tech-news {*/
+  /*display: none;*/
+  /*}*/
+  .navbar-desktop {
+    display: none;
+  }
+  .banner .wrap .responsive{
+    padding-right: 0;
+  }
+  .banner .wrap .hot-news{
+    margin-top: 20px;
+    font-size: 1.5rem;
+  }
+  .course {
+    font-size: 2rem;
+  }
+  .footer .title h5{
+    font-size: 2rem;
+  }
+  .footer .item a{
+    font-size: 1rem;
+  }
+  .footer .col-6 {
+    margin-top: 20px;
+  }
+  .list-group {
+    border-top: 3px dashed #007bff;
+  }
+  .border-top-none {
+    border-top: none;
+  }
+  .border-none {
+    border: none;
+  }
+}
