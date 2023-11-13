@@ -26,3 +26,5 @@ VALIDATION_TEXT_ONLY,Chỉ chấp nhận chuỗi
 VALIDATION_INTEGER_ONLY,Chỉ chấp nhận số nguyên
 AUTHENTICATION_SUCCESS,Đăng nhập thành công
 AUTHENTICATION_FAILED,"Sai tên đăng nhập hoặc mật khẩu, vui lòng nhập lại"
+register_failed,"Đăng ký thất bại, username hoặc email đã tồn tại"
+register_success,Đăng ký tài khoản thành công

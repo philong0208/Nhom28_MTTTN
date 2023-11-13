@@ -2,7 +2,7 @@
 <%@include file="/common/taglib.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/taglib.jsp" %>
-<c:url var="formUrl" value="/api/contact/send-email"/>
+<c:url var="formUrl" value="/api/user/register"/>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,6 +37,16 @@
                 <div class="alert alert-success" id="messageAlert">
                     <div id="messageContent"></div>
                 </div>
+
+                <c:if test="${not empty messageResponse}">
+                    <div class="alert alert-block alert-${alert}">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <i class="ace-icon fa fa-times"></i>
+                        </button>
+                            ${messageResponse}
+                    </div>
+                </c:if>
+
                 <div class="pt-md-5 text-center font-weight-bold inf-contact">Nội quy thành viên Light Novel</div>
                 <div class="border my-3 mx-auto border"></div>
                 <div class="row">
@@ -47,11 +57,17 @@
                                 <li><span style="font-size:16px">Không dùng những lời lẽ...</span></li>
                                 <li><span style="font-size:16px">Không tiết lộ nội dung...</span></li>
                             </ul>
-                            <p dir="ltr"><strong><span style="font-size:16px">Về việc đăng truyện</span></strong></p>
+                            <p dir="ltr"><strong><span style="font-size:16px">Nội dung truyện</span></strong></p>
                             <ul dir="ltr">
                                 <li><span style="font-size:16px">Không đăng truyện có nội dung không phù hợp...</span></li>
                                 <li><span style="font-size:16px">Không đăng lại truyện của người khác...</span></li>
                                 <li><span style="font-size:16px">Tôn trọng quyền tác giả, xin phép ý kiến...</span></li>
+                            </ul>
+                            <p dir="ltr"><strong><span style="font-size:16px">Giới hạn quyền</span></strong></p>
+                            <ul dir="ltr">
+                                <li><span style="font-size:16px">Chỉ được đăng truyện + chương + tác giả</span></li>
+                                <li><span style="font-size:16px; color: red; font-weight: bold">Chỉ được đăng truyện thuộc thể loại cho phép</span></li>
+                                <li><span style="font-size:16px;">Trường hợp cần thể loại mới, liên hệ trực tiếp admin</span></li>
                             </ul>
                             <p dir="ltr"><strong><span style="font-size:16px">Mọi yêu cầu phê duyệt sớm liên hệ trực tiếp qua</span></strong></p>
                             <ul dir="ltr">
@@ -67,16 +83,34 @@
                         </div>
                         <form:form id="formMail">
                             <div class="mt-md-5 mr-md-4 px-md-3">
-                                <label for="fullName">Tên của bạn</label>
-                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="fullName" placeholder="Tên*" required/>
+                                <label for="userName">Tên đăng nhập</label>
+                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="userName" placeholder="Tên đăng nhập*" required/>
+                                <span id="userNameVal" style="display: none; color: red"></span>
+                            </div>
+                            <div class="mt-md-5 mr-md-4 px-md-3">
+                                <label for="fullName">Tên hiển thị</label>
+                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="fullName" placeholder="Tên hiển thị*" required/>
+                                <span id="fullNameVal" style="display: none; color: red"></span>
                             </div>
                             <div class="mt-3 mr-md-4 px-md-3">
-                                <label for="email"></label>
+                                <label for="email">Email</label>
                                 <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="email" placeholder="Email*" required/>
+                                <span id="emailVal" style="display: none; color: red"></span>
                             </div>
                             <div class="mt-3 mr-md-4 px-md-3">
-                                <label for="phone"></label>
-                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="phone" placeholder="Số Điện Thoại*" required/>
+                                <label for="phone">Số điện thoại</label>
+                                <input type="text" class="w-100 mx-md-4 py-2 px-2 form-text" id="phone" placeholder="Số điện thoại*" required/>
+                                <span id="phoneVal" style="display: none; color: red"></span>
+                            </div>
+                            <div class="mt-3 mr-md-4 px-md-3">
+                                <label for="password">Mật khẩu</label>
+                                <input type="password" class="w-100 mx-md-4 py-2 px-2 form-text" id="password" placeholder="Mật khẩu*" required/>
+                                <span id="passwordVal" style="display: none; color: red"></span>
+                            </div>
+                            <div class="mt-3 mr-md-4 px-md-3">
+                                <label for="confirmPassword">Xác nhận mật khẩu</label>
+                                <input type="password" class="w-100 mx-md-4 py-2 px-2 form-text" id="confirmPassword" placeholder="Xác nhận mật khẩu*" required/>
+                                <span id="confirmPasswordVal" style="display: none; color: red"></span>
                             </div>
                             <div class="mt-3 pt-4  mr-md-4 px-md-3">
                                 <button id="btnSend" type="button"
@@ -102,35 +136,95 @@
 <script type="text/javascript">
     $( document ).ready(function() {
         $('#messageAlert').hide();
-        $('#btnSend').click(function (event) {
-            event.preventDefault();
+    });
+    $('#btnSend').click(function (event) {
+        event.preventDefault();
+
+        var hasError = false;
+        $('#userNameVal').html('');
+        $('#userNameVal').css('display', 'none');
+        $('#fullNameVal').html('');
+        $('#fullNameVal').css('display', 'none');
+        $('#emailVal').html('');
+        $('#emailVal').css('display', 'none');
+        $('#phoneVal').html('');
+        $('#phoneVal').css('display', 'none');
+        $('#passwordVal').html('');
+        $('#passwordVal').css('display', 'none');
+        $('#confirmPasswordVal').html('');
+        $('#confirmPasswordVal').css('display', 'none');
+
+        if (!/^[a-zA-Z0-9-]+$/.test($('#userName').val())) {
+            $('#userNameVal').html('Tên đăng nhập không hợp lệ: chỉ bao gồm chữ cái, chữ số và dấu gạch ngang!');
+            $('#userNameVal').css('display', 'block');
+            hasError = true;
+        }
+
+        if ($('#fullName').val() == '') {
+            $('#fullNameVal').html('Tên hiển thị không được để trống');
+            $('#fullNameVal').css('display', 'block');
+            hasError = true;
+        }
+
+        if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test($('#email').val())) {
+            $('#emailVal').html('Email không hợp lệ!');
+            $('#emailVal').css('display', 'block');
+            hasError = true;
+        }
+
+        if (!/^0\d{9,10}$/.test($('#phone').val())) {
+            $('#phoneVal').html('Số điện thoại không hợp lệ!');
+            $('#phoneVal').css('display', 'block');
+            hasError = true;
+        }
+
+        if ($('#password').val().length < 6) {
+            $('#passwordVal').html('Mật khẩu không hợp lệ: phải bao gồm ít nhất 6 ký tự!');
+            $('#passwordVal').css('display', 'block');
+            hasError = true;
+        }
+
+        if ($('#password').val() != $('#confirmPassword').val()) {
+            $('#confirmPasswordVal').html('Mật khẩu không trùng khớp!');
+            $('#confirmPasswordVal').css('display', 'block');
+            hasError = true;
+        }
+
+        if (!hasError) {
             var formData = {}
+            formData['userName'] =  $("#userName").val()
             formData['fullName'] =  $("#fullName").val()
             formData['email'] =  $("#email").val()
             formData['phone'] =  $("#phone").val()
-            formData['content'] =  $("#content").val()
+            formData['password'] =  $("#password").val()
             addMail(formData);
-        });
-
-        function addMail(data) {
-            $.ajax({
-                url: '${formUrl}',
-                type: 'POST',
-                dataType: 'json',
-                contentType: 'application/json',
-                data: JSON.stringify(data),
-                success: function (res) {
-                    $("#messageAlert").show()
-                    $('#messageContent').html("Liên hệ thành công")
-                },
-                error: function (res) {
-                    $("#messageAlert").hide()
-                    $('#messageContent').html("Liên hệ thất bại")
-                }
-            });
+        } else {
+            setTimeout(function () {
+                $('#userNameVal').css('display', 'none');
+                $('#fullNameVal').css('display', 'none');
+                $('#emailVal').css('display', 'none');
+                $('#phoneVal').css('display', 'none');
+                $('#passwordVal').css('display', 'none');
+                $('#confirmPasswordVal').css('display', 'none');
+            }, 1500);
         }
     });
 
+    function addMail(data) {
+        $.ajax({
+            url: '${formUrl}',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (res) {
+                window.location.href = "<c:url value='/dang-ky?message=register_success'/>";
+            },
+            error: function (res) {
+                window.location.href = "<c:url value='/dang-ky?message=register_failed'/>";
+            }
+        });
+    }
 </script>
 </body>
 </html>
