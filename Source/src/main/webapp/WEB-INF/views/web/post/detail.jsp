@@ -331,16 +331,11 @@
                                 <c:set var="imageProduct" value="/template/image/default.png"/>
                             </c:if>
                             <img src="${imageProduct}" alt="${imageProduct}"/>
-                            <div class="position-absolute mt-2 codeSeen">${item.shortTitle}</div>
                             <div class=" position-absolute hide1">
                                 <div class="text-left font-weight-bold" title="123.092121">${item.shortTitle}</div>
-                                <div class='d-flex justify-content-between'>
-                                    <div class="mr-1">Kích thước</div>
-                                    <div class=" font-weight-bold value">${item.shortTitle} cm</div>
-                                </div>
-                                <%--<div class="detail"><a
-                                        href="<c:url value="/san-pham/${item.productCategoryCode}/${item.code}"/>">xem
-                                    chi tiết</a><i class="fas fa-long-arrow-alt-right"></i></div>--%>
+                                <div class="detail"><a
+                                        href="<c:url value="/tieu-thuyet/${item.shortTitle}-${item.id}"/>">xem
+                                    chi tiết</a><i class="fas fa-long-arrow-alt-right"></i></div>
                             </div>
                         </div>
                     </li>

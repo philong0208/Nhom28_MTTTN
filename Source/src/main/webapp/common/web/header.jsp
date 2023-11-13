@@ -28,7 +28,7 @@
                             </a>
                             &nbsp;|&nbsp;
                             <a href="<c:url value="/dang-ky"/>" class="text-white">
-                                <strong>Đăng ký</strong>
+                                <strong>Đăng ký</strong
                             </a>
                         </c:if>
                         <c:if test="${not SecurityUtils.notLoginYet()}">
